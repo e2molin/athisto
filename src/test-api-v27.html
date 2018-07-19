@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- PRODUCTION ENVIROMENT -->
+<link rel="Shortcut Icon" href="http://componentes.ign.es/NucleoVisualizadorV2_7/favicon.ico">
+<title>IGN API</title>
+  </head>
+ <style>
+.clearfix:after { clear: both;  content: "."; display: block; height: 0;visibility: hidden;}
+.clearfix { display: inline-block;}
+.clearfix { display: block;}
+html{background:#f7f7f7;}
+</style>
+<body>
+<!-- development ENVIROMENT -->
+<!--<script type="text/javascript" src="http://componentes.ign.es/NucleoVisualizadorV2_7/IGN_middle.js"></script>-->
+<script type="text/javascript" src="http://componentes.ign.es/NucleoVisualizador/IGN_middle.js"></script>
+
+
+
+
+<!-- Div ign-api-container is an API map container example.
+     Adding a container to set dimensions it's recommeded. -->
+	<div  class="ign-api-container" style="border:3px solid silver;">
+		<div id="apiIgn-map" class="apiIgn apiIgn-map"> <!-- style="height:100%"--></div>
+	</div>
+
+     <script type="text/javascript">
+    jQuery.noConflict();
+    jQuery('<script/>')
+    		   .attr('src', 'http://code.jquery.com/ui/1.11.1/jquery-ui.min.js')
+    		   .appendTo('body');
+
+    ( function( $ ) {
+
+	       //alert("ancho:" +  $(window).width() + "alto:" +  $(window).height());
+		   //example for API container
+		   function setSizes() {
+			   $(".ign-api-container").height($(window).height()-20);
+			   $(".ign-api-container").width($(window).width()-20);
+			   $(".ign-api-container").css('margin-top', 0 + 'px');
+			   $(".ign-api-container").css('margin-bottom', 0 + 'px');
+			   $(".ign-api-container").css('margin-left', 'auto');
+			   $(".ign-api-container").css('margin-right', 'auto');
+           }
+
+		   $(window).resize(function() { setSizes(); });
+
+		   setSizes();
+
+
+    		var apiMap = $('#apiIgn-map').IGN_API_CORE(
+    				{
+    					completeVectorial : function(event, result) {
+
+    					},
+    					divIdMap : 'apiIgn-map',
+    					SRS: "EPSG:4258",
+    					completeVectorial : function(event, result) {
+    					},
+    					defaultZoom : true,
+    					defaultExtension : true,
+    					defaultZoomBox : true,
+    					defaultSearching : true,
+    					defaultTools : true,
+    					//possible value: map, image, hybrid
+    					baseMap : 'map',
+    					minZoomLevel : '',  // '' = 0
+    					maxZoomLevel : ''  // no se puede dejar vacio, hay que poner 0, o '', o "", o null
+
+    				});
+
+    		// Method to get map object reference
+    		var objMap = apiMap.IGN_API_CORE("GetMap");
+    		// Add new components to the tool box
+    		var newControlAddLayers = $('<div id="apiIgn-addNewLayers" class="apiIgn"></div>');
+    		// Method "AddNewComponent" to add the new component with title
+    		// "Introducir Mapas"
+    		apiMap.IGN_API_CORE("AddNewComponent", newControlAddLayers,
+    				"Introducir Mapas", "apiIgn-Introducir_Mapas");
+
+    		// Add new components to the tool box
+    		var newControlMapLayers = $('<div id="apiIgn-newMapLayers" class="apiIgn"></div>');
+    		// Method "AddNewComponent" to add the new component with title "Mapas"
+    		apiMap.IGN_API_CORE("AddNewComponent", newControlMapLayers, "Mapas",
+    				"apiIgn-Mapas");
+    		// Launch IGN_Map_Layers widget invocation
+    		var managMapLay = newControlMapLayers.IGN_Map_Layers({
+    			map : objMap
+    		});
+    		jQuery.apiVisualizador.InitMapLayers(newControlMapLayers);
+    		// Launch IGN_Service_Layers widget invocation
+    		var managLay = newControlAddLayers.IGN_Service_Layers({
+    			map : objMap
+    		});
+    		jQuery.apiVisualizador.InitServiceLayers(newControlAddLayers);
+
+			apiMap.IGN_API_CORE("AddNewVector","EPSG:4326","http://www.ign.es/resources/delegaciones/delegacionesIGN.kml","KML");
+
+
+        jQuery.apiVisualizador.InitSearch($('#apiIgn-map').data("IGN-IGN_API_CORE"));
+        jQuery.apiVisualizador.InitApiCore(apiMap);
+
+
+    })( jQuery );
+
+    </script>
+  </body>
+</html>

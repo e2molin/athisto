@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>IGN API</title>
+	<script type="text/javascript" src="http://componentes.ign.es/NucleoVisualizador/IGN_middle.js"></script><!--Esta mierda hay que cargarla aquí-->
+	<link rel="Shortcut Icon" href="http://componentes.ign.es/NucleoVisualizador/favicon.ico" />
+</head>
+<body>
+
+        <div id="mapLienzo" class='custom-popup apiIgn apiIgn-map' style="height:500px; width:800px;">
+        </div>
+        <div id="mapMirrorLienzo" class='custom-popup apiIgn apiIgn-mapMirror' style="height:500px; width:800px;">
+        </div>
+        <script type="text/javascript">
+
+        var apiMap = $('#mapLienzo').IGN_API_CORE(
+            {
+              completeVectorial : function(event, result) {
+            },
+            divIdMap : 'mapLienzo',
+            SRS: "EPSG:3857", //Sistema de referencia del lienzo
+            completeVectorial : function(event, result) {
+              },
+            defaultZoom : true,             //Muestra y oculta la botonera del zoom
+            defaultExtension : false,
+            defaultZoomBox : false,
+            defaultSearching : false,
+            defaultTools : true,           // Muestra y oculta el botón de la barra de herramientas
+            baseMap : 'map',                // Basemap por defecto
+            minZoomLevel : '6',             // Valor mínimo del zoom
+            maxZoomLevel : '18',            // Valor máximo del zoom
+            zoom:15,
+            useAttribution : true
+        });
+
+        //Cómo se puede refinir el estilo de un popup
+        apiMap.IGN_API_CORE('SetStyleFeaturePopup', 'rgba(255,0,0,0)', 'rgb(0,0,0)', '12px', '"Helvetica Neue", Arial, Helvetica, sans-serif;');
+
+        objMap = apiMap.IGN_API_CORE("GetMap");                               //Accedo al objeto mapa creado por la API
+        var crsValue = findCRSbyName(apiMap.IGN_API_CORE('option', 'SRS'));   //Obtengo SRS del mapa
+        var ol3view = new ol.View({                                           //Creo vista y redefino
+            projection: crsValue.name,
+            center: (new ol.geom.Point([-5, 36.2])).transform('EPSG:4258', crsValue.name).getCoordinates(),
+            zoom: 6,
+            minZoom: 5,
+            maxZoom: 18
+        });
+        objMap.setView(ol3view);                                              //Asigno la vista redefinida al mapa
+
+        // Add new components to the tool box
+        var newControlAddLayers = $('<div id="apiIgn-addNewLayers" class="apiIgn"></div>');
+        // Method "AddNewComponent" to add the new component with title
+        // "Introducir Mapas"
+        apiMap.IGN_API_CORE("AddNewComponent", newControlAddLayers,"Introducir Mapas", "apiIgn-Introducir_Mapas");
+
+        // Add new components to the tool box
+        var newControlMapLayers = $('<div id="apiIgn-newMapLayers" class="apiIgn"></div>');
+        apiMap.IGN_API_CORE("AddNewComponent", newControlMapLayers, "Mapas añadidos","apiIgn-Mapas");
+        // Launch IGN_Map_Layers widget invocation
+        var managMapLay = newControlMapLayers.IGN_Map_Layers({
+          map : objMap
+        });
+        jQuery.apiVisualizador.InitMapLayers(newControlMapLayers);
+        // Launch IGN_Service_Layers widget invocation
+        var managLay = newControlAddLayers.IGN_Service_Layers({
+          map : objMap
+        });
+        jQuery.apiVisualizador.InitServiceLayers(newControlAddLayers);
+
+        // Con esto añado una capa vectorial en KML con las delegaciones
+        apiMap.IGN_API_CORE("AddNewVector","EPSG:4326","http://www.ign.es/web/resources/delegaciones/delegacionesIGN.kml","KML");
+
+        //apiMap.IGN_API_CORE("AddNewVector","EPSG:4326","http://componentes.ign.es/NucleoVisualizador/vectorial_examples/proximos.kml","KML");
+
+
+
+        jQuery.apiVisualizador.InitSearch($('#mapLienzo').data("IGN-IGN_API_CORE"));
+        jQuery.apiVisualizador.InitApiCore(apiMap);
+
+///Parte 2
+
+var apiMapMirror = $('#mapMirrorLienzo').IGN_API_CORE(
+    {
+      completeVectorial : function(event, result) {
+    },
+    divIdMap : 'mapMirrorLienzo',
+    SRS: "EPSG:3857", //Sistema de referencia del lienzo
+    completeVectorial : function(event, result) {
+      },
+    defaultZoom : true,             //Muestra y oculta la botonera del zoom
+    defaultExtension : false,
+    defaultZoomBox : false,
+    defaultSearching : false,
+    defaultTools : true,           // Muestra y oculta el botón de la barra de herramientas
+    baseMap : 'map',                // Basemap por defecto
+    minZoomLevel : '6',             // Valor mínimo del zoom
+    maxZoomLevel : '18',            // Valor máximo del zoom
+    zoom:15,
+    useAttribution : true
+});
+
+//Cómo se puede refinir el estilo de un popup
+apiMapMirror.IGN_API_CORE('SetStyleFeaturePopup', 'rgba(255,0,0,0)', 'rgb(0,0,0)', '12px', '"Helvetica Neue", Arial, Helvetica, sans-serif;');
+
+objMapMirror = apiMapMirror.IGN_API_CORE("GetMap");                               //Accedo al objeto mapa creado por la API
+var crsMirrorValue = findCRSbyName(apiMap.IGN_API_CORE('option', 'SRS'));   //Obtengo SRS del mapa
+var ol3Mirrorview = new ol.View({                                           //Creo vista y redefino
+    projection: crsMirrorValue.name,
+    center: (new ol.geom.Point([-5, 36.2])).transform('EPSG:4258', crsMirrorValue.name).getCoordinates(),
+    zoom: 6,
+    minZoom: 5,
+    maxZoom: 18
+});
+objMapMirror.setView(ol3Mirrorview);                                              //Asigno la vista redefinida al mapa
+
+/*
+// Add new components to the tool box
+var newControlAddLayers = $('<div id="apiIgn-addNewLayers" class="apiIgn"></div>');
+// Method "AddNewComponent" to add the new component with title
+// "Introducir Mapas"
+apiMap.IGN_API_CORE("AddNewComponent", newControlAddLayers,"Introducir Mapas", "apiIgn-Introducir_Mapas");
+
+// Add new components to the tool box
+var newControlMapLayers = $('<div id="apiIgn-newMapLayers" class="apiIgn"></div>');
+apiMap.IGN_API_CORE("AddNewComponent", newControlMapLayers, "Mapas añadidos","apiIgn-Mapas");
+// Launch IGN_Map_Layers widget invocation
+var managMapLay = newControlMapLayers.IGN_Map_Layers({
+  map : objMap
+});
+jQuery.apiVisualizador.InitMapLayers(newControlMapLayers);
+// Launch IGN_Service_Layers widget invocation
+var managLay = newControlAddLayers.IGN_Service_Layers({
+  map : objMap
+});
+jQuery.apiVisualizador.InitServiceLayers(newControlAddLayers);
+
+// Con esto añado una capa vectorial en KML con las delegaciones
+apiMap.IGN_API_CORE("AddNewVector","EPSG:4326","http://www.ign.es/web/resources/delegaciones/delegacionesIGN.kml","KML");
+
+//apiMap.IGN_API_CORE("AddNewVector","EPSG:4326","http://componentes.ign.es/NucleoVisualizador/vectorial_examples/proximos.kml","KML");
+
+*/
+
+
+jQuery.apiVisualizador.InitSearch($('#mapMirrorLienzo').data("IGN-IGN_API_CORE"));
+jQuery.apiVisualizador.InitApiCore(objMapMirror);
+
+
+
+
+
+        </script>
+      </body>
+  </html>

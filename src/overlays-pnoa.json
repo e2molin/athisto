@@ -1,0 +1,122 @@
+[
+    {
+        "title": "PNOA Actual",
+        "nombre": "PNOA Actual",
+        "group": "imaginery-flight",
+        "tiposerv": "WMTS",
+        "urlsource": "http://www.ign.es/wmts/pnoa-ma",
+        "layernames": "OI.OrthoimageCoverage",
+        "imgformat": "image/jpeg",
+        "layerkey": "actualpnoa",
+        "year":"2018",
+        "alias":"PNOA Actual",
+        "keywords": [
+            "PNOA",
+            "PNOAHisto"
+        ],
+        "queryable":false,
+        "author": {
+            "name": "IGN",
+            "url": "www.ign.es"
+        }
+    },
+    {
+        "title": "SIGPAC 1997-2003",
+        "nombre": "SIGPAC 1997-2003",
+        "group": "imaginery-flight",
+        "tiposerv": "WMS",
+        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "layernames": "SIGPAC",
+        "layerkey": "sigpac",
+        "year":"1998",
+        "alias":"SIGPAC",
+        "keywords": [
+            "PNOA",
+            "PNOAHisto"
+        ],
+        "queryable":false,
+        "author": {
+            "name": "IGN",
+            "url": "www.ign.es"
+        }
+    },
+    {
+        "title": "OLISTAT 1997-1998",
+        "nombre": "OLISTAT 1997-98",
+        "group": "imaginery-flight",
+        "tiposerv": "WMS",
+        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "layernames": "OLISTAT",
+        "layerkey": "olistat",
+        "year":"1997",
+        "alias":"OLISTAT",
+        "keywords": [
+            "PNOA",
+            "PNOAHisto"
+        ],
+        "author": {
+            "name": "IGN",
+            "url": "www.ign.es"
+        }
+    },
+    {
+        "title": "NACIONAL 1981-1986",
+        "nombre": "NACIONAL 1981-86",
+        "group": "imaginery-flight",
+        "tiposerv": "WMS",
+        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "layernames": "Nacional_1981-1986",
+        "layerkey": "nacional",
+        "year":"1981",
+        "alias":"Nacional",
+        "keywords": [
+            "PNOA",
+            "PNOAHisto"
+        ],
+        "queryable":false,
+        "author": {
+            "name": "IGN",
+            "url": "www.ign.es"
+        }
+    },
+    {
+        "title": "INTERMIN 1956-1957",
+        "nombre": "INTERMINISTERIAL 1973-86",
+        "group": "imaginery-flight",
+        "tiposerv": "WMS",
+        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "layernames": "Interministerial_1973-1986",
+        "layerkey": "intermin",
+        "year":"1973",
+        "alias":"Interminist",
+        "keywords": [
+            "PNOA",
+            "PNOAHisto"
+        ],
+        "queryable":false,
+        "author": {
+            "name": "IGN",
+            "url": "www.ign.es"
+        }
+    },
+    {
+        "title": "AMS 1956-1957",
+        "nombre": "AMERICANO SERIE B 1956-57",
+        "group": "imaginery-flight",
+        "tiposerv": "WMS",
+        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "layernames": "AMS_1956-1957",
+        "layerkey": "amsb",
+        "year":"1956",
+        "alias":"American B",
+        "keywords": [
+            "PNOA",
+            "PNOAHisto"
+        ],
+        "queryable":false,
+        "author": {
+            "name": "IGN",
+            "url": "www.ign.es"
+        }
+    }
+]

@@ -1,0 +1,21 @@
+/*
+.WMSselector {
+        position:absolute;
+        padding: 5px;
+        left:125px;
+        top:50px;
+        z-index:20;
+        height: auto;
+        min-height: 250px;
+        max-height: 500px;
+        background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+        border-radius: 7px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+        font-size: 0.8em;
+
+}
+*/
+#wmsLayerCapab a{
+        padding-top:5px;
+        padding-bottom:5px;
+}

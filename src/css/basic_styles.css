@@ -1,0 +1,764 @@
+html{
+  height: 100%;
+  background:#f7f7f7;
+}
+
+body {
+  background-color:#fefefe;
+  color: #000000;/*#5a5a5a;*/
+  font-family: 'Open Sans', sans-serif;
+}
+.container-fluid{
+  padding:0px;
+}
+
+.modal.fade {
+  z-index: 10000000 !important;
+}
+#modalInfoPermalink div.modal-header,div.modal-footer{
+    background: url('../img/background-header.png') no-repeat center fixed;
+    background-color: rgba(54, 75, 95, 0.85);
+    color: #ffffff;
+}
+
+.btn-flex {
+  padding-right:5px;
+  padding-left:0px;
+  margin-bottom:5px;
+  display: flex;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.btn-flex .btn:first-child {
+    flex-grow: 1;
+    text-align: left;
+}
+
+/*
+HEADER class
+------------------------------------------------------------------------------------------------
+*/
+.intro {
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 0px 0;
+  color: #fff;
+  background: url("../img/background-header.png") no-repeat center scroll;
+  background-color: #364b5f;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.rrss-container{
+  margin-top: 5px;
+}
+
+/*Pantallas de ordenador*/
+@media(min-width:768px) {
+  .intro {
+    height:50px;
+  }
+}
+/*Dispositivos móviles*/
+@media(max-width:767px) {
+  .intro {
+    height:35px;
+  }
+}
+
+/*Pantallas de ordenador*/
+@media(min-width:768px) {
+  .sidebar-left {
+    left: 10px;
+    height: 97%;
+  }
+}
+/*Dispositivos móviles*/
+@media(max-width:767px) {
+  .sidebar-left {
+    left: 0px;
+    height: 97%;
+  }
+}
+
+@media(min-width:768px) {
+  .ol-mouse-position {
+          top: auto;
+          bottom: 3em;
+          min-width: 0px;
+          background-color: slategrey;
+          border-radius: 4px;
+          font-size: 0.8em; 
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+          color: white;
+          padding: 6px;
+  }
+}
+
+@media(max-width:767px) { 
+  .ol-mouse-position {
+          top: auto;
+          bottom: 0.5em;
+          min-width: 0px;
+          font-size: 0.8em;
+          background-color: slategrey;
+          border-radius: 4px;    
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+          color: white;
+          padding: 2px;
+  }
+}
+
+
+
+/*
+
+*/
+.ign-mainmap-container{
+  padding:0px;
+  height:800px;
+}
+
+.ign-mirrormap-container{
+  padding:0px;
+  height:800px;
+  -webkit-box-shadow: -5px 5px 20px 1px rgba(0, 116, 222, 0.70);
+  -moz-box-shadow: -5px 5px 20px 1px rgba(0, 116, 222, 0.70);
+  box-shadow: -5px 5px 20px 1px rgba(0, 116, 222, 0.80);
+}
+
+#mapLienzo{
+  position:relative;
+  top:0px;
+  height:100%;
+  width:100%;
+  bottom: 0px;
+  /*cursor: url("../img/grab.cur"), default;*/
+}
+
+#mapMirrorLienzo{
+  position:relative;
+  top:0px;
+  height:100%;
+  width:100%;
+  bottom: 0px;
+  /*cursor: url("../img/grab.cur"), default;*/
+}
+
+.centerCross {
+    top: 50%;
+    left: 50%;
+    width: 6px;/*20px;*/
+    height: 6px;/*20px;*/
+    margin-top: -6px; /*-6px;*/
+    margin-left: -6px; /*-6px;*/
+    padding-top: 3px; /*3px;*/
+    padding-left: 3px; /*3px;*/
+    /*border: 2px solid red;*/
+    z-index: 14;
+    position: relative;
+}
+.imgcenterCross{
+    margin-top: -16px; /*-24px;*/
+    margin-left: -5px; /*-9px;*/
+    z-index: 15;
+}
+
+
+
+
+.clearfix:after {
+   clear: both;
+   content: ".";
+   display: block;
+   height: 0;
+   visibility: hidden;
+}
+.clearfix {
+   display: inline-block;
+}
+.clearfix {
+   display: block;
+}
+
+/*  Ocultamos algunos controles que no vamos a usar */
+.apiIgn div > a.apiIgn-SetMovilMap,
+.apiIgn div.apiIgn-setZoomBox,
+.apiIgn div.apiIgn-setScale{
+  display: none;
+}
+
+/*  Mostramos algunos controles */
+.apiIgn div > a.apiIgn-SetMapa,
+.apiIgn div > a.apiIgn-SetPnoa,
+.apiIgn button.apiIgn-location,
+.apiIgn button.apiIgn-rotateNorth,
+.apiIgn div > a.apiIgn-SetHib{
+  display: show;
+}
+
+/* Customizamos los botones de zoom */
+
+.apiIgn .ol-zoom.ol-control {
+    border: none;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 4px;
+    padding: 0px;
+    top: 40px;
+    left: 60px;
+}
+
+.apiIgn .ol-zoom.ol-control button {
+    background-color: rgba(0, 60, 136, 0.5) !important;
+    width: 26px;
+    height: 26px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+}
+
+.apiIgn .ol-zoom.ol-control .ol-zoom-in {
+    border-radius: 4px 4px 0px 0px;
+    border-bottom: 1px solid #ccc;
+}
+
+.apiIgn .ol-zoom.ol-control .ol-zoom-out {
+    border-radius: 0px 0px 4px 4px;
+}
+
+.apiIgn .ol-zoom.ol-control .ol-zoom-in,.apiIgn .ol-zoom.ol-control .ol-zoom-out,
+.apiIgn .ol-zoom.ol-control .ol-zoom-in:hover,.apiIgn .ol-zoom.ol-control .ol-zoom-out:hover {
+    background-image: none;
+}
+
+.apiIgn .ol-zoom.ol-control .ol-zoom-in:hover,.apiIgn .ol-zoom.ol-control .ol-zoom-out:hover {
+    background-color: #0074d9  !important;
+}
+
+/*Sincronizamos la sidebar con la caja de zoom*/
+.sidebar-left ~ .apiIgn .ol-zoom.ol-control{
+  transition: margin-left 500ms;
+  margin-left: 420px;
+}
+.sidebar-left.collapsed ~ .apiIgn .ol-zoom.ol-control {
+  margin-left: 0px;
+}
+
+.apiIgn .ol-zoom-extent {
+    border: none;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 4px;
+    padding: 0px;
+    top: 100px;
+    left: 60px;
+}
+
+.apiIgn .ol-zoom-extent button {
+    background-color: rgba(0, 60, 136, 0.5) !important;
+    width: 26px;
+    height: 26px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+}
+
+.apiIgn .ol-zoom-extent {
+    border-radius: 4px 4px 0px 0px;
+    border-bottom: 1px solid #ccc;
+}
+
+.apiIgn .ol-zoom-extent,
+.apiIgn .ol-zoom-extent:hover {
+    background:  url("../img/ubicacion.png") no-repeat scroll center #ffffff;
+    opacity:1.0;
+}
+
+/*Sincronizamos la sidebar con la caja de zoom*/
+.sidebar-left ~ .apiIgn .ol-zoom-extent{
+  transition: margin-left 500ms;
+  margin-left: 420px;
+}
+.sidebar-left.collapsed ~ .apiIgn .ol-zoom-extent {
+  margin-left: 0px;
+}
+
+.apiIgn .apiIgn-location {
+    border: none;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 4px;
+    padding: 0px;
+    top: 130px;
+    left: 60px;
+}
+.apiIgn .apiIgn-location button {
+    background-color: rgba(0, 60, 136, 0.5) !important;
+    width: 26px;
+    height: 26px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+}
+
+.apiIgn .apiIgn-location {
+    border-radius: 4px 4px 0px 0px;
+    border-bottom: 1px solid #ccc;
+}
+
+.apiIgn .apiIgn-location,
+.apiIgn .apiIgn-location:hover {
+    background:  url("../img/ubicacion.png") no-repeat scroll center #ffffff;
+    opacity:0.6;
+}
+
+/*Sincronizamos la sidebar con la caja de zoom*/
+.sidebar-left ~ .apiIgn .apiIgn-location{
+  transition: margin-left 500ms;
+  margin-left: 420px;
+}
+.sidebar-left.collapsed ~ .apiIgn .apiIgn-location {
+  margin-left: 0px;
+}
+
+/*--------------------------------------------------*/
+.apiIgn .apiIgn-rotateNorth {
+    border: none;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 4px;
+    padding: 0px;
+    top: 160px;
+    left: 60px;
+}
+.apiIgn .apiIgn-rotateNorth button {
+    background-color: rgba(0, 60, 136, 0.5) !important;
+    width: 26px;
+    height: 26px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+}
+
+.apiIgn .apiIgn-rotateNorth {
+    border-radius: 4px 4px 0px 0px;
+    border-bottom: 1px solid #ccc;
+}
+
+.sidebar-left ~ .apiIgn .apiIgn-rotateNorth{
+  transition: margin-left 500ms;
+  margin-left: 420px;
+}
+.sidebar-left.collapsed ~ .apiIgn .apiIgn-rotateNorth {
+  margin-left: 0px;
+}
+
+
+
+/*Sincronizamos la sidebar con el cuadro de búsqueda*/
+.sidebar-left ~ .apiIgn .apiIgn-setBuscador{
+  transition: margin-left 500ms;
+  margin-left: 420px;
+}
+.sidebar-left.collapsed ~ .apiIgn .apiIgn-setBuscador {
+  margin-left: 0px;
+}
+
+/*Ajustamos la posición del contenedor de coordenadas */
+.apiIgn .ol-mouse-position{
+  bottom:40px;
+  right:5px;
+}
+
+.vizModeSelected{
+  color: #fff;
+  background-color: #0074d9;
+}
+
+.opacityLyrClass{
+  width: 160px;
+  margin-top: 5px;
+}
+
+/*
+Configuramos los slider de transparencia
+*/
+
+.ui-slider{
+  background:url('../img/slider-empty.png');/*Color de la barrita del slider vacía*/
+}
+
+.ui-slider-tooltip {
+  position: absolute;
+  display: block;
+  top:-10px;
+  left: 15px;
+  width: 25px;
+  height: 20px;
+  color: #fff;
+  text-align: center;
+  font: 10pt Tahoma, Arial, sans-serif ;
+  border-radius: 3px;
+  border: 1px solid #333;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, .3);
+  box-sizing: border-box;
+  background: linear-gradient(rgba(69,72,77,0.5) 0%,rgba(0,0,0,0.5) 100%);
+}
+
+.ui-slider-horizontal{
+  height: 8px;
+}
+.ui-slider-range-min{
+  background:url('../img/slider-fill.png');/*Color de la barrita del slider rellena*/
+}
+.ui-slider .ui-slider-handle {
+  height: 16px;
+  width: 16px;
+  color: #000000;
+  font-size: 0.60em;
+  background:url('../img/circle-blue.png') no-repeat 50% 50%;
+  cursor: pointer;
+  left:20px;
+  text-decoration:none;
+  text-align:center;
+}
+
+
+.toolInfoScreenClassRight {
+    position:absolute;
+    padding: 5px 5px 5px 5px;/*Top Right Botton Left*/
+    right:5px;
+    bottom:75px;
+    z-index:15;
+    width: 170px;
+    height: auto;
+    background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    font-size: 0.8em;
+    color:#FFFFFF;
+}
+
+.toolInfoScreenClassLeft {
+    position:absolute;
+    padding: 5px 5px 5px 5px;/*Top Right Botton Left*/
+
+    z-index:15;
+    width: 170px;
+    height: auto;
+    background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    font-size: 0.8em;
+    color:#FFFFFF;
+}
+
+/*Pantallas de ordenador*/
+@media (min-width: 1200px) {
+  .toolInfoScreenClassLeft {
+    left:500px;
+    bottom:15px;
+  }
+}
+/*Dispositivos móviles*/
+@media(max-width: 1199px) {
+  .toolInfoScreenClassLeft {
+    left:60px;
+    bottom:85px;
+  }
+}
+
+
+
+
+.sidebar-left ~ .toolInfoScreenClassLeft {
+  transition: margin-left 500ms;
+  margin-left: 420px; }
+.sidebar-left.collapsed ~ .toolInfoScreenClassLeft {
+    margin-left: 0px; }
+
+.toolCoberInfoclass {
+    position:absolute;
+    padding: 5px 15px 5px 20px;/*Top Right Botton Left*/
+    left:60px;
+    bottom:15px;
+    z-index:15;
+    width:auto;
+    height: auto;
+    background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    font-size: 0.8em;
+    color:#FFFFFF;
+}
+
+.sidebar-left ~ .toolCoberInfoclass {
+  transition: margin-left 500ms;
+  margin-left: 420px; }
+.sidebar-left.collapsed ~ .toolCoberInfoclass {
+    margin-left: 0px; }
+
+/*Botones que creo en runtime para cambiar de clase*/
+.btnChangeLayerDisplay{
+  margin-bottom:2px;
+  margin-left:2px;
+}
+
+
+
+.toolTemporalTransitionclass {
+        position:absolute;
+        padding: 5px 15px 5px 15px;/*Top Right Botton Left*/
+        left:310px;
+        top:10px;
+        z-index:15;
+        width:350px;
+        height: auto;
+        background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+        border-radius: 7px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+        font-size: 0.9em;
+        color:#FFFFFF;
+}
+
+.sidebar-left ~ .toolTemporalTransitionclass {
+      transition: margin-left 500ms;
+      margin-left: 420px;
+}
+.sidebar-left.collapsed ~ .toolTemporalTransitionclass {
+        margin-left: 0px;
+}
+
+/*
+Botonera de herramientas
+*/
+.toolbarMapping {
+    position:absolute;
+    padding: 5px 15px 10px 15px;/*Top Right Botton Left*/
+    right:20px;    /*20px*/
+    top:60px;        /*60px*/
+    z-index:15;
+    width:275px;
+    height: auto;
+    font-size: 0.8em;
+    color:#FFFFFF;
+    background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+}
+
+
+
+/*
+Botonera de mapas base del mainMap
+*/
+
+.btnGroupLayerChangeMainMap {
+    position:absolute;
+    padding: 5px 5px 10px 5px;/*Top Right Botton Left*/
+    right:25px;
+    top:10px;
+    z-index:15;
+    width:330px;
+    height: auto;
+    font-size: 0.8em;
+    color:#FFFFFF;
+}
+
+a.btnLayerChangeMainMap {
+  line-height: 25px;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Calibri,Arial, sans serif;
+  text-decoration: none !important;
+  background-color: rgba(0, 60, 136, 0.5);
+  padding: 0px;
+  border-radius: 4px;
+  width: 70px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+  box-shadow: -1px 1px 5px 1px #2e2e2e;
+  box-sizing: border-box;
+}
+a.btnLayerChangeMainMap.selected,
+a.btnLayerChangeMainMap:hover{
+  height: 27px;
+  background-color: #0074d9;
+  color: #ffffff  !important;
+  box-shadow: 0 1px 3px #2e2e2e inset;
+  outline: 0;
+}
+
+
+/*
+Botonera de clases del mirrorMap
+*/
+.btnGroupLayerChangeMirrorMap {
+    position:absolute;
+    padding: 5px 15px 10px 15px;/*Top Right Botton Left*/
+    right:50px;
+    top:10px;
+    z-index:15;
+    width:250px;
+    height: auto;
+    font-size: 0.8em;
+    color:#FFFFFF;
+}
+
+a.btnLayerChangeMirrorMap {
+  line-height: 25px;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Calibri,Arial, sans serif;
+  text-decoration: none !important;
+  background-color: rgba(0, 60, 136, 0.5);
+  padding: 0px;
+  border-radius: 4px;
+  width: 70px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+  box-shadow: -1px 1px 5px 1px #2e2e2e;
+  box-sizing: border-box;
+}
+a.btnLayerChangeMirrorMap.selected,
+a.btnLayerChangeMirrorMap:hover{
+  height: 27px;
+  background-color: #0074d9;
+  color: #ffffff  !important;
+  box-shadow: 0 1px 3px #2e2e2e inset;
+  outline: 0;
+}
+
+
+
+
+/*Redefinimos colores de los botones*/
+.apiIgn .set-mapa > a,
+.apiIgn .set-pnoa > a,
+.apiIgn .set-hibrido > a,
+.apiIgn .set-mapaMovil > a,
+.apiIgn a.apiIgn-toolsMenu {
+  background-color: rgba(0, 60, 136, 0.5);
+  color: #ffffff !important;
+}
+
+.apiIgn .set-mapa > a:hover,
+.apiIgn .set-pnoa > a:hover,
+.apiIgn a.apiIgn-toolsMenu:hover, a.apiIgn-toolsMenu.active,
+.apiIgn .set-hibrido > a:hover,
+.apiIgn .set-mapa > a.selected, .apiIgn
+.set-pnoa > a.selected, .apiIgn
+.set-hibrido > a.selected {
+  background-color: #0074d9;
+  color: #ffffff  !important;
+}
+
+
+/*Contenedores de manejo de capas*/
+.panel-heading-sm{
+  height: 28px;
+  padding: 4px 10px;
+}
+
+/*
+---------------------------------------------------------
+Contenedores resultado de búsquedas GetFeatureInfo
+---------------------------------------------------------
+*/
+.listaSelMapsclass {
+    position:absolute;
+    padding: 5px 15px 5px 20px;/*Top Right Botton Left*/
+    right:20px;
+    top:150px;
+    z-index:20;
+    width:380px;
+    height: auto;
+    background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    font-size: 1.0em;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+
+/*
+-------------------------------------------------------------------------------------------------------------------
+Cuadro de búsqueda topónimos
+-------------------------------------------------------------------------------------------------------------------
+*/
+
+    .topoinputclass {
+        position:absolute;
+        padding: 5px;
+        left:100px;
+        top:10px;
+        z-index:20;
+        width:400px;
+        height: auto;
+        background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+        border-radius: 7px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+        font-size: 0.8em;
+    }
+
+    .sidebar-left ~ .topoinputclass {
+      transition: margin-left 500ms;
+      margin-left: 420px; }
+    .sidebar-left.collapsed ~ .topoinputclass {
+        margin-left: 0px; }
+
+/*
+Con esto desplazamos el contenedor de la topo bÃºsqueda al abrir o cerrar el sidepanel
+*/
+/*
+.sidebar-left ~ .sidebar-map .topoinputclass {
+  margin-left: 0px; }
+  @media (min-width: 768px) {
+    .sidebar-left ~ .sidebar-map .topoinputclass {
+      transition: margin-left 500ms; } }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .sidebar-left ~ .sidebar-map .topoinputclass {
+      margin-left: 260px; } }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .sidebar-left ~ .sidebar-map .topoinputclass {
+      margin-left: 350px; } }
+  @media (min-width: 1200px) {
+    .sidebar-left ~ .sidebar-map .topoinputclass {
+      margin-left: 420px; } }
+  @media (min-width: 768px) {
+  .sidebar-left.collapsed ~ .sidebar-map .topoinputclass {
+    margin-left: 0px; } }
+*/
+
+
+.inputTopoWithoutSpinner
+{
+    background: #fff url('../img/search16.png') no-repeat scroll 7px 8px; padding: 0 0 0 30px;
+    padding-right: 30px;
+}
+.inputTopoWithSpinner{
+    background: #fff url('../img/ajax-loader.gif') no-repeat scroll 7px 8px; padding: 0 0 0 30px;/*no-repeat scroll 365px 8px;    */
+    padding-right: 30px;
+}
+
+.iframeGetFeatureInfo {
+  background:url('../img/ajax-loader.gif') 50px 50px no-repeat;
+ }
