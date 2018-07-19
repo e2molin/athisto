@@ -1006,10 +1006,10 @@ function vectorOverLays(visibilityDefault){
             zIndex: 901,
             source: new ol.source.TileWMS({
               url: 'http://www.ign.es/wms-inspire/unidades-administrativas',
-              params: {"LAYERS": "AU.AdministrativeUnit","STYLES":"LimitesAdministrativos","FORMAT":"image/png", "TILED": "true"}
+              params: {"LAYERS": "AU.AdministrativeUnit","STYLES":"ua-comparador","FORMAT":"image/png", "TILED": "true"}
             })
       });
-      //AU.AdministrativeBoundary.Default
+      //AU.AdministrativeBoundary.Default,ua-comparador,LimitesAdministrativos
   BDLJE_lyr.set('keyname','BDLJE');
   BDLJE_lyr.set('queryable',true);//La consulta se hace siempre por defecto
   BDLJE_lyr.set('group','Vector overlay');

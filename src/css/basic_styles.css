@@ -548,10 +548,10 @@ Botonera de herramientas
 .toolbarMapping {
     position:absolute;
     padding: 5px 15px 10px 15px;/*Top Right Botton Left*/
-    right:20px;    /*20px*/
-    top:60px;        /*60px*/
+    right:90px;    /* 20px */
+    top:50px;        /*60px*/
     z-index:15;
-    width:275px;
+    width:260px;
     height: auto;
     font-size: 0.8em;
     color:#FFFFFF;
@@ -559,8 +559,6 @@ Botonera de herramientas
     border-radius: 7px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 }
-
-
 
 /*
 Botonera de mapas base del mainMap

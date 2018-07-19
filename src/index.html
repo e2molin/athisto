@@ -2,29 +2,26 @@
 <html>
 <head>
   <title>Comparador Mapas Archivo Topográfico | IGN CNIG</title>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta name="author" content="Instituto Geográfico Nacional">
-  <meta name="title" content="Comparador Mapas Archivo Topográfico del IGN CNIG"/>
-	<meta name="description" content="El comparador Mapas Archivo Topográfico permite consultar los mapas del Archivo Topográfico del IGN con diversas fuentes cartográficas y ortofotos."/>
-  <meta name="keywords" content="IGN, CNIG, pnoa máxima actualidad, Visualizador, Vuelos históricos, catastrones, catastrón, planimetrías, actas de deslinde, descarga, descargas, series mtn" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="author" content="Instituto Geográfico Nacional" />
+  <meta name="title" content="Comparador Mapas Archivo Topográfico del IGN CNIG" />
+	<meta name="description" content="El comparador Mapas Archivo Topográfico permite consultar los mapas del Archivo Topográfico del IGN con diversas fuentes cartográficas y ortofotos." />
+  <meta name="keywords" content="IGN, CNIG, archivo topográfico, Visualizador, comparador, catastrones, catastrón, planimetrías, actas de deslinde, descarga, descargas, series mtn" />
 
-	<!--<script type="text/javascript" src="http://componentes.ign.es/NucleoVisualizador/IGN_middle.js"></script>--><!--Esto hay que cargarlo aquí-->
-
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.min.css" /><!--IGN Component-->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/assets/bootstrap-toggle.min.css">
-  <link rel="stylesheet" href="css/assets/bootstrap-dialog.min.css">
-  <link rel="stylesheet" href="css/assets/bootstrap-slider.min.css" type="text/css">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/assets/bootstrap-toggle.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/assets/bootstrap-dialog.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/assets/bootstrap-slider.min.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-	<!--<link rel="Shortcut Icon" href="http://componentes.ign.es/NucleoVisualizador/favicon.ico" />-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.4/ol.css" /><!--IGN Component-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.4/ol.css" />
 	<link rel="stylesheet" href="css/ol-layerswitcher.css" />
-	<link rel="stylesheet" href="css/ol-sidebar.css"/>
-  <link rel="stylesheet" href="css/ol-measures.css"/>
-  <link rel="stylesheet" href="css/dvm-wmsUserComponent.css"/>
-  <link rel="stylesheet" href="css/dvm-LayerSwitch.css"/>
+	<link rel="stylesheet" href="css/ol-sidebar.css" />
+  <link rel="stylesheet" href="css/ol-measures.css" />
+  <link rel="stylesheet" href="css/dvm-wmsUserComponent.css" />
+  <link rel="stylesheet" href="css/dvm-LayerSwitch.css" />
 	<link rel="stylesheet" href="css/basic_styles.css" />
 
 	<!-- Open Graph Tags -->
@@ -40,27 +37,27 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@IGNSpain" />
 	<meta name="twitter:creator" content="@IGNSpain" />
-	<meta name="twitter:title" content="Comparador Mapas Archivo Topográfico del IGN CNIG">
-	<meta name="twitter:description" content="El comparador Mapas Archivo Topográfico permite consultar los mapas del Archivo Topográfico del IGN con diversas fuentes cartográficas y ortofotos.">
-	<meta name="twitter:url" content="http://www.ign.es/web/mapasantiguos/comparador_pnoa" />
-	<meta name="twitter:image" content="http://www.ign.es/web/mapasantiguos/img/twitter-imagebig.png">
+	<meta name="twitter:title" content="Comparador Mapas Archivo Topográfico del IGN CNIG" />
+	<meta name="twitter:description" content="El comparador Mapas Archivo Topográfico permite consultar los mapas del Archivo Topográfico del IGN con diversas fuentes cartográficas y ortofotos." />
+	<meta name="twitter:url" content="http://www.ign.es/web/mapasantiguos/" />
+	<meta name="twitter:image" content="http://www.ign.es/web/mapasantiguos/img/twitter-imagebig.png" />
 
 	 <!-- Geo Positioning Meta Tags -->
 	<meta name="geo.region" content="ES-M" />
 	<meta name="geo.placename" content="Madrid" />
 	<meta name="geo.position" content="40.404460;-3.710000" />
 	<meta name="ICBM" content="40.404460, -3.710000" />
-	<meta name="DC.title" content="Comparador de Ortofotos PNOA del IGN">
+	<meta name="DC.title" content="Comparador Mapas Archivo Topográfico del IGN CNIG">
 
 	<!-- Icon Meta Tags -->
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
-	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="img/touch-icon-iphone.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png">
-	<link href="img/icon-hires.png" rel="icon" sizes="192x192" />
-	<link href="img/icon-normal.png" rel="icon" sizes="128x128" />
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="img/touch-icon-iphone.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png" />
+	<link rel="icon" sizes="192x192" href="img/icon-hires.png" />
+	<link rel="icon" sizes="128x128" href="img/icon-normal.png" />
 
 
 </head>
@@ -341,19 +338,21 @@
 
 			<div id="mapLienzo" class="apiIgn apiIgn-map">
         <div class="btnGroupLayerChangeMainMap col-md-12" tabindex="0"  >
-                <a href="#set-showInfo" id="set-showInfo" class="btnLayerChangeMainMap" title="Información" style="width:25px; margin-right:0px;"><i class="fa fa-info-circle"></i></a>
-								<a href="#set-showTools" id="set-showTools" class="btnLayerChangeMainMap" title="Herramientas" style="width:25px; margin-right:0px;"><i class="fa fa-wrench"></i></a>
-								<a href="#set-CDC" id="set-CDC" class="btnLayerChangeMainMap" title="Cartografía IGN a descarga en esta zona" style="width:25px; margin-right:10px;"><i class="fa fa-download"></i></a>
+                <!--<a href="#set-showInfo" id="set-showInfo" class="btnLayerChangeMainMap" title="Información" style="width:25px; margin-right:0px;"><i class="fa fa-info-circle"></i></a>-->
+								<a href="#set-showTools" id="set-showTools" class="btnLayerChangeMainMap" title="Herramientas" style="width:25px; margin-right:10px;"><i class="fa fa-wrench"></i></a>
+								<!--<a href="#set-CDC" id="set-CDC" class="btnLayerChangeMainMap" title="Cartografía IGN a descarga en esta zona" style="width:25px; margin-right:10px;"></a>-->
                 <a href="#set-mapMain-mapa" id="set-mapMain-mapa" class="btnLayerChangeMainMap selected" title="Mapa base: cartografía base">Mapa</a>
   							<a href="#set-mapMain-imagen" id="set-mapMain-imagen" class="btnLayerChangeMainMap" title="Mapa base: ortofotografía">Imagen</a>
   							<a href="#set-mapMain-hibrido" id="set-mapMain-hibrido" class="btnLayerChangeMainMap" title="Mapa base: ortofotografía con información">Híbrido</a>
   			</div>
         <div id ="toolbarMappingElem" class="toolbarMapping col-md-12" tabindex="0" style="display:none;">
             <div class="btn-group btn-group-sm"  role="group" aria-label="Measures" id="toolboxMeasures">
-                    <button id="measureP" type="button" class="btn btn-default"><img src="img/measure-pan.png" alt="Panning"/></button>
-                    <button id="measureL" type="button" class="btn btn-default"><img src="img/measure-length.png" alt="Medir longitud"/></button>
-                    <button id="measureA" type="button" class="btn btn-default"><img src="img/measure-area.png" alt="Medir área"/></button>
-                    <button id="measureD" type="button" class="btn btn-default"><img src="img/measure-eraser.png" alt="Borrar medidas"/></button>
+                    <button id="measureP" type="button" class="btn btn-default"><img src="img/measure-pan.png" title="Panning"/></button>
+                    <button id="measureL" type="button" class="btn btn-default"><img src="img/measure-length.png" title="Medir longitud"/></button>
+                    <button id="measureA" type="button" class="btn btn-default"><img src="img/measure-area.png" title="Medir área"/></button>
+										<button id="measureD" type="button" class="btn btn-default"><img src="img/measure-eraser.png" title="Borrar medidas"/></button>
+										<button id="set-CDC" type="button" class="btn btn-default"><img src="img/download-icon24.png" title="Cartografía IGN a descarga en esta zona"/></button>
+										
             </div>
             <!--Lo apago porque las funciones de carga se hace desde el sidebar-->
             <div class="btn-group btn-group-sm"  role="group" aria-label="Measures" id="toolboxDragFile" style="display:none;">

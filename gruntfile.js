@@ -7,7 +7,7 @@ npm install grunt-contrib-cssmin --save-dev					//Instala el plugin css minify y
 
 Otros comandos
 npm list --depth=0											//Comprueba los local package version instalados para ver si falta alguno
-npm uninstall grunt-contrib-cssmin --save-dev				//Desinstyalar un plugin
+npm uninstall grunt-contrib-cssmin --save-dev				//Desinstalar un plugin
 
 
 Documentación grunt
