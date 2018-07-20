@@ -17,21 +17,7 @@ var draw; // global so we can remove it later
 var beginMeasurement = false;
 var useGeodesicMeasures = true;
 
-$( "#measureP" ).hover(function() {
-    $("#btnToolDescript").html("<small><em>Desplazar el mapa</em></small>");
-});
-$( "#measureL" ).hover(function() {
-    $("#btnToolDescript").html("<small><em>Medir longitud</em></small>");
-});
-$( "#measureA" ).hover(function() {
-    $("#btnToolDescript").html("<small><em>Medir área</em></small>");
-});
-$( "#measureD" ).hover(function() {
-    $("#btnToolDescript").html("<small><em>Borrar mediciones</em></small>");
-});
-$( "#mapToolbox .modal-content" ).hover(function() {
-    $("#btnToolDescript").html("");
-});
+
 var vectorMeasures_Lyr = new ol.layer.Vector({
   zIndex:1000,
   source: measurementsSource,
@@ -274,7 +260,9 @@ $('#toolboxMeasures .btn').on('click', function(event) {
                         break;
                     case "measureD":
                         measurementsSource.clear();
+                        objMap.removeOverlay(hojaMTN_lyr);//Borramos también las geometrías trazadas en la búsqueda por hoja del MTN
                         $( ".tooltip-static" ).remove();
+                        $("#toolbarMappingElem").toggle();
                         break;
                     default:
                         break;

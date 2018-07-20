@@ -8,7 +8,7 @@ if (isset($_POST['numhoja'])) {
     $numhoja = $_POST['numhoja'];
 }
 if ($numhoja == "") {
-        echo "Este script necesita recibir por POST o GET la referencia catastral cuya posición se quiere consultar. Por ejemplo /getPosByRefCadastral.php?refcadastral=9977715VK3797F";
+        echo "Este script necesita recibir por POST o GET el número de hoja cuya posición se quiere consultar. Por ejemplo /proxyNumHOja.php?numhoja=559";
         die();
 }
 
@@ -61,13 +61,5 @@ curl_close($ch);
 
 header('Content-type: application/xml');
 print_r($data);
-
-//echo json_encode($data, JSON_NUMERIC_CHECK);
-
-//json_encode($data);
-
-
-
-
 
 ?>

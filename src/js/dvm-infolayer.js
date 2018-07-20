@@ -12,23 +12,6 @@ function getURLGetFeatureInfo4WMTSLayer(urlQueryGFI,layerQueryGFI,evt,viewResolu
         getURLGetFeatureInfoLayer(GFI_lyr,evt,viewResolution);
     }
     
-/*
-    var urlGetFeatureInfo = GFI_lyr.getSource().getGetFeatureInfoUrl(
-            evt.coordinate, viewResolution, 'EPSG:3857',
-            {'INFO_FORMAT': 'text/html'});
-
-            
-    cadHTML = "<div class='alert alert-warning alert-dismissible infoWMS' role='alert' >" +
-        "<button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"$('#listaSelMaps').trigger('heightChange');\"><span aria-hidden='true'>&times;</span></button>" +
-        "<strong>" + ol3_lyr.getProperties()['title'] + "</strong><br/>" +
-        "<iframe class='iframeGetFeatureInfo' src='" + urlGetFeatureInfo + "'></iframe>" +
-        "</div>";
-
-        var container = document.getElementById('listaSelMaps');
-        var resultsPrevios = container.innerHTML;
-        container.innerHTML = cadHTML + resultsPrevios;
-    $(".listaSelMapsclass").show(500);
-    */
 }
 
 
@@ -41,7 +24,7 @@ function getURLGetFeatureInfoLayerWithProxy(ol3_lyr,evt,viewResolution){
     cadHTML = "<div class='alert alert-warning alert-dismissible infoWMS' role='alert' >" +
         "<button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"$('#listaSelMaps').trigger('heightChange');\"><span aria-hidden='true'>&times;</span></button>" +
         "<strong>" + ol3_lyr.getProperties()['title'] + "</strong><br/>" +
-        "<iframe class='iframeGetFeatureInfo' src='./proxyGFI.php?urlCapabilities=" + urlGetFeatureInfo + "'></iframe>" +
+        "<iframe class='iframeGetFeatureInfo' src='./php/proxyGFI.php?urlCapabilities=" + urlGetFeatureInfo + "'></iframe>" +
         "</div>";
 console.log(urlGetFeatureInfo);
     var container = document.getElementById('listaSelMaps');
@@ -314,13 +297,15 @@ function onPointerClick(event){
             }else if (layer.getProperties()['visible']==true && layer.getProperties()['queryable']==true && layer.getProperties()['useproxy']==true && layer.getProperties()['keyname']!="BDLJE"){
                 console.log("Activada y consultable con proxy: " + layer.getProperties()['keyname']);
                 getURLGetFeatureInfoLayerWithProxy(layer,event,objMap.getView().getResolution());
+            }else if (layer.getProperties()['keyname']=="overlayMTN"){
+                console.log("Hola MTN");
             }
         }  
     }
   );
 
 
-  console.log("Lista por consola las capas del mapa y sus propiedades");
+  //console.log("Lista por consola las capas del mapa y sus propiedades");
   var listaGrupos=objMap.getLayers();
   //Recorremos todas las capas y escribimos su nombre
   listaGrupos.forEach(function(grupoLayers, i) {

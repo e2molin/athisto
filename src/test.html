@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GeoJSON</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <script>
+      var image = new ol.style.Circle({
+        radius: 5,
+        fill: null,
+        stroke: new ol.style.Stroke({color: 'red', width: 1})
+      });
+
+      var styles = {
+        'Point': new ol.style.Style({
+          image: image
+        }),
+        'LineString': new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'green',
+            width: 10
+          })
+        }),
+        'MultiLineString': new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'green',
+            width: 1
+          })
+        }),
+        'MultiPoint': new ol.style.Style({
+          image: image
+        }),
+        'MultiPolygon': new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'yellow',
+            width: 1
+          }),
+          fill: new ol.style.Fill({
+            color: 'rgba(255, 255, 0, 0.1)'
+          })
+        }),
+        'Polygon': new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'blue',
+            lineDash: [4],
+            width: 3
+          }),
+          fill: new ol.style.Fill({
+            color: 'rgba(0, 0, 255, 0.1)'
+          })
+        }),
+        'GeometryCollection': new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'magenta',
+            width: 2
+          }),
+          fill: new ol.style.Fill({
+            color: 'magenta'
+          }),
+          image: new ol.style.Circle({
+            radius: 10,
+            fill: null,
+            stroke: new ol.style.Stroke({
+              color: 'magenta'
+            })
+          })
+        }),
+        'Circle': new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'red',
+            width: 2
+          }),
+          fill: new ol.style.Fill({
+            color: 'rgba(255,0,0,0.2)'
+          })
+        })
+      };
+
+      var styleFunction = function(feature) {
+        console.log(feature.getGeometry().getType());
+        return styles[feature.getGeometry().getType()];
+      };
+/*
+var geojsonObjectReceived = {"codCom":null,"codIne":null,"codProv":null,"dataCom":null,"dataMun":null,"dataProv":null,"geomComunidad":"okCom","geomHoja":"success","geomMunicipio":"okMun","geomProv":"okProv","jsonCoords":"{\"type\":\"MultiPolygon\",\"coordinates\":[[[[-3.52583333333333,40.338333332404],[-3.56249999999996,40.3383333324039],[-3.60416666666668,40.338333332404],[-3.64583333333331,40.338333332404],[-3.68750000000002,40.3383333324039],[-3.72916666666665,40.338333332404],[-3.84916666666663,40.338333332404],[-3.84916666666663,40.3541666657371],[-3.84916666666663,40.3749999990704],[-3.84916666666663,40.3958333324037],[-3.84916666666663,40.4166666657369],[-3.84916666666663,40.4374999990701],[-3.84916666666663,40.4791666657366],[-3.84916666666663,40.4949999990698],[-3.8125,40.4949999990698],[-3.77083333333337,40.4949999990698],[-3.72916666666665,40.4949999990698],[-3.68750000000002,40.4949999990698],[-3.60416666666668,40.4949999990698],[-3.56249999999996,40.4949999990698],[-3.52583333333333,40.4949999990698],[-3.52583333333333,40.4791666657366],[-3.52583333333333,40.4583333324033],[-3.52583333333333,40.4374999990701],[-3.52583333333333,40.3541666657371],[-3.52583333333333,40.338333332404]]]]}","numHoja":"559"};
+*/
+function getCoordenadas(){
+  var geojsonObject ={
+  "type": "FeatureCollection",
+  "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "requiresTransform":true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-3.52583333333333,40.338333332404],[-3.56249999999996,40.3383333324039],[-3.60416666666668,40.338333332404],[-3.64583333333331,40.338333332404],[-3.68750000000002,40.3383333324039],[-3.72916666666665,40.338333332404],[-3.84916666666663,40.338333332404],[-3.84916666666663,40.3541666657371],[-3.84916666666663,40.3749999990704],[-3.84916666666663,40.3958333324037],[-3.84916666666663,40.4166666657369],[-3.84916666666663,40.4374999990701],[-3.84916666666663,40.4791666657366],[-3.84916666666663,40.4949999990698],[-3.8125,40.4949999990698],[-3.77083333333337,40.4949999990698],[-3.72916666666665,40.4949999990698],[-3.68750000000002,40.4949999990698],[-3.60416666666668,40.4949999990698],[-3.56249999999996,40.4949999990698],[-3.52583333333333,40.4949999990698],[-3.52583333333333,40.4791666657366],[-3.52583333333333,40.4583333324033],[-3.52583333333333,40.4374999990701],[-3.52583333333333,40.3541666657371],[-3.52583333333333,40.338333332404]]]
+      }
+    }
+  ]
+};
+
+  var cadCoords="[[[-3.52583333333333,40.338333332404],[-3.56249999999996,40.3383333324039],[-3.60416666666668,40.338333332404],[-3.64583333333331,40.338333332404],[-3.68750000000002,40.3383333324039],[-3.72916666666665,40.338333332404],[-3.84916666666663,40.338333332404],[-3.84916666666663,40.3541666657371],[-3.84916666666663,40.3749999990704],[-3.84916666666663,40.3958333324037],[-3.84916666666663,40.4166666657369],[-3.84916666666663,40.4374999990701],[-3.84916666666663,40.4791666657366],[-3.84916666666663,40.4949999990698],[-3.8125,40.4949999990698],[-3.77083333333337,40.4949999990698],[-3.72916666666665,40.4949999990698],[-3.68750000000002,40.4949999990698],[-3.60416666666668,40.4949999990698],[-3.56249999999996,40.4949999990698],[-3.52583333333333,40.4949999990698],[-3.52583333333333,40.4791666657366],[-3.52583333333333,40.4583333324033],[-3.52583333333333,40.4374999990701],[-3.52583333333333,40.3541666657371],[-3.52583333333333,40.338333332404]]]";
+  var geojsonString ="{" + 
+    "\"type\": \"FeatureCollection\"," + 
+    "\"crs\": {" + 
+            "\"type\": \"name\"," + 
+            "\"properties\": {" + 
+              "\"name\": \"EPSG:4326\"" + 
+            "}" + 
+          "}," + 
+    "\"features\": [" + 
+      "{" + 
+        "\"type\": \"Feature\"," + 
+        "\"properties\": {" +
+          "\"requiresTransform\":true" + 
+        "}," + 
+        "\"geometry\": {" + 
+          "\"type\": \"Polygon\"," + 
+          "\"coordinates\": " + cadCoords + 
+        "}" + 
+      "}" + 
+    "]" +
+  "}";
+
+
+
+     //var url = 'http://centrodedescargas.cnig.es/CentroDescargas/geomHoja?numHoja=559';
+     var url = "./php/getProxyNumHoja.php?numhoja=559";
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', url);
+     var onError = function() {
+       vectorSource.removeLoadedExtent(extent);
+     }
+     xhr.onerror = onError;
+     xhr.onload = function() {
+       if (xhr.status == 200) {
+         console.log("Hay respuesta");
+         //console.log(xhr.responseText);
+         var response = xhr.responseText;
+         var pos1 = response.indexOf("[[[[");
+         var pos2 = response.indexOf("]}");
+         console.log(pos1 + ' / ' + pos2);
+         console.log(response.slice(pos1+1,pos2));
+       } else {
+         onError();
+       }
+     }
+     xhr.send();
+
+
+return geojsonString;
+
+
+
+}
+
+var geojsonObjectResponse = getCoordenadas();
+
+
+var geojsonObjectResponse= function(numHoja){
+  var geojsonObject ={
+  "type": "FeatureCollection",
+  "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "requiresTransform":true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-3.52583333333333,40.338333332404],[-3.56249999999996,40.3383333324039],[-3.60416666666668,40.338333332404],[-3.64583333333331,40.338333332404],[-3.68750000000002,40.3383333324039],[-3.72916666666665,40.338333332404],[-3.84916666666663,40.338333332404],[-3.84916666666663,40.3541666657371],[-3.84916666666663,40.3749999990704],[-3.84916666666663,40.3958333324037],[-3.84916666666663,40.4166666657369],[-3.84916666666663,40.4374999990701],[-3.84916666666663,40.4791666657366],[-3.84916666666663,40.4949999990698],[-3.8125,40.4949999990698],[-3.77083333333337,40.4949999990698],[-3.72916666666665,40.4949999990698],[-3.68750000000002,40.4949999990698],[-3.60416666666668,40.4949999990698],[-3.56249999999996,40.4949999990698],[-3.52583333333333,40.4949999990698],[-3.52583333333333,40.4791666657366],[-3.52583333333333,40.4583333324033],[-3.52583333333333,40.4374999990701],[-3.52583333333333,40.3541666657371],[-3.52583333333333,40.338333332404]]]
+      }
+    }
+  ]
+};
+/*
+  var cadCoords="[[[-3.52583333333333,40.338333332404],[-3.56249999999996,40.3383333324039],[-3.60416666666668,40.338333332404],[-3.64583333333331,40.338333332404],[-3.68750000000002,40.3383333324039],[-3.72916666666665,40.338333332404],[-3.84916666666663,40.338333332404],[-3.84916666666663,40.3541666657371],[-3.84916666666663,40.3749999990704],[-3.84916666666663,40.3958333324037],[-3.84916666666663,40.4166666657369],[-3.84916666666663,40.4374999990701],[-3.84916666666663,40.4791666657366],[-3.84916666666663,40.4949999990698],[-3.8125,40.4949999990698],[-3.77083333333337,40.4949999990698],[-3.72916666666665,40.4949999990698],[-3.68750000000002,40.4949999990698],[-3.60416666666668,40.4949999990698],[-3.56249999999996,40.4949999990698],[-3.52583333333333,40.4949999990698],[-3.52583333333333,40.4791666657366],[-3.52583333333333,40.4583333324033],[-3.52583333333333,40.4374999990701],[-3.52583333333333,40.3541666657371],[-3.52583333333333,40.338333332404]]]";
+  */
+  
+
+
+
+     //var url = 'http://centrodedescargas.cnig.es/CentroDescargas/geomHoja?numHoja=559';
+     var url = "./php/getProxyNumHoja.php?numhoja=559";
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', url);
+     var onError = function() {
+       vectorSource.removeLoadedExtent(extent);
+     }
+     xhr.onerror = onError;
+     xhr.onload = function() {
+       if (xhr.status == 200) {
+         console.log("Hay respuesta");
+         //console.log(xhr.responseText);
+         var response = xhr.responseText;
+         var pos1 = response.indexOf("[[[[");
+         var pos2 = response.indexOf("]}");
+         console.log(pos1 + ' / ' + pos2);
+         cadCoords=response.slice(pos1+1,pos2);
+         console.log(cadCoords);
+         var geojsonString ="{" + 
+                    "\"type\": \"FeatureCollection\"," + 
+                    "\"crs\": {" + 
+                            "\"type\": \"name\"," + 
+                            "\"properties\": {" + 
+                              "\"name\": \"EPSG:4326\"" + 
+                            "}" + 
+                          "}," + 
+                    "\"features\": [" + 
+                      "{" + 
+                        "\"type\": \"Feature\"," + 
+                        "\"properties\": {" +
+                          "\"requiresTransform\":true" + 
+                        "}," + 
+                        "\"geometry\": {" + 
+                          "\"type\": \"Polygon\"," + 
+                          "\"coordinates\": " + cadCoords + 
+                        "}" + 
+                      "}" + 
+                    "]" +
+                  "}";         
+         return geojsonString;
+       } else {
+         onError();
+       }
+     }
+     xhr.send();
+
+
+    
+}
+
+
+var features = (new ol.format.GeoJSON()).readFeatures(geojsonObjectResponse);
+
+features.forEach(function(feature){
+
+  if(!feature.get('requiresTransform')) 
+      return; // ignore
+
+  var geometry = feature.getGeometry(),
+      coords = geometry.getCoordinates();
+
+  if(geometry instanceof ol.geom.Polygon)
+      geometry.setCoordinates(transformPolyCoords(coords));
+});
+
+function transformPolyCoords(/* Array */ a){
+    return a.map(function(aa){
+        return aa.map(function(coords){
+            return ol.proj.transform(coords, 'EPSG:4326', 'EPSG:3857');  
+        });
+    });
+}
+
+
+      var vectorSource = new ol.source.Vector({
+        features: features//(new ol.format.GeoJSON()).readFeatures(geojsonObject)
+      });
+
+      //vectorSource.addFeature(new ol.Feature(new ol.geom.Circle([5e6, 7e6], 1e6)));
+
+      var vectorLayer = new ol.layer.Vector({
+        source: vectorSource,
+        style: styleFunction
+      });
+
+      var map = new ol.Map({
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          }),
+          vectorLayer
+        ],
+        target: 'map',
+        controls: ol.control.defaults({
+          attributionOptions: {
+            collapsible: false
+          }
+        }),
+        view: new ol.View({
+          projection: 'EPSG:3857',
+          center: ol.proj.transform([-3.68200, 40.42840], 'EPSG:4326', 'EPSG:3857'),
+          //center: [0, 0],
+          zoom: 12
+        })
+      });
+    </script>
+  </body>
+</html>

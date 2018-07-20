@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/assets/bootstrap-slider.min.css" type="text/css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.4/ol.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.4/ol.css" /><!--https://openlayers.org/en/v4.6.4/examples/-->
 	<link rel="stylesheet" href="css/ol-layerswitcher.css" />
 	<link rel="stylesheet" href="css/ol-sidebar.css" />
   <link rel="stylesheet" href="css/ol-measures.css" />
@@ -91,7 +91,7 @@
 					<div class="sidebar-tabs">
 						<ul role="tablist">
 		          <li><a id="btnTab2" href="#capas" role="tab"><img src="img/base-layer_16.png" title="Lista de capas"></a></li><!--<i class="fa fa-sliders fa-fw" title="Lista de capas"></i>-->
-		          <li id="btnVizModesSymbol"><a id="btnTab3" href="#modosViz" role="tab"><i class="fa fa-eye fa-fw" title="Modos de visualización"></i></a></li>
+		          <!--<li id="btnVizModesSymbol"><a id="btnTab3" href="#modosViz" role="tab"><i class="fa fa-eye fa-fw" title="Modos de visualización"></i></a></li>-->
 							<li id="btnPrinterSymbol" class="hotLink" style="display:none;"><a id="btnPrint" href="#" role="tab"><i class="fa fa-print fa-fw" title="Imprimir"></i></a></li>
 							<li id="btnSocialSymbol" class="hotLink"><a id="btnSocial" href="#" role="tab"><i class="fa fa-share-alt fa-fw" title="Compartir"></i></a></li>
 							<li id="btnHelpSymbol"><a id="btnTab1" href="#ayuda" role="tab"><i class="fa fa-question-circle fa-fw" title="Mostrar ayuda"></i></a></li>
@@ -293,7 +293,7 @@
 
                  </ul>
              </div>
-             <input type="text" id="cooSearch" name="cooSearch" value="" placeholder="Longitud , Latitud" class="form-control search-field input-sm">
+             <input type="text" id="cooSearch" name="cooSearch" value="" placeholder="Longitud , Latitud" class="form-control search-field input-sm inputTopoWithoutSpinner">
              <span class="input-group-btn">
                  <button id="btnSearchCoo" type="button" class="btn btn-primary btn-sm">Situar</button>
              </span>
@@ -350,7 +350,7 @@
                     <button id="measureP" type="button" class="btn btn-default"><img src="img/measure-pan.png" title="Panning"/></button>
                     <button id="measureL" type="button" class="btn btn-default"><img src="img/measure-length.png" title="Medir longitud"/></button>
                     <button id="measureA" type="button" class="btn btn-default"><img src="img/measure-area.png" title="Medir área"/></button>
-										<button id="measureD" type="button" class="btn btn-default"><img src="img/measure-eraser.png" title="Borrar medidas"/></button>
+										<button id="measureD" type="button" class="btn btn-default"><img src="img/measure-eraser.png" title="Borrar medidas y geometrías"/></button>
 										<button id="set-CDC" type="button" class="btn btn-default"><img src="img/download-icon24.png" title="Cartografía IGN a descarga en esta zona"/></button>
 										
             </div>

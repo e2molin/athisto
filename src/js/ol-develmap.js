@@ -1,4 +1,5 @@
 var resultToponim_lyr;
+var hojaMTN_lyr;
 
 /**
  * detect IE
@@ -655,7 +656,7 @@ function centrarVistaReferenciaCatastral(mapOL3,referenceCadastral,zoomLevel,con
     var dataRequest;
     var lonRef;
     var latRef;
-    $("#" + containerCoor).addClass("inputWithSpin");
+    $("#" + containerCoor).removeClass("inputTopoWithoutSpinner").addClass("inputTopoWithSpinner");
     dataRequest= "./php/getPosByRefCadastral.php?refcadastral=" + referenceCadastral;
     console.log("centrarVistaReferenciaCatastral Modif");
     $.ajax({
@@ -673,7 +674,7 @@ function centrarVistaReferenciaCatastral(mapOL3,referenceCadastral,zoomLevel,con
                                     });
                                     centrarVistaToponimo(mapOL3,lonRef,latRef,zoomLevel,"Referencia catastral: " + referenceCadastral);
                             });
-
+                            $("#" + containerCoor).removeClass("inputTopoWithSpinner").addClass("inputTopoWithoutSpinner");
                         },
                         error: function(e){
                                     console.log("Error: " + e.responseText);
@@ -686,7 +687,7 @@ function centrarVistaWhatThreeWords(mapOL3,whatTreeWords,zoomLevel,containerCoor
     var dataRequest;
     var lonRef;
     var latRef;
-    $("#" + containerCoor).addClass("inputWithSpin");
+    $("#" + containerCoor).removeClass("inputTopoWithoutSpinner").addClass("inputTopoWithSpinner");
     //dataRequest= "./php/getPosByW3W.php?what3words=" + whatTreeWords;
     dataRequest= "http://localhost/projects/mapahisto/php/getPosByW3W.php?what3words=" + whatTreeWords;
     console.log("centrarVistaWhatThreeWords Modif: " + dataRequest);
@@ -706,7 +707,7 @@ function centrarVistaWhatThreeWords(mapOL3,whatTreeWords,zoomLevel,containerCoor
                                     });
                                     centrarVistaToponimo(mapOL3,lonRef,latRef,zoomLevel,"Referencia catastral: " + referenceCadastral);
                             });
-
+                            $("#" + containerCoor).removeClass("inputTopoWithSpinner").addClass("inputTopoWithoutSpinner");
                         },
                         error: function(e){
                                     console.log("Error: " + e.responseText);
@@ -714,34 +715,93 @@ function centrarVistaWhatThreeWords(mapOL3,whatTreeWords,zoomLevel,containerCoor
     });
 }
 
+
+/*
+Funcuión para transformar un array de coordendas de 4326 a 3857
+*/
+function transformPolyCoords_4326to3857(/* Array */ a){
+    return a.map(function(aa){
+        return aa.map(function(coords){
+            return ol.proj.transform(coords, 'EPSG:4326', 'EPSG:3857');  
+        });
+    });
+}
+
+
+
 function centrarVistaMTN50(mapOL3,numHoja,zoomLevel,containerCoor){
 
     var dataRequest;
     var lonRef;
     var latRef;
-    $("#" + containerCoor).addClass("inputWithSpin");
-    //dataRequest= "./php/getPosByW3W.php?what3words=" + whatTreeWords;
-    dataRequest= "./php/getProxyNumHoja.php?numhoja=" + numHoja;
+    $("#" + containerCoor).removeClass("inputTopoWithoutSpinner").addClass("inputTopoWithSpinner");
+    dataRequest= "./php/proxyNumHoja.php?numhoja=" + numHoja;
     console.log("centrarVistaMTN50 Modif: " + dataRequest);
     $.ajax({
                         url: dataRequest,
                         type: 'GET',
-                        dataType: 'xml',
+                        dataType: 'html',
                         success: function(resultResponse){
-                            console.log(resultResponse);
-                            $("#" + containerCoor).removeClass("inputWithSpin");
-                            $(resultResponse).find("geo").each(function(){
-                                    $(this).find("lng").each(function(){
-                                        lonRef = $(this).text();
-                                    });
-                                    $(this).find("lat").each(function(){
-                                        latRef = $(this).text();
-                                    });
-                                    centrarVistaToponimo(mapOL3,lonRef,latRef,zoomLevel,"Referencia catastral: " + referenceCadastral);
+                            var pos1 = resultResponse.indexOf("[[[[");
+                            var pos2 = resultResponse.indexOf("]}");
+                            console.log(pos1 + ' / ' + pos2);
+                            var cadCoords = resultResponse.slice(pos1+1,pos2);
+
+                            /*
+                                El CdD devuelve una cosa que parece un geojson pero no es. De lo que devuelve, extraemos las coordendas
+                                y las incrustamos en esta cadena. Como devuelve 4326 y nosotros trabajamos en 3857, metemos una propiedad
+                                que se llama requiresTransform=true, que hace que las coordenadas se reproyecten
+                            */
+                            var geojsonString ="{" + 
+                                "\"type\": \"FeatureCollection\"," + 
+                                "\"crs\": {" + 
+                                        "\"type\": \"name\"," + 
+                                        "\"properties\": {" + 
+                                        "\"name\": \"EPSG:4326\"" + 
+                                        "}" + 
+                                    "}," + 
+                                "\"features\": [" + 
+                                "{" + 
+                                    "\"type\": \"Feature\"," + 
+                                    "\"properties\": {" +
+                                    "\"requiresTransform\":true" + 
+                                    "}," + 
+                                    "\"geometry\": {" + 
+                                    "\"type\": \"Polygon\"," + 
+                                    "\"coordinates\": " + cadCoords + 
+                                    "}" + 
+                                "}" + 
+                                "]" +
+                            "}"; 
+
+                            var features = (new ol.format.GeoJSON()).readFeatures(geojsonString);
+                            features.forEach(function(feature){
+                              if (!feature.get('requiresTransform')) {return;} //Si el geoJSON no tiene la propiedad requiresTransform=true, no se reproyecta
+                              var geometry = feature.getGeometry();
+                              var coords = geometry.getCoordinates();
+                              if (geometry instanceof ol.geom.Polygon){
+                                geometry.setCoordinates(transformPolyCoords_4326to3857(coords));
+                              }
                             });
+                            
+                            var vectorSource = new ol.source.Vector({
+                                features: features
+                            });                            
+                            objMap.removeOverlay(hojaMTN_lyr);
+
+                            hojaMTN_lyr = new ol.layer.Vector({
+                                source: vectorSource
+                            });
+                            hojaMTN_lyr.set('keyname','overlayMTN');
+                            objMap.addOverlay(hojaMTN_lyr);
+                            objMap.getView().fit(hojaMTN_lyr.getSource().getExtent() , objMap.getSize());
+                            $("#" + containerCoor).removeClass("inputTopoWithSpinner").addClass("inputTopoWithoutSpinner");
+
                         },
-                        error: function(e){
-                                    console.log("Error: " + e.responseText);
+                        error: function( jqXHR, textStatus, errorThrown ){
+                                    console.log("Error: " + jqXHR);
+                                    console.log("Error: " + textStatus);
+                                    console.log("Error: " + errorThrown);
                         }
     });
 

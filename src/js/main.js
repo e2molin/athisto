@@ -300,40 +300,36 @@ $("#opacityLevel").slider({
 
 //Botones capas base del mapa Main
 $("#set-mapMain-mapa").click(function() {
-  //var capasMirror = listaCapas.split(",");
+
   if ($("#set-mapMain-mapa").hasClass("selected")){ return;}
   $(".btnGroupLayerChangeMainMap a").removeClass("selected")
   $("#set-mapMain-mapa").addClass("selected");
-
   setLayerVisibleByIndex(objMap,0,1);
   setLayerVisibleByIndex(objMap,1,0);
   setLayerVisibleByIndex(objMap,2,0);
-  //setLayerVisibleByIndex(objMapMirror,3,0);//Siempre apagamos el overlay  cuando pulsamos uno de estos botones
-  //listaCapas = capasMirror[0] + ",mapaMTN";
+
 });
 
 $("#set-mapMain-imagen").click(function() {
-  //var capasMirror = listaCapas.split(",");
+
   if ($("#set-mapMain-imagen").hasClass("selected")){ return;}
   $(".btnGroupLayerChangeMainMap a").removeClass("selected")
   $("#set-mapMain-imagen").addClass("selected");
   setLayerVisibleByIndex(objMap,0,0);
   setLayerVisibleByIndex(objMap,1,1);
   setLayerVisibleByIndex(objMap,2,0);
-  //setLayerVisibleByIndex(objMapMirror,3,0);//Siempre apagamos el overlay  cuando pulsamos uno de estos botones
-  //listaCapas = capasMirror[0] + ",pnoaActualIGN";
+
 });
 
 $("#set-mapMain-hibrido").click(function() {
-  //var capasMirror = listaCapas.split(",");
+
   if ($("#set-mapMain-hibrido").hasClass("selected")){ return;}
   $(".btnGroupLayerChangeMainMap a").removeClass("selected")
   $("#set-mapMain-hibrido").addClass("selected");
   setLayerVisibleByIndex(objMap,0,0);
   setLayerVisibleByIndex(objMap,1,1);
   setLayerVisibleByIndex(objMap,2,1);
-  //setLayerVisibleByIndex(objMapMirror,3,0);//Siempre apagamos el overlay  cuando pulsamos uno de estos botones
-  //listaCapas = capasMirror[0] + ",pnoaActualIGN";
+
 });
 
 $("#set-showTools").click(function() {
@@ -353,15 +349,12 @@ $("#set-showInfo").click(function() {
 });
 
 $("#set-CDC").click(function() {
+
   var extent = objMap.getView().calculateExtent(objMap.getSize());
   extent = ol.proj.transformExtent(extent, 'EPSG:3857', 'EPSG:4326');
-  console.log(extent);
-  //-47.6875, 22.601010268988944, 36.6875, 53.883091262311524
   var urlCDD = "http://centrodedescargas.cnig.es/CentroDescargas/buscador.do?crs=EPSG:4258&BBOX=" + extent[0] + "," + extent[1] + "," +  extent[2] + "," + extent[3];
-  console.log(urlCDD);
-  //var urlCDD = "http://centrodedescargas.cnig.es/CentroDescargas/buscador.do?crs=EPSG:4258&BBOX=-4.24,40.05,-4.19,40.08";
   window.open(urlCDD, '_blank');
-  //alert("hola");
+  $("#toolbarMappingElem").toggle();
 
 });
 
@@ -1085,99 +1078,74 @@ function mirrorMap(){
 function basicMap(){
 
   objMap = new ol.Map({
-  		  layers: [
-          capasBaseMain[0],capasBaseMain[1],capasBaseMain[2]
-  		  ],
-  		  target: 'mapLienzo',
-  		  controls: ol.control.defaults({
-  						attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-  						collapsible: true
-  			})
-  		  }),
-  		  view: new ol.View({
-                projection: 'EPSG:3857', center: ol.proj.transform([initLong, initLat], 'EPSG:4326', 'EPSG:3857'),
-                zoom: initZoom,minZoom: initMinZoom, maxZoom: initMaxZoom
-  		  })
-      });
-
-/*
-  var layerSwitcher = new ol.control.LayerSwitcher({
-    tipLabel: 'Leyenda'
+    layers: [
+      capasBaseMain[0], capasBaseMain[1], capasBaseMain[2]
+    ],
+    target: 'mapLienzo',
+    controls: ol.control.defaults({
+      attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+        collapsible: true
+      })
+    }),
+    view: new ol.View({
+      projection: 'EPSG:3857', center: ol.proj.transform([initLong, initLat], 'EPSG:4326', 'EPSG:3857'),
+      zoom: initZoom, minZoom: initMinZoom, maxZoom: initMaxZoom
+    })
   });
-  objMap.addControl(layerSwitcher);
-*/
+
+  /*
+    var layerSwitcher = new ol.control.LayerSwitcher({
+      tipLabel: 'Leyenda'
+    });
+    objMap.addControl(layerSwitcher);
+  */
 
 
-  activateHorizontalSwipeViz(waterColorOSM_lyr,blackWhiteOSM_lyr,0);
-  activateVerticalSwipeViz(basicOSM_lyr,basicOSM2_lyr,0);
-  activateMosaicViz(actualPNOA_lyr,baseIGN_lyr,siose_lyr,mdtign_lyr,0);
-  activateSpotViz(geologicoMinero_lyr,0);
+  activateHorizontalSwipeViz(waterColorOSM_lyr, blackWhiteOSM_lyr, 0);
+  activateVerticalSwipeViz(basicOSM_lyr, basicOSM2_lyr, 0);
+  activateMosaicViz(actualPNOA_lyr, baseIGN_lyr, siose_lyr, mdtign_lyr, 0);
+  activateSpotViz(geologicoMinero_lyr, 0);
   loadVizModes();
   //Añadimos la sidebar al mapa
   sidebar = new ol.control.Sidebar({ element: 'sidebar', position: 'left' });
   objMap.addControl(sidebar);
 
-  //loadPNOAFootsprints();
-
-/*
-Controlamos los eventos del mapa para evaluar visibilidad del PNOA
-*/
- //Mouse Position
+  //Mouse Position
   var mousePositionControl = new ol.control.MousePosition({
-    className:'ol-mouse-position',                      //Es la clase que define el formato de la etiqueta que contiene las coordendas que se muestran. Valor por defecto
-    coordinateFormat: function(coordinate) {
-      if ((coordinate[1]>=36) && (coordinate[0]>=-10)){
-        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' +'<br/>ETRS89 ({x}, {y})', 5);
-      }else{
-        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' +'<br/>WGS84 ({x}, {y})', 5);
-      }      
+    className: 'ol-mouse-position',                      //Es la clase que define el formato de la etiqueta que contiene las coordendas que se muestran. Valor por defecto
+    coordinateFormat: function (coordinate) {
+      if ((coordinate[1] >= 36) && (coordinate[0] >= -10)) {
+        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>ETRS89 ({x}, {y})', 5);
+      } else {
+        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>WGS84 ({x}, {y})', 5);
+      }
     },
-    projection:"EPSG:4326",                              //Proyección en que se muestran los datos 
+    projection: "EPSG:4326",                              //Proyección en que se muestran los datos 
     //target: document.getElementById('mouse-position'), //Contenedor donde se almacenan las coordenadas si estÃ¡ fuera del mapa
     undefinedHTML: '&nbsp;'                            //Valor mostrado cuando no se calculan coordendas.
   });
   objMap.addControl(mousePositionControl);
 
+  objMap.on('singleclick', function (evt) {
 
-
-  objMap.on('pointermove', function(evt) {
-         if (evt.dragging) {
-           return;
-         }
-         if (showPNOAOnCursor==true){
-             //var pixelClic = map.getEventPixel(evt.originalEvent);
-             //displayPNOAInfo(pixelClic,"layersAvailablesList","<span class=\"badge\" style=\"margin-bottom:5px; \"><i class=\"fa fa-mouse-pointer \" aria-hidden=\"true\"></i> Capas en cursor</span>");
-         }
-  });
-  objMap.on('singleclick', function(evt) {
-    if (evt.dragging) {
-      return;
-    }
-    if (beginMeasurement==true){
-        return;
-    }
+    if (evt.dragging) { return; }
+    if (beginMeasurement == true) { return; }
     onPointerClick(evt);
-          /*if (showPNOAOnCursor==false){
-              var pixelClic = map.getEventPixel(evt.originalEvent);
-              displayPNOAInfo(pixelClic,"coberInfo","<span class=\"badge\" style=\"margin-bottom:5px; \"><i class=\"fa fa-hand-o-up \" aria-hidden=\"true\"></i> Capas en punto</span>");
-          }*/
-      });
+
+  });
 
   objMap.on('moveend', updatePermalink);
   // restore the view state when navigating through the history, see
   // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
-  window.addEventListener('popstate', function(event) {
-            if (event.state === null) {
-              return;
-            }
-            objMap.getView().setCenter(event.state.center);
-            objMap.getView().setZoom(event.state.zoom);
-            objMap.getView().setRotation(event.state.rotation);
-            shouldUpdate = false;
+  window.addEventListener('popstate', function (event) {
+    if (event.state === null) { return; }
+    objMap.getView().setCenter(event.state.center);
+    objMap.getView().setZoom(event.state.zoom);
+    objMap.getView().setRotation(event.state.rotation);
+    shouldUpdate = false;
   });
 
   console.log("Main map creado");
-
 }
 
 
@@ -1205,24 +1173,18 @@ function setSizes() {
     $(".ign-mainmap-container").css("height", $(window).height()-headerHeight);
     $(".ign-mirrormap-container").css("height", $(window).height()-headerHeight);
   }
-  //console.log("Actualizado contorno");
+
 }
-//9977715VK3797F
+
 
 $(window).resize(function() { setSizes();});
 
 
 $(document).ready(function() {
+  //9977715VK3797F
   console.log("Start");
-  /*http://localhost:1976/projects/apiign/index.html#map=16/-776002.77/4704454.31/0/2/amsb,nacional*/
-
-
   browserIE=detectIE();
-
-
-
   initHash = window.location.hash;
-
   showPNOAOnCursor=false;                       //Por defecto: mostramos info de capas en el centro
   mobileMode=false;                             //Por defecto: modo sobremesa
   modeViz = -1;                                  //Por defecto: modo standard
@@ -1240,7 +1202,6 @@ $(document).ready(function() {
   mapsRendering();
   activateMeasurementTools(objMap);
   console.log("Mediciones activadas");
-
   init_activateDD();
   $('[data-toggle="tooltip"]').tooltip(); 
   console.log("Dragdrop gpx");
