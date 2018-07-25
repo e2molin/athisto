@@ -1093,12 +1093,12 @@ function basicMap(){
     })
   });
 
-  
+  /*
     var layerSwitcher = new ol.control.LayerSwitcher({
       tipLabel: 'Leyenda'
     });
     objMap.addControl(layerSwitcher);
-  
+  */
 
 
   activateHorizontalSwipeViz(waterColorOSM_lyr, blackWhiteOSM_lyr, 0);
