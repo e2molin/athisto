@@ -198,7 +198,7 @@ function getCoordinateByIDEid(idIDEE){
                     console.log("Existe el elemento:" + $('#mapSyncro').length);
                     if ($('#mapMirrorLienzo').length==1){
                         //Si hay un mapa sincronizado, mueve la posición hasta el mapa en el mapa espejo
-                        objMapMirror.setView(map.getView());
+                        objMapMirror.setView(objMap.getView());
                     }
                     sidebar.hide();
                     if (mobileMode==true){$("#topoinput").hide(); }

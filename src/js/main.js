@@ -39,8 +39,8 @@ function closeModals(){
   $('#permalinkText').modal('hide');
   $("#btnPrinterSymbol").hide();//Ocultamos el botón de impresión
   $("#toolTemporalTransitionElem").hide();
-  $("#panel-layers-PNOAoverlays").hide();
-  $("#panel-layers-AToverlays").hide();
+  $("#panel-AirPhotoLayers").hide();
+  $("#panel-ATLayers").hide();
   $("#toolCoberInfoElem").hide();
 
 
@@ -500,8 +500,8 @@ function changeVizMode(indexViz){
   if (indexViz==0){
     apagarTodo();
     //Encendemos los paneles para seleccionar capas
-    $("#panel-layers-PNOAoverlays").show();
-    $("#panel-layers-AToverlays").show();
+    $("#panel-AirPhotoLayers").show();
+    $("#panel-ATLayers").show();    
     $("#toolTypeWindowViz").hide();
     $("#toolInfoScreenElem").removeClass("toolInfoScreenClassRight toolInfoScreenClassLeft").addClass("toolInfoScreenClassLeft");
     $("#btnVizStandard").addClass('vizModeSelected');
@@ -1093,12 +1093,12 @@ function basicMap(){
     })
   });
 
-  /*
+  
     var layerSwitcher = new ol.control.LayerSwitcher({
       tipLabel: 'Leyenda'
     });
     objMap.addControl(layerSwitcher);
-  */
+  
 
 
   activateHorizontalSwipeViz(waterColorOSM_lyr, blackWhiteOSM_lyr, 0);

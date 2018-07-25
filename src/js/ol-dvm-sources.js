@@ -49,23 +49,6 @@ function loadPNOAFootsprints(){
         })
       })
     });
-  /*
-    footprints_lyr = new ol.layer.Vector({
-      title: 'Coberturas',
-      source: new ol.source.Vector({
-        projection : 'EPSG:3857',
-        url: 'fusion_epsg3857.geojson',
-        format: new ol.format.GeoJSON()
-      }),
-      style: function(feature, resolution) {
-        //style.getText().setText(resolution < 5000 ? feature.get('Fecha') : '');
-        return style;
-      }
-    });
-  obMap.addLayer(footprints_lyr);
-  console.log("Capa de PNOA footprints cargada");
-  */
-
 }
 
 /*
@@ -154,7 +137,7 @@ function loadBasicOSM(visibilityDefault){
 
     waterColorOSM_lyr= new ol.layer.Tile({
                         title: 'OSM Acuarela',
-                        type: 'base',
+                        /*type: 'base',*/
                         visible: visibilityDefault,
                         source: new ol.source.Stamen({
                             layer: 'watercolor'
@@ -165,7 +148,7 @@ function loadBasicOSM(visibilityDefault){
     capasBaseOSMLista.push(waterColorOSM_lyr);
     blackWhiteOSM_lyr= new ol.layer.Tile({
                         title: 'OSM Toner',
-                        type: 'base',
+                        /*type: 'base',*/
                         visible: visibilityDefault,
                         source: new ol.source.Stamen({
                             layer: 'toner'
@@ -176,7 +159,7 @@ function loadBasicOSM(visibilityDefault){
     capasBaseOSMLista.push(blackWhiteOSM_lyr);
     basicOSM_lyr=new ol.layer.Tile({
                         title: 'OSM Básico',
-                        type: 'base',
+                        /*type: 'base',*/
                         visible: visibilityDefault,
                         source: new ol.source.OSM()
                     });
@@ -185,7 +168,7 @@ function loadBasicOSM(visibilityDefault){
 
     basicOSM2_lyr=new ol.layer.Tile({
                         title: 'OSM Básico 2',
-                        type: 'base',
+                        /*type: 'base',*/
                         visible: visibilityDefault,
                         source: new ol.source.OSM()
                     });
@@ -692,6 +675,9 @@ function rasterPNOAOverlays(visibilityDefault){
                   }
                 );
                 listaCapas = capasActive.join(",");
+                if (modeViz==0){
+                  apagarTodo();
+                }
                 //Esto es para mostrar/ocultar el contenedor que almacena el control de opacidad
         });
 
@@ -950,6 +936,9 @@ function rasterIGNOverlays(visibilityDefault){
                   }
                 );
                 listaCapas = capasActive.join(",");
+                if (modeViz==0){
+                  apagarTodo();
+                }
         });
 
         //Como metemos componentes jquery ui-opacity, es necesaro inicializarlos
