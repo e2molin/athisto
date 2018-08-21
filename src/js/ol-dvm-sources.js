@@ -590,7 +590,7 @@ function rasterPNOAOverlays(visibilityDefault){
         //USando la clase "collapsed" en el hipervínculo hacemos que aparezca la flechita correctamente
         htmlList.push("<div class=\"panel panel-info\" style=\"margin:0px;\">");
         htmlList.push("<div class='panel-heading panel-heading-sm'><a id='btn-content-panel-AirPhotoLayers' href='#content-panel-AirPhotoLayers' data-toggle='collapse' class='collapsed'>" +
-                      "<i class='fa fa-plus-square' aria-hidden='true'></i> Vuelos históricos</a></div>");
+                      "<i class='fa fa-plus-square' aria-hidden='true'></i> Imágenes aéreas históricas</a></div>");
         htmlList.push("<div id='content-panel-AirPhotoLayers' class=\"panel-body collapse \" style=\"margin:5px; padding:0px;\">");
         $.each(data, function(index, element) {
           if (element.tiposerv=="WMS"){
@@ -645,10 +645,10 @@ function rasterPNOAOverlays(visibilityDefault){
         var containerOverlayRaster = document.getElementById('panel-AirPhotoLayers');
         containerOverlayRaster.innerHTML = htmlList.join('');
         $("#content-panel-AirPhotoLayers").on("hide.bs.collapse", function(){
-            $("#btn-content-panel-AirPhotoLayers").html("<i class='fa fa-plus-square' aria-hidden='true'></i> Vuelos históricos</a></div>");
+            $("#btn-content-panel-AirPhotoLayers").html("<i class='fa fa-plus-square' aria-hidden='true'></i> Imágenes aéreas históricas</a></div>");
         });
         $("#content-panel-AirPhotoLayers").on("show.bs.collapse", function(){
-            $("#btn-content-panel-AirPhotoLayers").html("<i class='fa fa-minus-square' aria-hidden='true'></i> Vuelos históricos</a></div>");
+            $("#btn-content-panel-AirPhotoLayers").html("<i class='fa fa-minus-square' aria-hidden='true'></i> Imágenes aéreas históricas</a></div>");
         });
 
         //Como metemos componentes Bootstrap-Toggle, es necesario inicalizarlos, porque si no aparecen como inputbox normales sin customizar
