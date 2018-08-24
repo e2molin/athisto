@@ -1030,6 +1030,7 @@ function vectorOverLays(visibilityDefault){
   cadastralOverlay.set("abstract","Información del servicio publicado por al Dirección General del Catastro");
   overlayVectorList.push(cadastralOverlay);
 
+  /*
   cadastralINSPIREOverlay=new ol.layer.Image({
             title: 'Catastro INSPIRE',
             visible: visibilityDefault,
@@ -1048,7 +1049,7 @@ function vectorOverLays(visibilityDefault){
   cadastralINSPIREOverlay.set("panel","OtherLayers");
   cadastralINSPIREOverlay.set("abstract","Información del servicio publicado por al Dirección General del Catastro según normativa INSPIRE");
   overlayVectorList.push(cadastralINSPIREOverlay);
-
+*/
 
     
     coastline_lyr=new ol.layer.Tile({
@@ -1099,7 +1100,7 @@ function vectorOverLays(visibilityDefault){
     });
     zee_lyr.set('keyname','ZEE');
     zee_lyr.set('group','Vector overlay');
-    zee_lyr.set("alias","ZEE");
+    zee_lyr.set("alias","Zona Económico Exclusiva");
     zee_lyr.set('queryable',false);
     zee_lyr.set("useproxy",false);
     zee_lyr.set("panel","AdminLayers");

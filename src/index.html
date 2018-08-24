@@ -143,7 +143,7 @@
 									Los diferentes modos de visualización permiten ver más de una capa de cartografía a la vez para realizar comparaciones.
 								 </p>
 								 <div class="row" style="margin-top:15px;">
-									 <div class="col-lg-6">
+									<div class="col-lg-6">
 										 <a id="btnHelpVizStandard" href="#" class="btn btn-primary"><i class="fa fa-clone" title="Visualizador sencillo"></i></a> Sencillo
 									 </div>
 									 <div class="col-lg-6">
@@ -176,19 +176,26 @@
 								</div>
 
 
-								 <h3><small>Contacto</small></h3>
+								 <!--<h3><small>Contacto</small></h3>
 								 <p class="lorem">
-								 	Para cualquier consulta enviar un correo a <a href="mailto:ign@fomento.es" target="_blank">ign@fomento.es</a>.
-								 </p>
+								 	Para cualquier consulta enviar un correo a<br/> <a href="mailto:consulta@cnig.es" target="_blank">consulta@cnig.es</a>.
+								 </p>-->
+								 <!--
 		              <a class="btn btn-primary btn-block" href="http://www.ign.es/web/ign/portal/ctc-area-cartoteca" role="button" target="_blank">Sección de Archivo Topográfico y Cartoteca</a>
 		              <p class="lorem">
 		              Para cualquier consulta envíenos un correo a <a href="mailto:documentacionign@fomento.es" target="_blank" alt="Correo electrónico IGN">documentacionign@fomento.es</a>.
-		              </p>
+									</p>
+								-->
 		          </div>
 						</div>
 						<div class="sidebar-pane" id="capas" style="padding-left:5px; padding-right:25px;">
 							<h2 class="sidebar-header">Capas disponibles<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h2>
 
+              <!--<div class="panel" id="panel-layers-User" style="margin-top:10px; overflow-y: auto; padding:0px;"></div>-->
+							<div class="panel" id="panel-AirPhotoLayers" style="margin-top:0px; overflow-y: auto; padding:0px;"></div>
+              <div class="panel" id="panel-ATLayers" style="margin:0px; overflow-y: auto; padding:0px;"></div>
+							<div class="panel" id="panel-AdminLayers" style="margin:0px; overflow-y: auto; padding:0px;"></div>
+							<div class="panel" id="panel-OtherLayers" style="margin:0px; overflow-y: auto; padding:0px;"></div>
               <div class="panel panel-info" style="margin-top:10px;">
                 <div class='panel-heading panel-heading-sm'>
                   <a id='btn-content-panel-layers-User' href='#content-panel-layers-User' data-toggle='collapse'  class='collapsed'>
@@ -203,13 +210,7 @@
                     <i class="fa fa-user-circle" aria-hidden="true"></i> Cargar WMS usuario
                   </button>
                 </div>
-              </div>
-
-              <!--<div class="panel" id="panel-layers-User" style="margin-top:10px; overflow-y: auto; padding:0px;"></div>-->
-							<div class="panel" id="panel-AirPhotoLayers" style="margin-top:0px; overflow-y: auto; padding:0px;"></div>
-              <div class="panel" id="panel-ATLayers" style="margin:0px; overflow-y: auto; padding:0px;"></div>
-							<div class="panel" id="panel-AdminLayers" style="margin:0px; overflow-y: auto; padding:0px;"></div>
-							<div class="panel" id="panel-OtherLayers" style="margin:0px; overflow-y: auto; padding:0px;"></div>
+							</div>
 							<div class="panel" id="panel-layers-IGNoverlays" style="margin:0px; overflow-y: auto; padding:10px;">
 								<i class='fa fa-list-alt' aria-hidden='true'></i> <small>Capas con información.Haga clic en un punto del mapa para obtener su información asociada.</small>
 							</div>
