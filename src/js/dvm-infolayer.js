@@ -327,3 +327,56 @@ function onPointerClick(event){
   //getWMSAB(extent,objMap.getSize()[0],objMap.getSize()[1],pixel[0],pixel[1]);
 
 }
+
+function getZOnWCS(coordinatePoint,textoInfo){
+
+    var urlZ = "http://www.ign.es/wcs/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&" + 
+                "COVERAGE=mdt:Elevacion25830_25&" + 
+                "CRS=EPSG:25830&" + 
+                "BBOX=" + Math.round(coordinatePoint[0],2) + "," + Math.round(coordinatePoint[1],2) + "," +  Math.round(coordinatePoint[0]+25,2) + "," + Math.round(coordinatePoint[1]+25,2) + "&" + 
+                "WIDTH=1&HEIGHT=1&FORMAT=ArcGrid";
+
+    //console.log(urlZ);
+    $.ajax({
+        url: urlZ,
+        dataType: "html",
+        type: "GET",
+        beforeSend: function () {
+            //console.log("Lanzo");
+            //$("#resultNoSpin").hide();
+            //$("#resultSpin").show();
+            //numLineas = 0;
+        },
+        success: function(data) {
+            //console.log("Éxito");
+            //var $response=$(data);
+            //$(data).find("#idinspire .text-info:first").map(function() { return $(this).text(); }).get().join('|');
+            //console.log(data);
+            var lineas=data.split("\n");
+            $("#infoAlt").text(textoInfo + lineas[6] + "m");
+        },
+        error: function(e) {
+            console.log("Error");
+            console.log(e.responseText);
+            $("#infoAlt").text("Altura No disponible");
+
+        },
+        complete: function () {
+        //console.log("Terminé");
+        }
+    });   
+}
+
+
+function getZOnPointer(event,textoInfo){
+
+    var pixelZ = objMap.getEventPixel(event.originalEvent);
+    var pointClickZ = objMap.getCoordinateFromPixel(pixelZ);
+    //pointClickZ = ol.proj.toLonLat(pointClickZ, 'EPSG:3857');//Devuelve un ol.Coordinate transformado a 4326
+
+    pointClickZ = ol.proj.transform(pointClickZ, "EPSG:3857", "EPSG:25830");
+    getZOnWCS(pointClickZ,textoInfo);
+    
+
+
+}

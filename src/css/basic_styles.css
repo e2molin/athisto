@@ -86,10 +86,26 @@ HEADER class
 }
 
 @media(min-width:768px) {
+  .div-mouse-position {
+    position:absolute;
+    top: auto;
+    bottom: 100px;
+    right:5px;
+    min-width: 0px;
+    font-size: 0.8em;
+    background-color: slategrey;
+    border-radius: 4px;    
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    color: white;
+    padding: 2px;
+    z-index: 25;
+}
   .ol-mouse-position {
           top: auto;
-          bottom: 3em;
-          min-width: 0px;
+          position:absolute;
+          margin:0px;
+          /*bottom: 100px;*/
+          min-width: 180px;
           background-color: slategrey;
           border-radius: 4px;
           font-size: 0.8em; 
@@ -97,9 +113,24 @@ HEADER class
           color: white;
           padding: 6px;
   }
+
 }
 
 @media(max-width:767px) { 
+  .div-mouse-position {
+    position:absolute;
+    top: auto;
+    bottom: 100px;
+    right:5px;
+    min-width: 0px;
+    font-size: 0.8em;
+    background-color: slategrey;
+    border-radius: 4px;    
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    color: white;
+    padding: 2px;
+    z-index: 25;
+}  
   .ol-mouse-position {
           top: auto;
           bottom: 0.5em;
@@ -111,6 +142,7 @@ HEADER class
           color: white;
           padding: 2px;
   }
+ 
 }
 
 .ol-attribution {

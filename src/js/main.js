@@ -1166,17 +1166,21 @@ function basicMap(){
   //Mouse Position
   var mousePositionControl = new ol.control.MousePosition({
     className: 'ol-mouse-position',                      //Es la clase que define el formato de la etiqueta que contiene las coordendas que se muestran. Valor por defecto
+    //target: document.getElementById('infoCoo'),
     coordinateFormat: function (coordinateCursor) {
       var numHuso = "00";
       var cadUTMinfo = "";
       var coordinate;
+      
       if (mobileMode==true){
         coordinate =  ol.proj.transform(objMap.getView().getCenter(), "EPSG:3857", "EPSG:4326");
+        if ((objMap.getView().getZoom()>15) && (modeViz==0)){
+          //getZOnWCS(ol.proj.transform(coordinate, 'EPSG:4326', "EPSG:25830"),"Altura en el centro: ");
+        }
       }else{
         coordinate = coordinateCursor;
       }
-      //console.log("Centro");
-      //console.log(objMap.getView().getCenter());
+      
       if ((coordinate[1] >= 36) && (coordinate[0] >= -10)) {
         //La coordenada está en la península
         if ((coordinate[0]>=-10) && (coordinate[0]<=-6)){
@@ -1204,10 +1208,22 @@ function basicMap(){
   });
   objMap.addControl(mousePositionControl);
 
+  objMap.on('pointermove', function(evt) {
+    if (evt.dragging) {
+        return;
+    }
+    if ((objMap.getView().getZoom()>15) && (modeViz==0)){
+      //getZOnPointer(evt,"Altura en el cursor: ");
+    }
+  });
+
   objMap.on('singleclick', function (evt) {
 
     if (evt.dragging) { return; }
     if (beginMeasurement == true) { return; }
+    
+    //Detectar Z
+    getZOnPointer(evt,"Altura en el punto: ");
     onPointerClick(evt);
 
   });
