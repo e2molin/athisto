@@ -113,7 +113,29 @@ HEADER class
   }
 }
 
+.ol-attribution {
+  text-align: right;
+  bottom: .5em;
+  right: .5em;
+  font-size: 1.0em;
+  max-width: calc(100% - 1.3em);
+}
 
+.ol-attribution ul{
+  font-size: 0.75em;
+}
+
+.ol-attribution.ol-uncollapsible {
+  bottom: .5em;
+  right: .5em;
+  border-radius: 4px 0 0;
+  height: 1.1em;
+  font-size: 1.0em;
+  line-height: 1em;
+}
+.ol-attribution.ol-uncollapsible ul{
+  font-size: 1.0em;
+}
 
 /*
 
@@ -493,10 +515,10 @@ Configuramos los slider de transparencia
 .toolCoberInfoclass {
     position:absolute;
     padding: 5px 15px 5px 20px;/*Top Right Botton Left*/
-    left:60px;
+    left:50px;
     bottom:15px;
     z-index:15;
-    width:auto;
+    width:300px;
     height: auto;
     background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
     border-radius: 7px;
@@ -548,7 +570,7 @@ Botonera de herramientas
 .toolbarMapping {
     position:absolute;
     padding: 5px 15px 10px 15px;/*Top Right Botton Left*/
-    right:90px;    /* 20px */
+    right:28px;    /* 20px */
     top:50px;        /*60px*/
     z-index:15;
     width:260px;
@@ -560,6 +582,9 @@ Botonera de herramientas
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 }
 
+
+
+
 /*
 Botonera de mapas base del mainMap
 */
@@ -567,10 +592,10 @@ Botonera de mapas base del mainMap
 .btnGroupLayerChangeMainMap {
     position:absolute;
     padding: 5px 5px 10px 5px;/*Top Right Botton Left*/
-    right:25px;
+    right:28px;
     top:10px;
     z-index:15;
-    width:330px;
+    width:265px;
     height: auto;
     font-size: 0.8em;
     color:#FFFFFF;
@@ -677,24 +702,67 @@ a.btnLayerChangeMirrorMap:hover{
 
 /*
 ---------------------------------------------------------
-Contenedores resultado de búsquedas GetFeatureInfo
+Contenedor resultado de búsquedas GetFeatureInfo
 ---------------------------------------------------------
 */
 .listaSelMapsclass {
     position:absolute;
     padding: 5px 15px 5px 20px;/*Top Right Botton Left*/
-    right:20px;
-    top:150px;
     z-index:20;
-    width:380px;
     height: auto;
     background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
     border-radius: 7px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-    font-size: 1.0em;
-    max-height: 500px;
     overflow-y: auto;
 }
+
+@media(max-width: 768px) {
+  /*Pantallas de móviles verticales y tablets*/
+  .listaSelMapsclass {
+    bottom:100px;
+    left: 50px;
+    width:320px;    
+    max-height: 200px;
+    font-size: 0.8em;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /*Pantallas de móviles horizontales y tablets verticales*/
+  .listaSelMapsclass {
+    bottom:100px;
+    left: 50px;
+    width:320px;    
+    max-height: 200px;
+    font-size: 0.8em;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  /*Tablets horizontales*/
+  .listaSelMapsclass {
+    top:150px;
+    right:20px;
+    width:320px;    
+    max-height: 500px;
+    font-size: 0.9em;
+  }
+}
+
+@media (min-width: 1200px) {
+  /*Pantallas de Ordenador*/
+  .listaSelMapsclass {
+    top:150px;
+    right:20px;
+    width:380px;    
+    max-height: 500px;
+    font-size: 1.0em;
+  }
+}
+
+
+
 
 
 /*
@@ -702,8 +770,9 @@ Contenedores resultado de búsquedas GetFeatureInfo
 Cuadro de búsqueda topónimos
 -------------------------------------------------------------------------------------------------------------------
 */
-
-    .topoinputclass {
+    /*Pantallas de ordenador*/
+    @media (min-width: 1200px) {
+      .topoinputclass {
         position:absolute;
         padding: 5px;
         left:100px;
@@ -715,7 +784,25 @@ Cuadro de búsqueda topónimos
         border-radius: 7px;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
         font-size: 0.8em;
+      }
     }
+    /*Dispositivos móviles*/
+    @media(max-width: 1199px) {
+      .topoinputclass {
+        position:absolute;
+        padding: 5px;
+        left:45px;
+        top:110px;
+        z-index:20;
+        width:320px;
+        height: auto;
+        background: rgba(0, 60, 136, 0.5) none repeat scroll 0 0;
+        border-radius: 7px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+        font-size: 0.8em;
+      }
+    }
+    
 
     .sidebar-left ~ .topoinputclass {
       transition: margin-left 500ms;

@@ -454,9 +454,9 @@ function activateVerticalSwipeViz(WestLayer,EastLayer,visibleInit){
       ctx.save();
       ctx.beginPath();
       if (fixedSizes==true){
-        ctx.rect(0, 0, lienzoMapa[0]/2 * pixelRatio - 2 * pixelRatio, heightMouse);
+        ctx.rect(0, 0, lienzoMapa[0]/2 * pixelRatio - 2 * pixelRatio, heightMouse * pixelRatio);
       }else{
-        ctx.rect(0, 0, widthMouse - 2 * pixelRatio, heightMouse);
+        ctx.rect(0, 0, widthMouse - 2 * pixelRatio, heightMouse* pixelRatio);
       }
       ctx.lineWidth = 4 * pixelRatio;
       ctx.strokeStyle = 'rgba(0, 102, 204, 0.9)';
@@ -506,9 +506,9 @@ function activateVerticalSwipeViz(WestLayer,EastLayer,visibleInit){
       ctx.save();
       ctx.beginPath();
       if (fixedSizes==true){
-        ctx.rect(lienzoMapa[0]* pixelRatio/2, 0, ctx.canvas.width - lienzoMapa[0]* pixelRatio/2, heightMouse);
+        ctx.rect(lienzoMapa[0]* pixelRatio/2, 0, ctx.canvas.width - lienzoMapa[0]* pixelRatio/2, heightMouse * pixelRatio);
       }else{
-        ctx.rect(widthMouse, 0, ctx.canvas.width - widthMouse, heightMouse);
+        ctx.rect(widthMouse, 0, ctx.canvas.width - widthMouse, heightMouse* pixelRatio);
       }
       ctx.clip();
     });
@@ -574,9 +574,9 @@ function activateHorizontalSwipeViz(NorthLayer,SouthLayer,visibleInit){
     ctx.save();
     ctx.beginPath();
     if (fixedSizes==false){
-      ctx.rect(0, 0, widthMouse, heightMouse- 2 * pixelRatio);
+      ctx.rect(0, 0, widthMouse * pixelRatio, heightMouse- 2 * pixelRatio);
     }else{
-      ctx.rect(0, 0, widthMouse, lienzoMapa[1]* pixelRatio/2 - 2 * pixelRatio);
+      ctx.rect(0, 0, widthMouse * pixelRatio, lienzoMapa[1]* pixelRatio/2 - 2 * pixelRatio);
     }
     ctx.lineWidth = 4 * pixelRatio;
     ctx.strokeStyle = 'rgba(0, 102, 204, 0.9)';
@@ -625,9 +625,9 @@ function activateHorizontalSwipeViz(NorthLayer,SouthLayer,visibleInit){
     ctx.save();
     ctx.beginPath();
     if (fixedSizes==false){
-      ctx.rect(0, heightMouse, widthMouse, ctx.canvas.height-heightMouse);
+      ctx.rect(0, heightMouse* pixelRatio, widthMouse* pixelRatio, ctx.canvas.height-heightMouse*pixelratio);
     }else{
-      ctx.rect(0, lienzoMapa[1]* pixelRatio/2, widthMouse, ctx.canvas.height-lienzoMapa[1]* pixelRatio/2);
+      ctx.rect(0, lienzoMapa[1]* pixelRatio/2, widthMouse* pixelRatio, ctx.canvas.height-lienzoMapa[1]* pixelRatio/2);
     }
 
     ctx.clip();

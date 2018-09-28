@@ -16,8 +16,8 @@
         ],
         "queryable":false,
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": " - PNOA Actual",
+            "url": "http://pnoa.ign.es/"
         }
     },
     {
@@ -36,8 +36,9 @@
         ],
         "queryable":false,
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": " - SIGPAC (MAPA)",
+            "url": "https://www.mapa.gob.es/es/",
+            "html": " - SIGPAC <a href='https://www.mapa.gob.es/es/' title='Ministerio de Agricultura, Pesca y Alimentación' target='_blank'>MAPA</a>"
         }
     },
     {
@@ -55,8 +56,9 @@
             "PNOAHisto"
         ],
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": " - OLISTAT (MAPA)",
+            "url": "https://www.mapa.gob.es/es/",
+            "html": " - OLISTAT <a href='https://www.mapa.gob.es/es/' title='Ministerio de Agricultura, Pesca y Alimentación' target='_blank'>MAPA</a>"
         }
     },
     {
@@ -75,8 +77,8 @@
         ],
         "queryable":false,
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": " - Nacional",
+            "url": "http://www.ign.es"
         }
     },
     {
@@ -95,8 +97,9 @@
         ],
         "queryable":false,
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": " - Interministerial (MAPAMA - Fomento - M.Hacienda",
+            "url": "http://www.ign.es",
+            "html": " - Interministerial <a href='https://www.mapa.gob.es/es/' title='Ministerio de Agricultura, Pesca y Alimentación' target='_blank'>MAPA</a> - <a href='https://www.fomento.gob.es' title='Ministerio de Fomento' target='_blank'>FOMENTO</a> - <a href='http://www.hacienda.gob.es' title='Ministerio de Hacienda y Función Pública' target='_blank'>HACIENDA</a>"
         }
     },
     {
@@ -115,8 +118,9 @@
         ],
         "queryable":false,
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": " - Americano Serie B (CEGET)",
+            "url": "http://http://www.ejercito.mde.es/unidades/Madrid/ceget/",
+            "html": " - Americano Serie B <a href='http://www.ejercito.mde.es/unidades/Madrid/ceget/' title='Ministerio de Defensa (CEGET)' target='_blank'>DEFENSA (CEGET)</a>"
         }
     }
 ]

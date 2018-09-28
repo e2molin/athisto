@@ -18,6 +18,13 @@ var browserIE;
 var mobileMode;
 var modeViz;
 var pnoaSliderCobertura= new Array();
+
+//Definiciones de projección
+proj4.defs("EPSG:25828","+proj=utm +zone=28 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+proj4.defs("EPSG:25829","+proj=utm +zone=29 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+proj4.defs("EPSG:25830","+proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+proj4.defs("EPSG:25831","+proj=utm +zone=31 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+
 /*
 Extras JS Links
 */
@@ -170,7 +177,7 @@ function processHash(){
   if (initHash.beginsWith("#map=")==false){
     //Por defecto cuando no hay un permalink carga la visualización 6
     if (mobileMode==true){
-      changeVizMode(6);//Modo por defecto en versión móvil
+      changeVizMode(0);//Modo por defecto en versión móvil
     }else{
       changeVizMode(0);//Modo por defecto en versión escritorio
     }
@@ -222,7 +229,7 @@ function processHash(){
   }else{
       //Por defecto cuando no hay un permalink carga la visualización 6
       if (mobileMode==true){
-        changeVizMode(6);//Modo por defecto en versión móvil
+        changeVizMode(0);//Modo por defecto en versión móvil
       }else{
         changeVizMode(0);//Modo por defecto en versión escritorio
       }
@@ -441,6 +448,13 @@ $("#btnPrint").click(function() {
   }
 });
 
+$("#btnSearchBoxToogle").click(function() {
+  $("#topoinput").toggle();
+});
+
+$("#btnLayerVizToogle").click(function() {
+  $("#toolCoberInfoElem").toggle();
+});
 
 $("#btnSocial").click(function() {
   var ok = updatePermalink();//Actualizo el permalink, por si las moscas
@@ -507,7 +521,7 @@ function changeVizMode(indexViz){
     $("#btnVizStandard").addClass('vizModeSelected');
     $("#btnHelpSymbol").show();   //Muestro botón de ayuda
     $("#btnVizModesSymbol").show();   //Muestro botón de modos de visualización
-    $("#btnVizMode7").show();
+    if (mobileMode==false) {$("#btnVizMode7").show();}
     //Al final cuando venimos de un modo de visualización comparativo no encendemos ninguna capa, porque da más líos que beneficios
     /*
     if (capasHash!==null){
@@ -545,7 +559,7 @@ function changeVizMode(indexViz){
     $("#btnHelpSymbol").show();   //Muestro botón de ayuda
     //$("#btnPrinterSymbol").show();//Muestro impresora porque este modo de viz tiene posiblidad de impresión. ahora lo ocultamos hasta que solucionemos los problemas
     $("#btnVizModesSymbol").show();   //Muestro botón de modos de visualización
-    $("#btnVizMode7").show();
+    if (mobileMode==false) {$("#btnVizMode7").show();}
     console.log("Modo VizMosaic");
   }else if (indexViz==2){
     if (capasHash.length>=2){
@@ -560,7 +574,7 @@ function changeVizMode(indexViz){
     $("#btnPrinterSymbol").show();//Muestro impresora porque este modo de viz tiene posiblidad de impresión. ahora lo ocultamos hasta que solucionemos los problemas
     $("#btnHelpSymbol").show();       //Muestro botón de ayuda
     $("#btnVizModesSymbol").show();   //Muestro botón de modos de visualización
-    $("#btnVizMode7").show();
+    if (mobileMode==false) {$("#btnVizMode7").show();}
     console.log("Modo VizSwipeV");
   }else if (indexViz==3){
     if (capasHash.length>=2){
@@ -575,7 +589,7 @@ function changeVizMode(indexViz){
     $("#btnPrinterSymbol").show();//Muestro impresora porque este modo de viz tiene posiblidad de impresión. ahora lo ocultamos hasta que solucionemos los problemas
     $("#btnHelpSymbol").show();   //Muestro botón de ayuda
     $("#btnVizModesSymbol").show();   //Muestro botón de modos de visualización
-    $("#btnVizMode7").show();
+    if (mobileMode==false) {$("#btnVizMode7").show();}
     console.log("Modo VizSwipeH");
   }else if (indexViz==4){
     if (capasHash.length>=1){
@@ -589,7 +603,7 @@ function changeVizMode(indexViz){
     $("#btnVizSpot").addClass('vizModeSelected');
     $("#btnHelpSymbol").show();   //Muestro botón de ayuda
     $("#btnVizModesSymbol").show();   //Muestro botón de modos de visualización
-    $("#btnVizMode7").show();
+    if (mobileMode==false) {$("#btnVizMode7").show();}
     console.log("Modo VizSpot");
   }else if (indexViz==5){
     apagarTodo();
@@ -600,7 +614,7 @@ function changeVizMode(indexViz){
     $("#btnVizTimer").addClass('vizModeSelected');
     $("#btnHelpSymbol").show();   //Muestro botón de ayuda
     $("#btnVizModesSymbol").show();   //Muestro botón de modos de visualización
-    $("#btnVizMode7").show();
+    if (mobileMode==false) {$("#btnVizMode7").show();}
     listaCapas = "";
     console.log("Modo Visor temporal");
   }else if (indexViz==6){
@@ -617,7 +631,7 @@ function changeVizMode(indexViz){
     $("#btnPrinterSymbol").show();//Muestro impresora porque este modo de viz tiene posiblidad de impresión. ahora lo ocultamos hasta que solucionemos los problemas
     $("#btnHelpSymbol").show();   //Muestro botón de ayuda
     $("#btnVizModesSymbol").show();   //Muestro botón de modos de visualización
-    $("#btnVizMode7").show();
+    if (mobileMode==false) {$("#btnVizMode7").show();}
     $("#toolInfoScreenElem").removeClass("toolInfoScreenClassRight toolInfoScreenClassLeft").addClass("toolInfoScreenClassRight");
     $("#btnVizDoubleScreenV").addClass('vizModeSelected');
     if (capasHash === undefined || capasHash === null) {
@@ -959,22 +973,61 @@ var displayPNOAInfo = function(pixel,targetContainer,textoInfo) {
         if ((modeViz != 5) && (modeViz != 6) && (modeViz != 7)){
 
         }
-/*
-        objMap.forEachFeatureAtPixel(pixel, function(feature, layer) {
-            if (typeof feature.get('fecha') == 'undefined'){return;}
-            featuresDetect.push("<button id=\"cob" + feature.get('layerkey') + "\" type=\"button\" class=\"btn btn-primary btn-xs btnChangeLayerDisplay\" title=\"Seleccionar " +  feature.get('descrip') + "\">" +
-                                "<i class=\"fa fa-plane fa-lg\" aria-hidden=\"true\"></i> " + feature.get('nombre') + "</button>");
-            pnoaSliderCobertura.push(feature.get('fecha'));
-            nameClass = "";
-            textSelect.push("<li id=\"selcob" + feature.get('layerkey') + "\" class=\"" + nameClass + "\">" +
-                            "<a data=\"" + feature.get('layerkey') + "\" href=\"" + "#" + "\"><i class=\"fa fa-plane\" aria-hidden=\"true\"></i> " + feature.get('nombre') + "</a></li>");
-        });
-        */
-        /*
-        if (featuresDetect.length==0){
-            textSelect.push("<li id=\"selcobnothing\"><a data=\"nothing\" href=\"" + "#" + "\"> No hay coberturas disponibles</a></li>");
+        
+        if (objMap.getView().getZoom()<14){
+          //Si el nivel de zoom es menor que 14, muestro atribuciones genéricas
+          baseIGN_Mainlyr.getSource().setAttributions(
+            new ol.Attribution({
+              html: "&copy; <a href='http://www.ign.es' target='_blank' title='Web del Instituto Geográfico Nacional'>Instituto Geográfico Nacional</a> - IGN Base "
+            })
+          );
+
+        pnoaIGN_Mainlyr.getSource().setAttributions(
+            new ol.Attribution({
+              html: "&copy; <a href='http://www.ign.es' target='_blank' title='Web del Instituto Geográfico Nacional'>Instituto Geográfico Nacional</a> - PNOA"
+            })
+          );
+
+        baseIGNTrans_Mainlyr.getSource().setAttributions(
+            new ol.Attribution({
+              html: " - IGN Base"
+            })
+          );
+        } else {
+          objMap.forEachFeatureAtPixel(pixel, function(feature, layer) {
+
+            if (typeof feature.get('atribucion') == 'undefined'){return;}
+            if (layer.get('title') !== "Autonomías"){return;}
+            //console.log("Título: " + layer.get('title'));
+            //console.log(feature.get('atribucion'));
+            //console.log($(".ol-attribution ul").html());
+            //var cadAttrib = $(".ol-attribution ul").html();
+            //cadAttrib = replaceAll(cadAttrib,"#AutonomFootsprints#",feature.get('atribucion'));
+            //$(".ol-attribution ul").html(cadAttrib);
+            //footprints_lyr.attribution = feature.get('atribucion');
+  
+            baseIGN_Mainlyr.getSource().setAttributions(
+                new ol.Attribution({
+                  html: "&copy; <a href='http://www.ign.es' target='_blank'>Instituto Geográfico Nacional</a> - IGN Base "
+                })
+            );
+  
+            pnoaIGN_Mainlyr.getSource().setAttributions(
+                new ol.Attribution({
+                  html: "&copy; <a href='http://www.ign.es' target='_blank'>Instituto Geográfico Nacional</a> - PNOA cedido por " + feature.get('atribucion')
+                })
+            );
+  
+            baseIGNTrans_Mainlyr.getSource().setAttributions(
+                new ol.Attribution({
+                  html: " - IGN Base"
+                })
+            );
+  
+          });
         }
-        */
+
+
         textSelect.push("</ul></div>");
         featuresDetect.sort();
         var containerCoberInfo = document.getElementById(targetContainer);
@@ -1113,9 +1166,34 @@ function basicMap(){
   //Mouse Position
   var mousePositionControl = new ol.control.MousePosition({
     className: 'ol-mouse-position',                      //Es la clase que define el formato de la etiqueta que contiene las coordendas que se muestran. Valor por defecto
-    coordinateFormat: function (coordinate) {
+    coordinateFormat: function (coordinateCursor) {
+      var numHuso = "00";
+      var cadUTMinfo = "";
+      var coordinate;
+      if (mobileMode==true){
+        coordinate =  ol.proj.transform(objMap.getView().getCenter(), "EPSG:3857", "EPSG:4326");
+      }else{
+        coordinate = coordinateCursor;
+      }
+      //console.log("Centro");
+      //console.log(objMap.getView().getCenter());
       if ((coordinate[1] >= 36) && (coordinate[0] >= -10)) {
-        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>ETRS89 ({x}, {y})', 5);
+        //La coordenada está en la península
+        if ((coordinate[0]>=-10) && (coordinate[0]<=-6)){
+          numHuso="29";
+        }else if ((coordinate[0]>-6) && (coordinate[0]<=0)){
+          numHuso="30";
+        }else if (coordinate[0]>0){
+          numHuso="31";
+        }
+        resultLL = ol.proj.transform([coordinate[0], coordinate[1]], 'EPSG:4326', "EPSG:258" + numHuso);
+        cadUTMinfo="<br/>UTM(" + numHuso + "): " + Math.round(resultLL[0],2) + "," + Math.round(resultLL[1],2);
+        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>ETRS89: {x}, {y}' + cadUTMinfo, 5);
+      }
+      else if ((coordinate[0] >= -19) && (coordinate[0] <= -13) && (coordinate[1] < 30) && (coordinate[1] > 27)) {
+        resultLL = ol.proj.transform([coordinate[0], coordinate[1]], 'EPSG:4326', "EPSG:25828");
+        cadUTMinfo="<br/>UTM(28): " + Math.round(resultLL[0],2) + "," + Math.round(resultLL[1],2);
+        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>ETRS89: {x}, {y}' + cadUTMinfo, 5);
       } else {
         return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>WGS84 ({x}, {y})', 5);
       }
@@ -1144,7 +1222,7 @@ function basicMap(){
     objMap.getView().setRotation(event.state.rotation);
     shouldUpdate = false;
   });
-
+  loadAutonomFootsprints();
   console.log("Main map creado");
 }
 
@@ -1157,13 +1235,43 @@ function setSizes() {
   if (($(window).width()) < '768'){
     mobileMode = true;
     headerHeight = 35;
-    $("#btnVizMode6").hide();
     $("#btnVizMode4").hide();
+    $("#btnVizMode6").hide();
+    $("#btnVizMode7").hide();
+    $("#topoinput").hide();
+    $("#btnSearchBoxToogleSymbol").show();
+    $("#btnLayerVizToogleSymbol").show();
+    $(".ol-zoom").hide();
+    $("#zoomBaleares").text("Baleares");
+    $("#zoomCanarias").text("Canarias");
+    
+  }
+  else if (($(window).width() >= '768') && ($(window).width() < '1199')){
+    mobileMode = true;
+    headerHeight = 50;
+    $("#btnVizMode4").hide();
+    $("#btnVizMode6").hide();
+    $("#btnVizMode7").hide();
+    $("#topoinput").hide();
+    $("#btnSearchBoxToogleSymbol").show();
+    $("#btnLayerVizToogleSymbol").show();
+    $(".ol-zoom").hide();
+    $("#zoomBaleares").text("Baleares");
+    $("#zoomCanarias").text("Canarias");
+
   } else {
     mobileMode = false;
     headerHeight = 50;
-    $("#btnVizMode6").show();
     $("#btnVizMode4").show();
+    $("#btnVizMode6").show();
+    $("#btnVizMode7").show();
+    $("#topoinput").show();
+    $("#btnSearchBoxToogleSymbol").hide();
+    $("#btnLayerVizToogleSymbol").hide();
+    $(".ol-zoom").show();
+    $("#zoomBaleares").text("Islas Baleares");
+    $("#zoomCanarias").text("Islas Canarias");
+
   }
 
   if (modeViz==7){

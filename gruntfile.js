@@ -97,7 +97,7 @@ module.exports = function (grunt) {
 			{
 				//Ficheros root
 				cwd: 'src/',  // set working folder / root to copy
-				src: ['index.html','*.json','*.php'],           // copy all files and subfolders
+				src: ['index.html','*.json','*.php','*.geojson'],           // copy all files and subfolders
 				dest: 'dist/',    // destination folder
 				expand: true           // required when using cwd
 			},

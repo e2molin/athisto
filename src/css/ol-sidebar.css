@@ -16,39 +16,55 @@
 /*Dispositivos móviles*/
 @media(max-width:767px) {
   .sidebar {
-    top: 10px;
+    top: 5px;
+    width: 350px;
   }
 }
 
 .sidebar.collapsed {
-    width: 40px; }
-  @media (min-width: 768px) {
+    width: 40px;
+}
+@media (min-width: 768px) {
     .sidebar {
       top: 6px;
       bottom: 6px;
-      transition: width 500ms; } }
-  @media (min-width: 768px) and (max-width: 991px) {
+      transition: width 500ms; 
+    } 
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
-      width: 305px; } }
-  @media (min-width: 992px) and (max-width: 1199px) {
+      width: 430px; 
+    } 
+}
+@media (min-width: 992px) and (max-width: 1199px) {
     .sidebar {
-      width: 390px; } }
-  @media (min-width: 1200px) {
+      width: 430px; 
+    } 
+}
+@media (min-width: 1200px) {
     .sidebar {
-      width: 460px; }
+      width: 460px; 
+    }
 }
 
 .sidebar-left {
-  left: 0; }
-  @media (min-width: 768px) {
+  left: 0; 
+}
+@media (min-width: 768px) {
     .sidebar-left {
-      left: 6px; } }
+      left: 6px; 
+    } 
+}
 
 .sidebar-right {
-  right: 0; }
-  @media (min-width: 768px) {
+  right: 0; 
+}
+@media (min-width: 768px) {
     .sidebar-right {
-      right: 6px; } }
+      right: 6px;
+    } 
+}
 
 .sidebar-tabs {
   top: 0;

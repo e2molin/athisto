@@ -64,17 +64,19 @@
 <body>
 	<header class="container-fluid intro">
   	<!--Barra superior de navegación-->
-	  <div class="col-lg-3 col-md-4 col-sm-4 hidden-xs hidden-sm" >
+	  <div class="col-lg-3 col-md-4 col-sm-4 hidden-xs" >
 			<img class="visible-lg" src="img/logo_IGN-small.png" alt="Logo IGN-CNIG" style="margin-top:0px;"/>
-			<img class="visible-md" src="img/logo_IGN-medium.png" alt="Logo medium IGN-CNIG" style="margin-top:0px;"/>
-			<img class="hidden-lg hidden-md" src="img/logo_IGN-small.png" alt="Logo small IGN-CNIG" style="margin-top:0px;"/>
+			<img class="visible-md" src="img/logo_IGN-small.png" alt="Logo medium IGN-CNIG" style="margin-top:0px;"/>
+			<img class="visible-sm" src="img/logo_IGN-small.png" alt="Logo IGN-CNIG"  style="margin-top:0px;"/>
+			<img class="hidden-lg hidden-md hidden-sm" src="img/logo_IGN-small.png" alt="Logo small IGN-CNIG" style="margin-top:0px;"/>
 	  </div>
-		<div class="col-lg-6 col-md-4 col-sm-12" >
+		<div class="col-lg-6 col-md-4 col-sm-8" >
 			<img class="col-lg-offset-2 visible-md visible-lg" src="img/texto-atviewer.png" alt="Logo IGN-CNIG" />
-			<img class="visible-sm visible-xs" src="img/texto-atviewer.png" alt="Logo IGN-CNIG" style="width:100%;"/>
+			<img class="visible-sm" src="img/texto-atviewer.png" alt="Logo IGN-CNIG" style="margin:0px; width:95%;"/>
+			<img class="visible-xs" src="img/texto-atviewer.png" alt="Logo IGN-CNIG" style="margin:0px; height:30px;"/>
 		</div>
 		<!--Iconos redes sociales-->
-		<div class="col-lg-3 col-md-4 col-sm-2 hidden-xs hidden-sm rrss-container">
+		<div class="col-lg-3 col-md-4 hidden-xs hidden-sm rrss-container">
 			<a target="_blank" href="https://www.youtube.com/user/IGNSpain" style="float:right;"><img src="img/youtube.png" title="IGN Youtube" alt="IGN Youtube"></a>
 			<a target="_blank" href="https://www.ign.es/ign/rss" style="float:right;"><img src="img/rss.png" title="RSS novedades" alt="RSS Novedades"></a>
 			<a target="_blank" href="https://www.instagram.com/ignspain/" style="float:right;"><img src="img/instagram.png" title="IGN Instagram" alt="IGN Instagram"></a>
@@ -93,6 +95,7 @@
 		          <li><a id="btnTab2" href="#capas" role="tab"><img src="img/base-layer_16.png" title="Lista de capas"></a></li><!--<i class="fa fa-sliders fa-fw" title="Lista de capas"></i>-->
 		          <!--<li id="btnVizModesSymbol"><a id="btnTab3" href="#modosViz" role="tab"><i class="fa fa-eye fa-fw" title="Modos de visualización"></i></a></li>-->
 							<li id="btnPrinterSymbol" class="hotLink" style="display:none;"><a id="btnPrint" href="#" role="tab"><i class="fa fa-print fa-fw" title="Imprimir"></i></a></li>
+							<li id="btnSearchBoxToogleSymbol" class="hotLink" style="display:none;"><a id="btnSearchBoxToogle" href="#" role="tab"><i class="fa fa-search" title="Buscador"></i></a></li>
 							<li id="btnSocialSymbol" class="hotLink"><a id="btnSocial" href="#" role="tab"><i class="fa fa-share-alt fa-fw" title="Compartir"></i></a></li>
 							<li id="btnHelpSymbol"><a id="btnTab1" href="#ayuda" role="tab"><i class="fa fa-question-circle fa-fw" title="Mostrar ayuda"></i></a></li>
 						</ul>
@@ -105,6 +108,7 @@
 								<!--<li class="hotLink" id="btnVizMode5"><a id="btnVizTimer" href="#" role="tab"><i class="fa fa-hourglass" title="Visualizador temporal"></i></a></li>-->
 								<li class="hotLink" id="btnVizMode6"><a id="btnVizDoubleScreenV" href="#" role="tab"><i class="fa fa-pause" title="Visualizador doble pantalla vertical"></i></a></li>
 								<li class="hotLink" id="btnVizMode7"><a id="btnVizDoubleScreenH" href="#" role="tab"><i class="fa fa-pause fa-rotate-90" title="Visualizador doble pantalla horizontal"></i></a></li>
+								<li class="hotLink" id="btnLayerVizToogleSymbol" style="display:none;"><a id="btnLayerVizToogle" href="#" role="tab"><i class="fa fa-sliders" title="Asignar capas"></i></a></li>
 						</ul>
 					</div>
 					<div class="sidebar-content">
@@ -362,7 +366,7 @@
 				</div>
         <div class="row">
           <div class="col-xs-5">
-            <div id="toolTypeWindowViz" class="hidden-xs hidden-sm" style="margin-bottom:5px; display:none;">
+            <div id="toolTypeWindowViz" class="hidden-xs hidden-sm hidden-md" style="margin-bottom:5px; display:none;">
     					<input id="btnTypeWindowViz" class="col-sm-12"  data-toggle="toggle" type="checkbox" data-on="Estática" data-onstyle="primary" data-off="Dinámica" data-offstyle="success" data-width="100" data-size="mini">
     				</div>
           </div>
@@ -373,7 +377,7 @@
             </div>
           </div>
         </div>
-        <span class="badge" style="margin-bottom:5px; margin-top:5px;"><img src="img/target.png"/> Capas disponibles en el centro del mapa</span>
+        <!--<span class="badge" style="margin-bottom:5px; margin-top:5px;"><img src="img/target.png"/> Capas disponibles en el centro del mapa</span>-->
 			</div>
 
 			<div id="mapLienzo" class="apiIgn apiIgn-map">

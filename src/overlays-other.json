@@ -21,8 +21,8 @@
             "layerQuery":""
         },
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": " - MTN",
+            "url": "http://www.ign.es"
         },
         "mostrarenpanel":true
     },
@@ -48,8 +48,8 @@
             "layerQuery":""
         },
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": " - MDT",
+            "url": "http://www.ign.es"
         },
         "mostrarenpanel":true
     },    
@@ -75,8 +75,8 @@
             "layerQuery":""
         },
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": "",
+            "url": ""
         },
         "mostrarenpanel":true,
         "zindex":600
@@ -103,8 +103,8 @@
             "layerQuery":""
         },
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": "",
+            "url": ""
         },
         "mostrarenpanel":false,
         "zindex":601
@@ -131,8 +131,8 @@
             "layerQuery":""
         },
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": "",
+            "url": ""
         },
         "mostrarenpanel":true,
         "zindex":602
@@ -159,8 +159,8 @@
             "layerQuery":""
         },
         "author": {
-            "name": "IGN",
-            "url": "www.ign.es"
+            "name": "",
+            "url": ""
         },
         "mostrarenpanel":false,
         "zindex":603
@@ -187,8 +187,9 @@
         "layerQuery":"Enlace"
     },
     "author": {
-        "name": "IGN",
-        "url": "www.ign.es"
+        "name": " - 1Edi. MTN50",
+        "url": "http://www.ign.es",
+        "html": " - 1Edi. MTN50 <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
     },
     "mostrarenpanel":true
 },
@@ -214,8 +215,9 @@
         "layerQuery":"EnlaceMTN25"
     },
     "author": {
-        "name": "IGN",
-        "url": "www.ign.es"
+        "name": " - 1Edi. MTN25",
+        "url": "http://www.ign.es",
+        "html": " - 1Edi. MTN25 <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
     },
     "mostrarenpanel":true
 },
@@ -241,8 +243,9 @@
         "layerQuery": "catastrones"
     },
     "author": {
-        "name": "IGN",
-        "url": "www.ign.es"
+        "name": " - Minutas MTN50",
+        "url": "http://www.ign.es",
+        "html": " - Minutas MTN50 <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
     },
     "mostrarenpanel":true
 },
@@ -268,8 +271,9 @@
         "layerQuery":""
     },
     "author": {
-        "name": "IGN",
-        "url": "www.ign.es"
+        "name": " - Planimetrías",
+        "url": "http://www.ign.es",
+        "html": " - Planimetrías <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
     },
     "mostrarenpanel":true
 },
@@ -295,8 +299,9 @@
         "layerQuery":""
     },
     "author": {
-        "name": "IGN",
-        "url": "www.ign.es"
+        "name": " - Hojas Kilométricas",
+        "url": "http://www.ign.es",
+        "html": " - Hojas Kilométricas <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
     },
     "mostrarenpanel":true
 },
@@ -322,8 +327,9 @@
         "layerQuery":""
     },
     "author": {
-        "name": "IGN",
-        "url": "www.ign.es"
+        "name": " - Parcelas",
+        "url": "http://www.ign.es",
+        "html": " - Parcelas HK <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
     },
     "mostrarenpanel":true
 }

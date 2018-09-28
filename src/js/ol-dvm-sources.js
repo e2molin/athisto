@@ -26,7 +26,7 @@ var overlayIGNRasterList = new Array();
 var overlayVectorList = new Array();
 
 /*Capa Vectorial PNOA Footprints*/
-function loadPNOAFootsprints(){
+function loadAutonomFootsprints(){
 
   //Defino un estilo sin colores y transparente. Para dejar la capa visible pero que no se vea
   var style = new ol.style.Style({
@@ -49,6 +49,20 @@ function loadPNOAFootsprints(){
         })
       })
     });
+    footprints_lyr = new ol.layer.Vector({
+      title: 'Autonomías',
+      source: new ol.source.Vector({
+        projection : 'EPSG:3857',
+        url: 'autonom.geojson',
+        format: new ol.format.GeoJSON()
+      }),
+      style: function(feature, resolution) {
+        //style.getText().setText(resolution < 5000 ? feature.get('Fecha') : '');
+        return style;
+      }
+    });
+  objMap.addLayer(footprints_lyr);
+  console.log("Capa de Autonomías cargada");    
 }
 
 /*
@@ -192,35 +206,35 @@ function loadBasicIGN(visibilityDefault){
 	}
 
 	var attributionPNOA = new ol.Attribution({
-			html: 'PNOA - &copy; <a href="http://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
+			html: ' - PNOA Actual'
 	});
 
 	var attributionIGNBase = new ol.Attribution({
-			html: 'IGN Base - &copy; <a href="http://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
+			html: ' - IGN BASE'
 	});
 
   var attributionrasterMTN = new ol.Attribution({
-			html: 'Cartografí­a raster - &copy; <a href="http://www.ign.es"  target="_blank">Instituto Geográfico Nacional</a>'
+			html: ' - Cartografí­a raster'
 	});
 
   var attributionprimeraEdiMTN50 = new ol.Attribution({
-			html: 'Primera edición del MTN50 - &copy; <a href="http://www.ign.es"  target="_blank">Instituto Geográfico Nacional</a>'
+			html: ' - Primera edición del MTN50'
 	});
 
   var attributionprimeraEdiMTN25 = new ol.Attribution({
-			html: 'Primera edición del MTN25 - &copy; <a href="http://www.ign.es"  target="_blank">Instituto Geográfico Nacional</a>'
+			html: ' - Primera edición del MTN25'
 	});
 
   var attributioncatastronesMTN50 = new ol.Attribution({
-			html: 'Minutas MTN50 - &copy; <a href="http://www.ign.es"  target="_blank">Instituto Geográfico Nacional</a>'
+			html: ' - Minutas MTN50'
 	});
 
   var attributiongenericaIGN = new ol.Attribution({
-			html: '&copy; <a href="http://www.ign.es"  target="_blank">Instituto Geográfico Nacional</a>'
+			html: '&copy; <a href="http://www.ign.es"  target="_blank">IGN</a>'
   });
 
   var attributionGeologico = new ol.Attribution({
-			html: '&copy; <a href="http://www.igme.es/"  target="_blank">Instituto Geológico y Minero</a>'
+			html: ' - &copy; <a href="http://www.igme.es/"  target="_blank">Instituto Geológico y Minero</a>'
   });
 
 
@@ -399,11 +413,11 @@ function cargaCapasBaseMain(){
 	}
 
   var attributionIGNBase = new ol.Attribution({
-			html: 'IGN Base - &copy; <a href="http://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
+			html: 'IGN Base'
 	});
 
 	var attributionPNOA = new ol.Attribution({
-			html: 'PNOA - &copy; <a href="http://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
+			html: 'PNOA'
 	});
 
   baseIGN_Mainlyr = new ol.layer.Tile({
@@ -593,13 +607,20 @@ function rasterPNOAOverlays(visibilityDefault){
                       "<i class='fa fa-plus-square' aria-hidden='true'></i> Imágenes aéreas históricas</a></div>");
         htmlList.push("<div id='content-panel-AirPhotoLayers' class=\"panel-body collapse \" style=\"margin:5px; padding:0px;\">");
         $.each(data, function(index, element) {
+          var txtAttribution;
+          if (element.author.html !== undefined) {
+            txtAttribution = element.author.html;
+          }else{
+            txtAttribution = '<a href="' + element.author.url + '" target="_blank">' + element.author.name + '</a>';
+          }
+
           if (element.tiposerv=="WMS"){
             rasterOverlay_lyr=new ol.layer.Tile({
   							title: element.title,
   							visible: visibilityDefault,
   							source: new ol.source.TileWMS({
                                   attributions: [new ol.Attribution({
-  		                                          html: 'PNOA - Vuelo Histórico - &copy; <a href="http://www.ign.es" target="_blank">IGN</a>'
+  		                                          html: txtAttribution
   	                            })],
   								url: element.urlsource,
   								params: {"LAYERS": element.layernames, "TILED": "true"}
@@ -613,7 +634,7 @@ function rasterPNOAOverlays(visibilityDefault){
                 opacity: 1.0,
                 source: new ol.source.XYZ({
                           attributions: [new ol.Attribution({
-                                html: 'PNOA - Vuelo Histórico - &copy; <a href="http://www.ign.es" target="_blank">IGN</a>'
+                            html: txtAttribution
                           })],
                           url: element.urlsource + '?request=getTile&layer=' + element.layernames + '&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=' + element.imgformat
                 })
@@ -630,7 +651,7 @@ function rasterPNOAOverlays(visibilityDefault){
           objMap.addLayer(rasterOverlay_lyr);
 
           //Preparamos los controles para la web
-          htmlList.push("<div class=\"col-md-6 col-sm-6 col-xs-6\" style=\"margin-top:15px;\">" +
+          htmlList.push("<div class=\"col-md-6 col-sm-6 col-xs-12\" style=\"margin-top:15px;\">" +
                     "<input class=\"toolboxOverlayRaster\" data-onstyle=\"success\" data-toggle=\"toggle\" data-on=\"<img src='img/eye16.png'/> <small>" + element.title +
                     "</small>\" data-off=\"" + element.title + "\" type=\"checkbox\" data-width=\"160\" data-size=\"mini\" id=\"sidebarBtn" + element.layerkey + "\">" +
                     "<div class=\"opacityLyrClass\" id=\"opacityLyrElem" + element.layerkey + "\"><div class=\"ui-slider-handle\"><span style=\"display:none;\" class=\"ui-slider-tooltip\"></span></div></div>" +
@@ -822,14 +843,22 @@ function rasterIGNOverlays(visibilityDefault){
 
         //Bucle de lectura
         $.each(data, function(index, element) {
-
+          var txtAttribution = "";
+          if (element.author.html !== undefined) {
+            txtAttribution = element.author.html;
+          }else{
+            txtAttribution = '<a href="' + element.author.url + '" target="_blank">' + element.author.name + '</a>';
+          }
+  
           if (element.tiposerv=="WMS"){
             if (element.tileMode==true){
               elemLyr=new ol.layer.Tile({
     							title: element.title,
     							visible: visibilityDefault,
     							source: new ol.source.TileWMS({
-                                    attributions: [attributionGeneric],
+                                    attributions: [new ol.Attribution({
+                                      html: txtAttribution
+                                    })],
     								url: element.urlsource,
     								params: {"LAYERS": element.layernames, "TILED": element.tileMode,"FORMAT": element.imgformat}
     							 })
@@ -839,7 +868,9 @@ function rasterIGNOverlays(visibilityDefault){
     							title: element.title,
     							visible: visibilityDefault,
     							source: new ol.source.ImageWMS({
-                                    attributions: [attributionGeneric],
+                                    attributions: [new ol.Attribution({
+                                      html: txtAttribution
+                                    })],
     								url: element.urlsource,
     								params: {"LAYERS": element.layernames,"FORMAT": element.imgformat}
     							 })
@@ -852,7 +883,9 @@ function rasterIGNOverlays(visibilityDefault){
                 extent: projectionExtent,
                 opacity: 1.0,
                 source: new ol.source.XYZ({
-                          attributions: [attributionGeneric],
+                          attributions: [new ol.Attribution({
+                            html: txtAttribution
+                          })],
                           url: element.urlsource + '?request=getTile&layer=' + element.layernames + '&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=' + element.imgformat
                 })
             });
@@ -893,7 +926,8 @@ function rasterIGNOverlays(visibilityDefault){
               }else{
                 rtnCarro=6;
               }
-              itemsATLayer.push("<div class=\"col-md-" + rtnCarro + " col-sm-" + rtnCarro + " col-xs-" + rtnCarro + "\" style=\"margin-top:15px;\">" +
+
+              itemsATLayer.push("<div class=\"col-md-" + rtnCarro + " col-sm-" + rtnCarro + " col-xs-12\" style=\"margin-top:15px;\">" +
               "<input class=\"toolboxOverlayRaster\" data-onstyle=\"success\" data-toggle=\"toggle\" data-on=\"<img src='img/eye16.png'/> <small>" + element.title + " " + infoIcon +
               "</small>\" data-off=\"" + element.title + " " + infoIcon + "\" type=\"checkbox\" data-width=\"160\" data-size=\"mini\" id=\"sidebarBtn" + element.layerkey + "\">" +
               "<div class=\"opacityLyrClass\" id=\"opacityLyrElem" + element.layerkey + "\"><div class=\"ui-slider-handle\"><span style=\"display:none;\" class=\"ui-slider-tooltip\">" + "</span></div></div>" + "</div>");
@@ -994,6 +1028,9 @@ function vectorOverLays(visibilityDefault){
             visible: visibilityDefault,
             zIndex: 901,
             source: new ol.source.TileWMS({
+              attributions:new ol.Attribution({
+                        html: " - BDLJE <a href='http://www.ign.es/web/ign/portal/rcc-info-delimitaciones' title='División Administrativa - Servicio de Delimitaciones Territoriales - IGN' target='_blank'> IGN</a>"
+              }),
               url: 'http://www.ign.es/wms-inspire/unidades-administrativas',
               params: {"LAYERS": "AU.AdministrativeUnit","STYLES":"ua-comparador","FORMAT":"image/png", "TILED": "true"}
             })
@@ -1009,7 +1046,7 @@ function vectorOverLays(visibilityDefault){
   overlayVectorList.push(BDLJE_lyr);
 
   var attributionCadastral = new ol.Attribution({
-    html: '&copy; <a href="http://www.catastro.minhap.gob.es/esp/wms.asp"  target="_blank">Dirección General del Catastro</a>'
+    html: ' - &copy; <a href="http://www.catastro.minhap.gob.es/esp/wms.asp"  target="_blank">Dirección General del Catastro</a>'
    });
   cadastralOverlay=new ol.layer.Image({
             title: 'Catastro',
@@ -1029,28 +1066,6 @@ function vectorOverLays(visibilityDefault){
   cadastralOverlay.set("panel","OtherLayers");
   cadastralOverlay.set("abstract","Información del servicio publicado por al Dirección General del Catastro");
   overlayVectorList.push(cadastralOverlay);
-
-  /*
-  cadastralINSPIREOverlay=new ol.layer.Image({
-            title: 'Catastro INSPIRE',
-            visible: visibilityDefault,
-            zIndex: 904,
-            source: new ol.source.ImageWMS({
-              attributions: [attributionCadastral],
-              url: 'http://ovc.catastro.meh.es/cartografia/INSPIRE/spadgcwms.aspx?',
-              params: {'VERSION': '1.1.1','LAYERS': 'AD.Address,BU.Building,BU.BuildingPart,AU.AdministrativeBoundary','SRS': 'EPSG:3857','TILED': 'false'},
-              serverType: 'geoserver'
-            })
-      });
-  cadastralINSPIREOverlay.set('keyname','cadastralINSPIRE');
-  cadastralINSPIREOverlay.set('group','Vector overlay');
-  cadastralINSPIREOverlay.set("alias",'Catastro INSPIRE');
-  cadastralINSPIREOverlay.set("useproxy",false);
-  cadastralINSPIREOverlay.set("panel","OtherLayers");
-  cadastralINSPIREOverlay.set("abstract","Información del servicio publicado por al Dirección General del Catastro según normativa INSPIRE");
-  overlayVectorList.push(cadastralINSPIREOverlay);
-*/
-
     
     coastline_lyr=new ol.layer.Tile({
               title: 'Lí­nea de costa',
@@ -1075,6 +1090,9 @@ function vectorOverLays(visibilityDefault){
       visible: visibilityDefault,
       zIndex: 909,
       source: new ol.source.TileWMS({
+          attributions:new ol.Attribution({
+            html: " - LBR <a href='http://www.armada.mde.es/ihm/' title='Base Recta - Instituto Hidrográfico de la Marina - Ministerio de Defensa' target='_blank'> IHM</a>"
+          }),        
           url: 'http://ideihm.covam.es/wms/limitesMAR',
           params: {"LAYERS": "LBR","STYLES":"default","FORMAT":"image/png", "TILED": "true"}
       })
@@ -1094,8 +1112,11 @@ function vectorOverLays(visibilityDefault){
               visible: visibilityDefault,
               zIndex: 911,
               source: new ol.source.TileWMS({
-                  url: 'http://ideihm.covam.es/wms/limitesMAR',
-                  params: {"LAYERS": "ZEEE,ZEEE_textos","STYLES":"default","FORMAT":"image/png", "TILED": "true"}
+                attributions:new ol.Attribution({
+                  html: " - ZEE <a href='http://www.armada.mde.es/ihm/' title='Zona Económica Exclusiva - Instituto Hidrográfico de la Marina - Ministerio de Defensa' target='_blank'> IHM</a>"
+                }),                  
+                url: 'http://ideihm.covam.es/wms/limitesMAR',
+                params: {"LAYERS": "ZEEE,ZEEE_textos","STYLES":"default","FORMAT":"image/png", "TILED": "true"}
               })
     });
     zee_lyr.set('keyname','ZEE');
@@ -1113,8 +1134,11 @@ function vectorOverLays(visibilityDefault){
               visible: visibilityDefault,
               zIndex: 912,
               source: new ol.source.TileWMS({
-                  url: 'http://ideihm.covam.es/wms/limitesMAR',
-                  params: {"LAYERS": "PC,MT","STYLES":"default","FORMAT":"image/png", "TILED": "true"}
+                attributions:new ol.Attribution({
+                  html: " - PCYMT <a href='http://www.armada.mde.es/ihm/' title='Plataforma continental y Mar territorial - Instituto Hidrográfico de la Marina - Ministerio de Defensa' target='_blank'> IHM</a>"
+                }),                   
+                url: 'http://ideihm.covam.es/wms/limitesMAR',
+                params: {"LAYERS": "PC,MT","STYLES":"default","FORMAT":"image/png", "TILED": "true"}
               })
     });
     pcymt_lyr.set("keyname","PCMT");
@@ -1132,6 +1156,9 @@ function vectorOverLays(visibilityDefault){
               visible: visibilityDefault,
               zIndex: 915,
               source: new ol.source.TileWMS({
+                attributions:new ol.Attribution({
+                  html: " - Toponimia <a href='http://www.ign.es/web/ign/portal/rcc-nomenclator-nacional' title='Toponimia - Servicio de Nomenclátor - IGN' target='_blank'> IGN</a>"
+                }),                  
                 url: 'http://www.ign.es/wms-inspire/ign-base',
                 params: {"LAYERS": "GN.GeographicalNames", "TILED": "true"}
               })
@@ -1151,6 +1178,9 @@ function vectorOverLays(visibilityDefault){
               visible: visibilityDefault,
               zIndex: 914,
               source: new ol.source.TileWMS({
+                attributions:new ol.Attribution({
+                  html: " - Transportes <a href='http://www.ign.es/web/ign/portal/cbg-area-cartografia' title='Redes de Transportes - Cartografía y Datos geográficos - IGN' target='_blank'> IGN</a>"
+                }),                  
                 url: 'http://servicios.idee.es/wms-inspire/transportes',
                 params: {"LAYERS": "TN.RoadTransportNetwork.RoadLink", "TILED": "true"}
               })
@@ -1187,14 +1217,14 @@ function vectorOverLays(visibilityDefault){
       infoIcon = "";
     }
     if(overlayVectorList[i].getProperties()['panel']=="AdminLayers"){
-        itemsAdminLayers.push("<div class=\"col-md-6 col-sm-6 col-xs-6\" data-toggle=\"tooltip\" title=\"" + overlayVectorList[i].getProperties()['abstract'] + "\" style=\"margin-top:15px;\">" +
+        itemsAdminLayers.push("<div class=\"col-md-6 col-sm-6 col-xs-12\" data-toggle=\"tooltip\" title=\"" + overlayVectorList[i].getProperties()['abstract'] + "\" style=\"margin-top:15px;\">" +
                             "<input  class=\"toolboxOverlayVector\" data-onstyle=\"success\" data-toggle=\"toggle\" data-width=\"160\" data-size=\"mini\" data-on=\"<img src='img/eye16.png'/> <small>" +
                              overlayVectorList[i].getProperties()['alias'] + " " + infoIcon +
                             "</small>\" data-off=\"" + overlayVectorList[i].getProperties()['alias'] + " " + infoIcon + "\" type=\"checkbox\" data-width=\"150\" data-size=\"mini\" id=\"sidebarBtn" + overlayVectorList[i].getProperties()['keyname'] + "\">" +
                             "</div>");
     }
     if(overlayVectorList[i].getProperties()['panel']=="OtherLayers"){
-        itemsOtherLayers.push("<div class=\"col-md-6 col-sm-6 col-xs-6\" data-toggle=\"tooltip\" title=\"" + overlayVectorList[i].getProperties()['abstract'] + "\" style=\"margin-top:15px;\">" +
+        itemsOtherLayers.push("<div class=\"col-md-6 col-sm-6 col-xs-12\" data-toggle=\"tooltip\" title=\"" + overlayVectorList[i].getProperties()['abstract'] + "\" style=\"margin-top:15px;\">" +
                             "<input class=\"toolboxOverlayVector\" data-onstyle=\"success\" data-toggle=\"toggle\"  data-width=\"160\" data-size=\"mini\" data-on=\"<img src='img/eye16.png'/> <small>" +
                             overlayVectorList[i].getProperties()['alias'] + " " + infoIcon +
                             "</small>\" data-off=\"" + overlayVectorList[i].getProperties()['alias'] + " " + infoIcon + "\" type=\"checkbox\" data-width=\"150\" data-size=\"mini\" id=\"sidebarBtn" + overlayVectorList[i].getProperties()['keyname'] + "\">" +
