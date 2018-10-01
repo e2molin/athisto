@@ -1008,7 +1008,7 @@ var displayPNOAInfo = function(pixel,targetContainer,textoInfo) {
   
             baseIGN_Mainlyr.getSource().setAttributions(
                 new ol.Attribution({
-                  html: "&copy; <a href='http://www.ign.es' target='_blank'>Instituto Geográfico Nacional</a> - IGN Base "
+                  html: "&copy; <a href='http://www.ign.es' target='_blank'>Instituto Geográfico Nacional</a> - IGN Base cedido por " + feature.get('atribucion')
                 })
             );
   
@@ -1223,12 +1223,26 @@ function basicMap(){
     if (beginMeasurement == true) { return; }
     
     //Detectar Z
-    getZOnPointer(evt,"Altura en el punto: ");
+    getZOnPointer(evt,"Altura en el cursor: ");
     onPointerClick(evt);
 
   });
 
-  objMap.on('moveend', updatePermalink);
+  //objMap.on('moveend', updatePermalink);
+
+  objMap.on('moveend', function (evt) {
+    updatePermalink();
+    //var coordinateCenter =  ol.proj.transform(objMap.getView().getCenter(), "EPSG:3857", "EPSG:4326");
+    if (objMap.getView().getZoom()>=15){
+      var coordinateCenterUTM = ol.proj.transform(objMap.getView().getCenter(), "EPSG:3857", "EPSG:25830");
+      getZOnWCS(coordinateCenterUTM,"Altura en el centro: ");
+    }else{
+      $("#infoAlt").text("");
+    }
+
+
+  });
+
   // restore the view state when navigating through the history, see
   // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
   window.addEventListener('popstate', function (event) {
