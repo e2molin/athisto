@@ -20,11 +20,12 @@ var modeViz;
 var pnoaSliderCobertura= new Array();
 
 //Definiciones de projección
+//En Canarias debería ser 4083, pero la definición es la misma
 proj4.defs("EPSG:25828","+proj=utm +zone=28 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
 proj4.defs("EPSG:25829","+proj=utm +zone=29 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
 proj4.defs("EPSG:25830","+proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
 proj4.defs("EPSG:25831","+proj=utm +zone=31 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
-
+proj4.defs("EPSG:4083","+proj=utm +zone=28 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
 /*
 Extras JS Links
 */
@@ -1195,9 +1196,9 @@ function basicMap(){
         return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>ETRS89: {x}, {y}' + cadUTMinfo, 5);
       }
       else if ((coordinate[0] >= -19) && (coordinate[0] <= -13) && (coordinate[1] < 30) && (coordinate[1] > 27)) {
-        resultLL = ol.proj.transform([coordinate[0], coordinate[1]], 'EPSG:4326', "EPSG:25828");
-        cadUTMinfo="<br/>UTM(28): " + Math.round(resultLL[0],2) + "," + Math.round(resultLL[1],2);
-        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>ETRS89: {x}, {y}' + cadUTMinfo, 5);
+        resultLL = ol.proj.transform([coordinate[0], coordinate[1]], 'EPSG:4326', "EPSG:4083");
+        cadUTMinfo="<br/>REGCAN95 UTM(28): " + Math.round(resultLL[0],2) + "," + Math.round(resultLL[1],2);
+        return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>WGS84: {x}, {y}' + cadUTMinfo, 5);
       } else {
         return ol.coordinate.format(coordinate, dvmGetEscalaNormalizada(objMap.getView().getZoom()) + ' (Zoom: ' + objMap.getView().getZoom() + ')' + '<br/>WGS84 ({x}, {y})', 5);
       }
@@ -1234,8 +1235,16 @@ function basicMap(){
     updatePermalink();
     //var coordinateCenter =  ol.proj.transform(objMap.getView().getCenter(), "EPSG:3857", "EPSG:4326");
     if (objMap.getView().getZoom()>=15){
-      var coordinateCenterUTM = ol.proj.transform(objMap.getView().getCenter(), "EPSG:3857", "EPSG:25830");
-      getZOnWCS(coordinateCenterUTM,"Altura en el centro: ");
+      var coordinateCenterUTM;
+      if (objMap.getView().getCenter()[1]<3444248){
+        //Estamos en canarias
+        coordinateCenterUTM = ol.proj.transform(objMap.getView().getCenter(), "EPSG:3857", "EPSG:4083");
+        getZOnWCS(coordinateCenterUTM,"Altura en el centro: ","epsg:4083");
+      }else{
+        //Estamos en Península
+        coordinateCenterUTM = ol.proj.transform(objMap.getView().getCenter(), "EPSG:3857", "EPSG:25830");
+        getZOnWCS(coordinateCenterUTM,"Altura en el centro: ","epsg:25830");
+      }
     }else{
       $("#infoAlt").text("");
     }

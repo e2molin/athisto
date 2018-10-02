@@ -222,7 +222,7 @@ function procesarCapabilities(){
 
     urlService=$("#urlQueryCap").val();
     if ($("#isCORS").val()=='true'){
-                urlService= 'proxy.php?urlCapabilities=' + urlService;// + '?request=GetCapabilities&service=WMS';
+                urlService= 'php/proxyGetCapabilities.php?urlCapabilities=' + urlService;// + '?request=GetCapabilities&service=WMS';
     }else{
                 if (urlService.indexOf("request=GetCapabilities") !== -1){
                     urlService= urlService
@@ -231,7 +231,7 @@ function procesarCapabilities(){
                 }
     }
 
-    console.log("URL de consulta: " + urlService);
+    console.log("URL de consulta de Capabilities: " + urlService);
     fetch(urlService,{}).then(function(response) {
             if(response.ok){
                    return response.text();

@@ -328,13 +328,22 @@ function onPointerClick(event){
 
 }
 
-function getZOnWCS(coordinatePoint,textoInfo){
-
-    var urlZ = "http://www.ign.es/wcs/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&" + 
-                "COVERAGE=mdt:Elevacion25830_25&" + 
+function getZOnWCS(coordinatePoint,textoInfo,codepsg){
+    var urlZ;
+    if (codepsg=="epsg:25830"){
+        //http://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&COVERAGE=Elevacion4083_25&CRS=EPSG:4083&BBOX=337978,3121534,338003,3121559&WIDTH=1&HEIGHT=1&FORMAT=ArcGrid
+        urlZ = "http://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&" + 
+                "COVERAGE=Elevacion25830_25&" + 
                 "CRS=EPSG:25830&" + 
                 "BBOX=" + Math.round(coordinatePoint[0],2) + "," + Math.round(coordinatePoint[1],2) + "," +  Math.round(coordinatePoint[0]+25,2) + "," + Math.round(coordinatePoint[1]+25,2) + "&" + 
                 "WIDTH=1&HEIGHT=1&FORMAT=ArcGrid";
+    }else if (codepsg=="epsg:4083"){
+        urlZ = "http://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&" + 
+                "COVERAGE=Elevacion4083_25&" + 
+                "CRS=EPSG:4083&" + 
+                "BBOX=" + Math.round(coordinatePoint[0],2) + "," + Math.round(coordinatePoint[1],2) + "," +  Math.round(coordinatePoint[0]+25,2) + "," + Math.round(coordinatePoint[1]+25,2) + "&" + 
+                "WIDTH=1&HEIGHT=1&FORMAT=ArcGrid";
+    }
 
     //console.log(urlZ);
     $.ajax({
@@ -358,7 +367,7 @@ function getZOnWCS(coordinatePoint,textoInfo){
         error: function(e) {
             console.log("Error");
             console.log(e.responseText);
-            $("#infoAlt").text("Altura No disponible");
+            $("#infoAlt").text("Altura no disponible");
 
         },
         complete: function () {
@@ -374,8 +383,19 @@ function getZOnPointer(event,textoInfo){
     var pointClickZ = objMap.getCoordinateFromPixel(pixelZ);
     //pointClickZ = ol.proj.toLonLat(pointClickZ, 'EPSG:3857');//Devuelve un ol.Coordinate transformado a 4326
 
-    pointClickZ = ol.proj.transform(pointClickZ, "EPSG:3857", "EPSG:25830");
-    getZOnWCS(pointClickZ,textoInfo);
+    
+    if (objMap.getView().getCenter()[1]<3444248){
+        //Estamos en Canarias
+        console.log("Estamos en Canarias");
+        pointClickZ = ol.proj.transform(pointClickZ, "EPSG:3857", "EPSG:4083");    
+        getZOnWCS(pointClickZ,textoInfo,"epsg:4083");
+    }else{
+        //Estamos en Península. Se utiliza sólo el huso extendido
+        console.log("Estamos en Península");
+        pointClickZ = ol.proj.transform(pointClickZ, "EPSG:3857", "EPSG:25830");    
+        getZOnWCS(pointClickZ,textoInfo,"epsg:25830");
+    }
+    
     
 
 

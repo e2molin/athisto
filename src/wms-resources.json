@@ -45,12 +45,6 @@
     "title": "Fototeca",
     "urlCapabilities": "http://fototeca.cnig.es/wms/fototeca.dll",
     "isCORS": false,
-    "layerkey":"wms008"
-  },
-  {
-    "title": "Fototeca",
-    "urlCapabilities": "http://fototeca.cnig.es/wms/fototeca.dll",
-    "isCORS": false,
     "layerkey":"wms009"
   },
   {
