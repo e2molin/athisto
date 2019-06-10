@@ -230,11 +230,11 @@ function loadBasicIGN(visibilityDefault){
 	});
 
   var attributiongenericaIGN = new ol.Attribution({
-			html: '&copy; <a href="http://www.ign.es"  target="_blank">IGN</a>'
+			html: '&copy; <a href="https://www.ign.es"  target="_blank">IGN</a>'
   });
 
   var attributionGeologico = new ol.Attribution({
-			html: ' - &copy; <a href="http://www.igme.es/"  target="_blank">Instituto Geológico y Minero</a>'
+			html: ' - &copy; <a href="https://www.igme.es/"  target="_blank">Instituto Geológico y Minero</a>'
   });
 
 
@@ -248,7 +248,7 @@ function loadBasicIGN(visibilityDefault){
 			  opacity: 1.0,
 			  source: new ol.source.WMTS({
 			         attributions: [attributionIGNBase],
-               url: 'http://www.ign.es/wmts/ign-base',
+               url: 'https://www.ign.es/wmts/ign-base',
                layer: 'IGNBaseTodo',
 				matrixSet: 'EPSG:3857',
 				format: 'image/jpeg',
@@ -274,7 +274,7 @@ function loadBasicIGN(visibilityDefault){
                     opacity: 1.0,
                     source: new ol.source.XYZ({
 										attributions: [attributionPNOA],
-                                        url: 'http://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        url: 'https://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
 										//url: './php/tesel-pnoa-mr.php?z={z}&x={x}&y={y}'
 							})
   });
@@ -290,7 +290,7 @@ function loadBasicIGN(visibilityDefault){
                     opacity: 1.0,
                     source: new ol.source.XYZ({
 										attributions: [attributionrasterMTN],
-                                        url: 'http://www.ign.es/wmts/mapa-raster?request=getTile&layer=MTN&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        url: 'https://www.ign.es/wmts/mapa-raster?request=getTile&layer=MTN&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
 										//url: './php/tesel-igncartoraster.php?z={z}&x={x}&y={y}'
 
 							})
@@ -306,8 +306,8 @@ function loadBasicIGN(visibilityDefault){
                             opacity: 1.0,
 						//	source: new ol.source.TileWMS({
 							source: new ol.source.XYZ({
-							//	url: 'http://www.ign.es/wms/primera-edicion-mtn',
-								url: 'http://www.ign.es/wmts/primera-edicion-mtn?request=getTile&layer=mtn50-edicion1&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg',
+							//	url: 'https://www.ign.es/wms/primera-edicion-mtn',
+								url: 'https://www.ign.es/wmts/primera-edicion-mtn?request=getTile&layer=mtn50-edicion1&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg',
                                 attributions: [attributionprimeraEdiMTN50],
 							//	params: {"LAYERS": "MTN50", "TILED": "true"}
 							})
@@ -323,8 +323,8 @@ function loadBasicIGN(visibilityDefault){
                             opacity: 1.0,
 						//	source: new ol.source.TileWMS({
 							source: new ol.source.XYZ({
-							//	url: 'http://www.ign.es/wms/primera-edicion-mtn',
-								url: 'http://www.ign.es/wmts/primera-edicion-mtn?request=getTile&layer=mtn25-edicion1&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg',
+							//	url: 'https://www.ign.es/wms/primera-edicion-mtn',
+								url: 'https://www.ign.es/wmts/primera-edicion-mtn?request=getTile&layer=mtn25-edicion1&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg',
                                 attributions: [attributionprimeraEdiMTN25],
 							//	params: {"LAYERS": "MTN50", "TILED": "true"}
 							})
@@ -340,8 +340,8 @@ function loadBasicIGN(visibilityDefault){
                             opacity: 1.0,
 						//	source: new ol.source.TileWMS({
 							source: new ol.source.XYZ({
-							//	url: 'http://www.ign.es/wms/primera-edicion-mtn',
-								url: 'http://www.ign.es/wmts/primera-edicion-mtn?request=getTile&layer=catastrones&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg',
+							//	url: 'https://www.ign.es/wms/primera-edicion-mtn',
+								url: 'https://www.ign.es/wmts/primera-edicion-mtn?request=getTile&layer=catastrones&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg',
                                 attributions: [attributioncatastronesMTN50],
 							//	params: {"LAYERS": "MTN50", "TILED": "true"}
 							})
@@ -358,7 +358,7 @@ function loadBasicIGN(visibilityDefault){
                   opacity: 1.0,
                   source: new ol.source.XYZ({
                                       attributions: [attributiongenericaIGN],
-                                      url: 'http://www.ign.es/wmts/mdt?request=getTile&layer=Relieve&TileMatrixSet=GoogleMapsCompatible' +
+                                      url: 'https://www.ign.es/wmts/mdt?request=getTile&layer=Relieve&TileMatrixSet=GoogleMapsCompatible' +
                                       '&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
                           })
   });
@@ -371,7 +371,7 @@ function loadBasicIGN(visibilityDefault){
                           /*type: 'base',*/
                           visible: visibilityDefault,
                           source: new ol.source.TileWMS({
-                              url: 'http://www.ign.es/wms-inspire/ocupacion-suelo',
+                              url: 'https://www.ign.es/wms-inspire/ocupacion-suelo',
                               attributions: [attributiongenericaIGN],
                               params: {"LAYERS": "LU.ExistingLandUse", "TILED": "true"}
                           })
@@ -428,7 +428,7 @@ function cargaCapasBaseMain(){
         opacity: 1.0,
         source: new ol.source.WMTS({
                attributions: [attributionIGNBase],
-               url: 'http://www.ign.es/wmts/ign-base',
+               url: 'https://www.ign.es/wmts/ign-base',
                layer: 'IGNBaseTodo',
         matrixSet: 'EPSG:3857',
         format: 'image/jpeg',
@@ -455,7 +455,7 @@ function cargaCapasBaseMain(){
                     opacity: 1.0,
                     source: new ol.source.XYZ({
                     attributions: [attributionPNOA],
-                                        url: 'http://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        url: 'https://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
                     //url: './php/tesel-pnoa-mr.php?z={z}&x={x}&y={y}'
               })
   });
@@ -471,7 +471,7 @@ function cargaCapasBaseMain(){
         opacity: 1.0,
         source: new ol.source.WMTS({
                attributions: [attributionIGNBase],
-               url: 'http://www.ign.es/wmts/ign-base',
+               url: 'https://www.ign.es/wmts/ign-base',
                layer: 'IGNBaseOrto',
         matrixSet: 'EPSG:3857',
         format: 'image/jpeg',
@@ -492,8 +492,8 @@ function cargaCapasBaseMain(){
                     opacity: 1.0,
                     source: new ol.source.XYZ({
                     attributions: [attributionIGNBase],
-                                        //url: 'http://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
-                                        url: 'http://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseOrto&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/png'
+                                        //url: 'https://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        url: 'https://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseOrto&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/png'
                     //url: './php/tesel-pnoa-mr.php?z={z}&x={x}&y={y}'
               })
   });
@@ -519,11 +519,11 @@ function cargaCapasBaseMirror(){
 	}
 
   var attributionIGNBase = new ol.Attribution({
-			html: 'IGN Base - &copy; <a href="http://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
+			html: 'IGN Base - &copy; <a href="https://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
 	});
 
 	var attributionPNOA = new ol.Attribution({
-			html: 'PNOA - &copy; <a href="http://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
+			html: 'PNOA - &copy; <a href="https://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
 	});
   baseIGN_Mirrorlyr=new ol.layer.Tile({
                     title: 'IGN Base - Mirror',
@@ -533,8 +533,8 @@ function cargaCapasBaseMirror(){
                     opacity: 1.0,
                     source: new ol.source.XYZ({
                     attributions: [attributionIGNBase],
-                                        //url: 'http://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
-                                        url: 'http://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseTodo&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        //url: 'https://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        url: 'https://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseTodo&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
                     //url: './php/tesel-pnoa-mr.php?z={z}&x={x}&y={y}'
               })
   });
@@ -552,8 +552,8 @@ function cargaCapasBaseMirror(){
                     opacity: 1.0,
                     source: new ol.source.XYZ({
                     attributions: [attributionPNOA],
-                                        url: 'http://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
-                                        //url: 'http://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseTodo&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        url: 'https://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        //url: 'https://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseTodo&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
                     //url: './php/tesel-pnoa-mr.php?z={z}&x={x}&y={y}'
               })
   });
@@ -570,8 +570,8 @@ function cargaCapasBaseMirror(){
                     opacity: 1.0,
                     source: new ol.source.XYZ({
                     attributions: [attributionIGNBase],
-                                        //url: 'http://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
-                                        url: 'http://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseOrto&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/png'
+                                        //url: 'https://www.ign.es/wmts/pnoa-ma?request=getTile&layer=OI.OrthoimageCoverage&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg'
+                                        url: 'https://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseOrto&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/png'
                     //url: './php/tesel-pnoa-mr.php?z={z}&x={x}&y={y}'
               })
   });
@@ -830,16 +830,28 @@ function rasterIGNOverlays(visibilityDefault){
 		  matrixIds[z] = z;
 	}
 	var attributionGeneric = new ol.Attribution({
-			html: 'PNOA cedido por &copy; <a href="http://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
+			html: 'PNOA cedido por &copy; <a href="https://www.ign.es" target="_blank">Instituto Geográfico Nacional</a>'
 	});
 
     $.getJSON('overlays-other.json', { get_param: 'value' }, function(data) {
+        
+        //Aquí defino los paneles para albergar estas capas
+        var itemsMDTLayers = [];
         var itemsATLayer = [];
         var ctrlNames = [];
+
         itemsATLayer.push("<div class=\"panel panel-info\" style=\"margin-left:0px;\">");
         itemsATLayer.push("<div class='panel-heading panel-heading-sm'><a id='btn-content-panel-ATLayers' href='#content-panel-ATLayers' data-toggle='collapse'>" +
                       "<i class='fa fa-minus-square' aria-hidden='true'></i> Series MTN y Archivo Topográfico</a></div>");
-                      itemsATLayer.push("<div id='content-panel-ATLayers' class=\"panel-body collapse in\" style=\"margin:5px; padding:0px;\">");
+        itemsATLayer.push("<div id='content-panel-ATLayers' class=\"panel-body collapse in\" style=\"margin:5px; padding:0px;\">");
+
+        itemsMDTLayers.push("<div class=\"panel panel-info\" style=\"margin-left:0px;\">");
+        itemsMDTLayers.push("<div class='panel-heading panel-heading-sm'><a id='btn-content-panel-MDTLayers' href='#content-panel-MDTLayers' data-toggle='collapse' class='collapsed'>" +
+                              "<i class='fa fa-plus-square' aria-hidden='true'></i> SIOSE, LiDAR y Modelos digitales</a></div>");
+        itemsMDTLayers.push("<div id='content-panel-MDTLayers' class=\"panel-body collapse\" style=\"margin:5px; padding:0px;\">");
+        
+
+
 
         //Bucle de lectura
         $.each(data, function(index, element) {
@@ -902,7 +914,7 @@ function rasterIGNOverlays(visibilityDefault){
           elemLyr.set('keyname',element.layerkey);
           elemLyr.set('alias',element.alias);
           elemLyr.set('year',element.year);
-          elemLyr.set("panel","ATLayers");
+          elemLyr.set("panelname",element.panelname);
           elemLyr.set("mostrarenpanel",element.mostrarenpanel);
           elemLyr.set("unicoenfila",element.unicoenfila);
           overlayIGNRasterList.push(elemLyr);
@@ -922,31 +934,48 @@ function rasterIGNOverlays(visibilityDefault){
           if (elemLyr.getProperties()['mostrarenpanel']==true) {
               var rtnCarro="";  //Esto me vale para poner una única capa en una fila.
               if (element.unicoenfila==true){
+                console.log("Entro");
                 rtnCarro=12;
               }else{
                 rtnCarro=6;
               }
-
-              itemsATLayer.push("<div class=\"col-md-" + rtnCarro + " col-sm-" + rtnCarro + " col-xs-12\" style=\"margin-top:15px;\">" +
-              "<input class=\"toolboxOverlayRaster\" data-onstyle=\"success\" data-toggle=\"toggle\" data-on=\"<img src='img/eye16.png'/> <small>" + element.title + " " + infoIcon +
-              "</small>\" data-off=\"" + element.title + " " + infoIcon + "\" type=\"checkbox\" data-width=\"160\" data-size=\"mini\" id=\"sidebarBtn" + element.layerkey + "\">" +
-              "<div class=\"opacityLyrClass\" id=\"opacityLyrElem" + element.layerkey + "\"><div class=\"ui-slider-handle\"><span style=\"display:none;\" class=\"ui-slider-tooltip\">" + "</span></div></div>" + "</div>");
+              
+              if (elemLyr.getProperties()['panelname']==="ATLayers"){
+                itemsATLayer.push("<div class=\"col-md-" + rtnCarro + " col-sm-" + rtnCarro + " col-xs-12\" style=\"margin-top:15px;\">" +
+                "<input class=\"toolboxOverlayRaster\" data-onstyle=\"success\" data-toggle=\"toggle\" data-on=\"<img src='img/eye16.png'/> <small>" + element.title + " " + infoIcon +
+                "</small>\" data-off=\"" + element.title + " " + infoIcon + "\" type=\"checkbox\" data-width=\"160\" data-size=\"mini\" id=\"sidebarBtn" + element.layerkey + "\">" +
+                "<div class=\"opacityLyrClass\" id=\"opacityLyrElem" + element.layerkey + "\"><div class=\"ui-slider-handle\"><span style=\"display:none;\" class=\"ui-slider-tooltip\">" + "</span></div></div>" + "</div>");
+              }else if (elemLyr.getProperties()['panelname']==="MDTLayers"){
+                itemsMDTLayers.push("<div class=\"col-md-" + rtnCarro + " col-sm-" + rtnCarro + " col-xs-12\" style=\"margin-top:15px;\">" +
+                "<input class=\"toolboxOverlayRaster\" data-onstyle=\"success\" data-toggle=\"toggle\" data-on=\"<img src='img/eye16.png'/> <small>" + element.title + " " + infoIcon +
+                "</small>\" data-off=\"" + element.title + " " + infoIcon + "\" type=\"checkbox\" data-width=\"160\" data-size=\"mini\" id=\"sidebarBtn" + element.layerkey + "\">" +
+                "<div class=\"opacityLyrClass\" id=\"opacityLyrElem" + element.layerkey + "\"><div class=\"ui-slider-handle\"><span style=\"display:none;\" class=\"ui-slider-tooltip\">" + "</span></div></div>" + "</div>");
+              }
             ctrlNames.push(element.layerkey);
           }
         });
         itemsATLayer.push("</div></div>");
-
+        itemsMDTLayers.push("</div></div>");
 
 
         //Cargamos en el panel las capsa para que el usuario las manipule.
         //Introducimos la función para que al pulsar sobre el encabezado del panel, se muestre el texto para expandir/contraer
-        var containerOverlayRaster = document.getElementById('panel-ATLayers');
-        containerOverlayRaster.innerHTML = itemsATLayer.join('');
+        var containerOverlayATRaster = document.getElementById('panel-ATLayers');
+        containerOverlayATRaster.innerHTML = itemsATLayer.join('');
         $("#content-panel-ATLayers").on("hide.bs.collapse", function(){
             $("#btn-content-panel-ATLayers").html("<i class='fa fa-plus-square' aria-hidden='true'></i> Series MTN y Archivo Topográfico</a></div>");
         });
         $("#content-panel-ATLayers").on("show.bs.collapse", function(){
             $("#btn-content-panel-ATLayers").html("<i class='fa fa-minus-square' aria-hidden='true'></i> Series MTN y Archivo Topográfico</a></div>");
+        });
+
+        var containerOverlayMDTRaster = document.getElementById('panel-MDTLayers');
+        containerOverlayMDTRaster.innerHTML = itemsMDTLayers.join('');
+        $("#content-panel-MDTLayers").on("hide.bs.collapse", function(){
+            $("#btn-content-panel-MDTLayers").html("<i class='fa fa-plus-square' aria-hidden='true'></i> SIOSE, LiDAR y Modelos digitales</a></div>");
+        });
+        $("#content-panel-MDTLayers").on("show.bs.collapse", function(){
+            $("#btn-content-panel-MDTLayers").html("<i class='fa fa-minus-square' aria-hidden='true'></i> SIOSE, LiDAR y Modelos digitales</a></div>");
         });
 
         //Como metemos componentes Bootstrap-Toggle, es necesario inicalizarlos, porque si no aparecen como inputbox normales sin customizar
@@ -1018,7 +1047,7 @@ function rasterIGNOverlays(visibilityDefault){
 function vectorOverLays(visibilityDefault){
   //Las insertanos a partir del zIndex=900
   wmsSourceBDLJE = new ol.source.TileWMS({
-      url: 'http://www.ign.es/wms-inspire/unidades-administrativas',
+      url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
       params: {"LAYERS": "AU.AdministrativeBoundary", "TILED": "true"},
       serverType: 'geoserver',
       crossOrigin: ''
@@ -1029,9 +1058,9 @@ function vectorOverLays(visibilityDefault){
             zIndex: 901,
             source: new ol.source.TileWMS({
               attributions:new ol.Attribution({
-                        html: " - BDLJE <a href='http://www.ign.es/web/ign/portal/rcc-info-delimitaciones' title='División Administrativa - Servicio de Delimitaciones Territoriales - IGN' target='_blank'> IGN</a>"
+                        html: " - BDLJE <a href='https://www.ign.es/web/ign/portal/rcc-info-delimitaciones' title='División Administrativa - Servicio de Delimitaciones Territoriales - IGN' target='_blank'> IGN</a>"
               }),
-              url: 'http://www.ign.es/wms-inspire/unidades-administrativas',
+              url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
               params: {"LAYERS": "AU.AdministrativeUnit","STYLES":"ua-comparador","FORMAT":"image/png", "TILED": "true"}
             })
       });
@@ -1046,7 +1075,7 @@ function vectorOverLays(visibilityDefault){
   overlayVectorList.push(BDLJE_lyr);
 
   var attributionCadastral = new ol.Attribution({
-    html: ' - &copy; <a href="http://www.catastro.minhap.gob.es/esp/wms.asp"  target="_blank">Dirección General del Catastro</a>'
+    html: ' - &copy; <a href="https://www.catastro.minhap.gob.es/esp/wms.asp"  target="_blank">Dirección General del Catastro</a>'
    });
   cadastralOverlay=new ol.layer.Image({
             title: 'Catastro',
@@ -1054,7 +1083,7 @@ function vectorOverLays(visibilityDefault){
             zIndex: 903,
             source: new ol.source.ImageWMS({
               attributions: [attributionCadastral],
-              url: 'http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?',
+              url: 'https://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?',
               params: {'VERSION': '1.1.1','LAYERS': 'Catastro','SRS': 'EPSG:3857','TILED': 'false'},
               serverType: 'geoserver'
             })
@@ -1157,9 +1186,9 @@ function vectorOverLays(visibilityDefault){
               zIndex: 915,
               source: new ol.source.TileWMS({
                 attributions:new ol.Attribution({
-                  html: " - Toponimia <a href='http://www.ign.es/web/ign/portal/rcc-nomenclator-nacional' title='Toponimia - Servicio de Nomenclátor - IGN' target='_blank'> IGN</a>"
+                  html: " - Toponimia <a href='https://www.ign.es/web/ign/portal/rcc-nomenclator-nacional' title='Toponimia - Servicio de Nomenclátor - IGN' target='_blank'> IGN</a>"
                 }),                  
-                url: 'http://www.ign.es/wms-inspire/ign-base',
+                url: 'https://www.ign.es/wms-inspire/ign-base',
                 params: {"LAYERS": "GN.GeographicalNames", "TILED": "true"}
               })
     });
@@ -1179,9 +1208,9 @@ function vectorOverLays(visibilityDefault){
               zIndex: 914,
               source: new ol.source.TileWMS({
                 attributions:new ol.Attribution({
-                  html: " - Transportes <a href='http://www.ign.es/web/ign/portal/cbg-area-cartografia' title='Redes de Transportes - Cartografía y Datos geográficos - IGN' target='_blank'> IGN</a>"
+                  html: " - Transportes <a href='https://www.ign.es/web/ign/portal/cbg-area-cartografia' title='Redes de Transportes - Cartografía y Datos geográficos - IGN' target='_blank'> IGN</a>"
                 }),                  
-                url: 'http://servicios.idee.es/wms-inspire/transportes',
+                url: 'https://servicios.idee.es/wms-inspire/transportes',
                 params: {"LAYERS": "TN.RoadTransportNetwork.RoadLink", "TILED": "true"}
               })
         });

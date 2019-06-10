@@ -6,7 +6,7 @@ var headerHeight = 50;
 var initLong = -5.5;
 var initLat = 40;
 var initZoom = 5;
-var initMinZoom = 5;
+var initMinZoom = 0;
 var initMaxZoom = 18;
 var initProj = 'EPSG:3857';
 var listaCapas = "";
@@ -1224,7 +1224,7 @@ function basicMap(){
     if (beginMeasurement == true) { return; }
     
     //Detectar Z
-    getZOnPointer(evt,"Altura en el cursor: ");
+    getZOnPointer(evt,"Altura en cursor: ");
     onPointerClick(evt);
 
   });
@@ -1247,6 +1247,8 @@ function basicMap(){
       }
     }else{
       $("#infoAlt").text("");
+      $("#infoSIOSE").text("");
+      $("#infoLidar").text("");
     }
 
 

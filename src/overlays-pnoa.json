@@ -4,7 +4,7 @@
         "nombre": "PNOA Actual",
         "group": "imaginery-flight",
         "tiposerv": "WMTS",
-        "urlsource": "http://www.ign.es/wmts/pnoa-ma",
+        "urlsource": "https://www.ign.es/wmts/pnoa-ma",
         "layernames": "OI.OrthoimageCoverage",
         "imgformat": "image/jpeg",
         "layerkey": "actualpnoa",
@@ -17,7 +17,7 @@
         "queryable":false,
         "author": {
             "name": " - PNOA Actual",
-            "url": "http://pnoa.ign.es/"
+            "url": "https://pnoa.ign.es/"
         }
     },
     {
@@ -25,7 +25,7 @@
         "nombre": "SIGPAC 1997-2003",
         "group": "imaginery-flight",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "urlsource": "https://www.ign.es/wms/pnoa-historico",
         "layernames": "SIGPAC",
         "layerkey": "sigpac",
         "year":"1998",
@@ -46,7 +46,7 @@
         "nombre": "OLISTAT 1997-98",
         "group": "imaginery-flight",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "urlsource": "https://www.ign.es/wms/pnoa-historico",
         "layernames": "OLISTAT",
         "layerkey": "olistat",
         "year":"1997",
@@ -66,7 +66,7 @@
         "nombre": "NACIONAL 1981-86",
         "group": "imaginery-flight",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "urlsource": "https://www.ign.es/wms/pnoa-historico",
         "layernames": "Nacional_1981-1986",
         "layerkey": "nacional",
         "year":"1981",
@@ -78,7 +78,7 @@
         "queryable":false,
         "author": {
             "name": " - Nacional",
-            "url": "http://www.ign.es"
+            "url": "https://www.ign.es"
         }
     },
     {
@@ -86,7 +86,7 @@
         "nombre": "INTERMINISTERIAL 1973-86",
         "group": "imaginery-flight",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "urlsource": "https://www.ign.es/wms/pnoa-historico",
         "layernames": "Interministerial_1973-1986",
         "layerkey": "intermin",
         "year":"1973",
@@ -98,7 +98,7 @@
         "queryable":false,
         "author": {
             "name": " - Interministerial (MAPAMA - Fomento - M.Hacienda",
-            "url": "http://www.ign.es",
+            "url": "https://www.ign.es",
             "html": " - Interministerial <a href='https://www.mapa.gob.es/es/' title='Ministerio de Agricultura, Pesca y Alimentación' target='_blank'>MAPA</a> - <a href='https://www.fomento.gob.es' title='Ministerio de Fomento' target='_blank'>FOMENTO</a> - <a href='http://www.hacienda.gob.es' title='Ministerio de Hacienda y Función Pública' target='_blank'>HACIENDA</a>"
         }
     },
@@ -107,7 +107,7 @@
         "nombre": "AMERICANO SERIE B 1956-57",
         "group": "imaginery-flight",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms/pnoa-historico",
+        "urlsource": "https://www.ign.es/wms/pnoa-historico",
         "layernames": "AMS_1956-1957",
         "layerkey": "amsb",
         "year":"1956",
@@ -119,8 +119,9 @@
         "queryable":false,
         "author": {
             "name": " - Americano Serie B (CEGET)",
-            "url": "http://http://www.ejercito.mde.es/unidades/Madrid/ceget/",
-            "html": " - Americano Serie B <a href='http://www.ejercito.mde.es/unidades/Madrid/ceget/' title='Ministerio de Defensa (CEGET)' target='_blank'>DEFENSA (CEGET)</a>"
+            "url": "www.ejercito.mde.es/unidades/Madrid/ceget/",
+            "html": " - Americano Serie B <a href='www.ejercito.mde.es/unidades/Madrid/ceget/' title='Ministerio de Defensa (CEGET)' target='_blank'>DEFENSA (CEGET)</a>"
         }
     }
+    
 ]

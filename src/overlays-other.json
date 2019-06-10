@@ -3,7 +3,7 @@
         "title": "MTN Actual",
         "group": "imaginery-ign",
         "tiposerv": "WMTS",
-        "urlsource": "http://www.ign.es/wmts/mapa-raster",
+        "urlsource": "https://www.ign.es/wmts/mapa-raster",
         "layernames": "MTN",
         "imgformat": "image/jpeg",
         "tileMode": true,
@@ -22,15 +22,17 @@
         },
         "author": {
             "name": " - MTN",
-            "url": "http://www.ign.es"
+            "url": "https://www.ign.es"
         },
-        "mostrarenpanel":true
+        "mostrarenpanel":true,
+        "panelname":"ATLayers",
+        "unicoenfila": true
     },
     {
         "title": "Modelo Digital Terreno",
         "group": "imaginery-ign",
         "tiposerv": "WMTS",
-        "urlsource": "http://servicios.idee.es/wmts/mdt",
+        "urlsource": "https://servicios.idee.es/wmts/mdt",
         "layernames": "Relieve",
         "imgformat": "image/jpeg",
         "tileMode": true,
@@ -49,15 +51,74 @@
         },
         "author": {
             "name": " - MDT",
-            "url": "http://www.ign.es"
+            "url": "https://www.ign.es"
         },
-        "mostrarenpanel":true
-    },    
+        "mostrarenpanel":true,
+        "panelname":"MDTLayers"
+    },
+    {
+        "title": "Mapa LiDAR",
+        "group": "imaginery-ign",
+        "tiposerv": "WMTS",
+        "urlsource": "https://wmts-mapa-lidar.idee.es/lidar",
+        "layernames": "EL.GridCoverageDSM",
+        "imgformat": "image/png",
+        "tileMode": true,
+        "layerkey": "maplidar",
+        "year":"2019",
+        "alias":"Mapa LiDAR",
+        "keywords": [
+            "keyword 1",
+            "keyword 2"
+        ],
+        "queryable":false,
+        "useproxy": false,
+        "GetFeatureInfo":{
+            "urlQuery":"",
+            "layerQuery":""
+        },
+        "author": {
+            "name": " - Mapa LiDAR",
+            "url": "https://www.ign.es"
+        },
+        "mostrarenpanel":true,
+        "panelname":"MDTLayers",
+        "zindex":400
+    },
+    {
+        "title": "Mapa SIOSE",
+        "group": "imaginery-ign",
+        "tiposerv": "WMTS",
+        "urlsource": "https://servicios.idee.es/wmts/ocupacion-suelo",
+        "layernames": "LC.LandCoverSurfaces",
+        "imgformat": "image/png",
+        "tileMode": true,
+        "layerkey": "mapsiose",
+        "year":"2019",
+        "alias":"Mapa SIOSE",
+        "keywords": [
+            "keyword 1",
+            "keyword 2"
+        ],
+        "queryable":false,
+        "useproxy": false,
+        "GetFeatureInfo":{
+            "urlQuery":"",
+            "layerQuery":""
+        },
+        "author": {
+            "name": " - Mapa SIOSE",
+            "url": "https://www.ign.es"
+        },
+        "mostrarenpanel":true,
+        "panelname":"MDTLayers",
+        "zindex":401
+    },
     {
         "title": "Distribuidor MTN50",
         "group": "Vector overlay",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms-inspire/cuadriculas",
+        "urlsource": "https://www.ign.es/wms-inspire/cuadriculas",
         "layernames": "Grid-ETRS89-lonlat-50k",
         "imgformat": "image/png",
         "tileMode": true,
@@ -79,13 +140,14 @@
             "url": ""
         },
         "mostrarenpanel":true,
+        "panelname":"ATLayers",
         "zindex":600
     },
     {
         "title": "Distribuidor MTN50",
         "group": "Vector overlay",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms-inspire/cuadriculas",
+        "urlsource": "https://www.ign.es/wms-inspire/cuadriculas",
         "layernames": "Grid-REGCAN95-lonlat-50k",
         "imgformat": "image/png",
         "tileMode": true,
@@ -107,13 +169,14 @@
             "url": ""
         },
         "mostrarenpanel":false,
+        "panelname":"ATLayers",
         "zindex":601
     },
     {
         "title": "Distribuidor MTN25",
         "group": "Vector overlay",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms-inspire/cuadriculas",
+        "urlsource": "https://www.ign.es/wms-inspire/cuadriculas",
         "layernames": "Grid-ETRS89-lonlat-25k",
         "imgformat": "image/png",
         "tileMode": true,
@@ -135,13 +198,14 @@
             "url": ""
         },
         "mostrarenpanel":true,
+        "panelname":"ATLayers",
         "zindex":602
     },
     {
         "title": "Distribuidor MTN25",
         "group": "Vector overlay",
         "tiposerv": "WMS",
-        "urlsource": "http://www.ign.es/wms-inspire/cuadriculas",
+        "urlsource": "https://www.ign.es/wms-inspire/cuadriculas",
         "layernames": "Grid-REGCAN95-lonlat-25k",
         "imgformat": "image/png",
         "tileMode": true,
@@ -163,13 +227,14 @@
             "url": ""
         },
         "mostrarenpanel":false,
+        "panelname":"ATLayers",
         "zindex":603
     },
     {
     "title": "MTN50 1Edi",
     "group": "imaginery-ign",
     "tiposerv": "WMTS",
-    "urlsource": "http://www.ign.es/wmts/primera-edicion-mtn",
+    "urlsource": "https://www.ign.es/wmts/primera-edicion-mtn",
     "layernames": "mtn50-edicion1",
     "imgformat": "image/jpeg",
     "tileMode": true,
@@ -183,21 +248,22 @@
     "queryable":true,
     "useproxy": false,
     "GetFeatureInfo":{
-        "urlQuery":"http://www.ign.es/wms/primera-edicion-mtn",
+        "urlQuery":"https://www.ign.es/wms/primera-edicion-mtn",
         "layerQuery":"Enlace"
     },
     "author": {
         "name": " - 1Edi. MTN50",
-        "url": "http://www.ign.es",
-        "html": " - 1Edi. MTN50 <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
+        "url": "https://www.ign.es",
+        "html": " - 1Edi. MTN50 <a href='https://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
     },
-    "mostrarenpanel":true
+    "mostrarenpanel":true,
+    "panelname":"ATLayers"
 },
 {
     "title": "MTN25 1Edi",
     "group": "imaginery-ign",
     "tiposerv": "WMTS",
-    "urlsource": "http://www.ign.es/wmts/primera-edicion-mtn",
+    "urlsource": "https://www.ign.es/wmts/primera-edicion-mtn",
     "layernames": "mtn25-edicion1",
     "imgformat": "image/jpeg",
     "tileMode": true,
@@ -211,21 +277,22 @@
     "queryable":true,
     "useproxy": false,
     "GetFeatureInfo":{
-        "urlQuery":"http://www.ign.es/wms/primera-edicion-mtn",
+        "urlQuery":"https://www.ign.es/wms/primera-edicion-mtn",
         "layerQuery":"EnlaceMTN25"
     },
     "author": {
         "name": " - 1Edi. MTN25",
-        "url": "http://www.ign.es",
-        "html": " - 1Edi. MTN25 <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
+        "url": "https://www.ign.es",
+        "html": " - 1Edi. MTN25 <a href='https://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
     },
-    "mostrarenpanel":true
+    "mostrarenpanel":true,
+    "panelname":"ATLayers"
 },
 {
     "title": "MTN50 Minutas",
     "group": "imaginery-ign",
     "tiposerv": "WMTS",
-    "urlsource": "http://www.ign.es/wmts/primera-edicion-mtn",
+    "urlsource": "https://www.ign.es/wmts/primera-edicion-mtn",
     "layernames": "catastrones",
     "imgformat": "image/jpeg",
     "tileMode": true,
@@ -239,21 +306,22 @@
     "queryable":true,
     "useproxy": false,
     "GetFeatureInfo":{
-        "urlQuery": "http://www.ign.es/wms/primera-edicion-mtn",
+        "urlQuery": "https://www.ign.es/wms/primera-edicion-mtn",
         "layerQuery": "catastrones"
     },
     "author": {
         "name": " - Minutas MTN50",
-        "url": "http://www.ign.es",
-        "html": " - Minutas MTN50 <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
+        "url": "https://www.ign.es",
+        "html": " - Minutas MTN50 <a href='https://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Cartoteca' target='_blank'>CARTOTECA IGN</a>"
     },
-    "mostrarenpanel":true
+    "mostrarenpanel":true,
+    "panelname":"ATLayers"
 },
 {
     "title": "Planimetrías",
     "group": "imaginery-ign",
     "tiposerv": "WMS",
-    "urlsource": "http://www.ign.es/wms/minutas-cartograficas",
+    "urlsource": "https://www.ign.es/wms/minutas-cartograficas",
     "layernames": "Minutas",
     "imgformat": "image/jpeg",
     "tileMode": true,
@@ -272,16 +340,17 @@
     },
     "author": {
         "name": " - Planimetrías",
-        "url": "http://www.ign.es",
-        "html": " - Planimetrías <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
+        "url": "https://www.ign.es",
+        "html": " - Planimetrías <a href='https://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
     },
-    "mostrarenpanel":true
+    "mostrarenpanel":true,
+    "panelname":"ATLayers"
 },
 {
     "title": "Hojas Kilométricas (HK)",
     "group": "imaginery-ign",
     "tiposerv": "WMS",
-    "urlsource": "http://www.ign.es/wms/hojas-kilometricas",
+    "urlsource": "https://www.ign.es/wms/hojas-kilometricas",
     "layernames": "Mapas",
     "imgformat": "image/png",
     "tileMode": true,
@@ -300,16 +369,17 @@
     },
     "author": {
         "name": " - Hojas Kilométricas",
-        "url": "http://www.ign.es",
-        "html": " - Hojas Kilométricas <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
+        "url": "https://www.ign.es",
+        "html": " - Hojas Kilométricas <a href='https://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
     },
-    "mostrarenpanel":true
+    "mostrarenpanel":true,
+    "panelname":"ATLayers"
 },
 {
     "title": "Parcelas Hoja Km (HK)",
     "group": "Vector overlay",
     "tiposerv": "WMS",
-    "urlsource": "http://www.ign.es/wms/hojas-kilometricas",
+    "urlsource": "https://www.ign.es/wms/hojas-kilometricas",
     "layernames": "Parcelas_Catastrales",
     "imgformat": "image/png",
     "tileMode": true,
@@ -328,9 +398,10 @@
     },
     "author": {
         "name": " - Parcelas",
-        "url": "http://www.ign.es",
-        "html": " - Parcelas HK <a href='http://www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
+        "url": "https://www.ign.es",
+        "html": " - Parcelas HK <a href='https//www.ign.es/web/ign/portal/ic-servicio-documentacion' title=' IGN - Servicio de Documentación Geográfica - Archivo Topográfico' target='_blank'>ARCHIVO IGN</a>"
     },
-    "mostrarenpanel":true
+    "mostrarenpanel":true,
+    "panelname":"ATLayers"
 }
 ]

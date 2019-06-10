@@ -59,7 +59,7 @@ function getURLGetFeatureInfoAB(bbox,width,height,longitude,latitude){
     console.log(bbox);
     console.log(width + ' / ' + height);
     console.log(longitude + ' / ' + latitude);
-	return 'http://www.ign.es/wms-inspire/unidades-administrativas?'
+	return 'https://www.ign.es/wms-inspire/unidades-administrativas?'
 				+ 'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&'
 				+ 'LAYERS=AU.AdministrativeBoundary&QUERY_LAYERS=AU.AdministrativeBoundary&STYLES=&'
 				+ 'BBOX='+bbox+'&FEATURE_COUNT=5&'
@@ -71,7 +71,7 @@ function getURLGetFeatureInfoAU(bbox,width,height,longitude,latitude){
     console.log(bbox);
     console.log(width + ' / ' + height);
     console.log(longitude + ' / ' + latitude);
-	return 'http://www.ign.es/wms-inspire/unidades-administrativas?'
+	return 'https://www.ign.es/wms-inspire/unidades-administrativas?'
 				+ 'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&'
 				+ 'LAYERS=AU.AdministrativeUnit&QUERY_LAYERS=AU.AdministrativeUnit&STYLES=&'
 				+ 'BBOX='+bbox+'&FEATURE_COUNT=5&'
@@ -129,9 +129,9 @@ function getWMSAU(bbox,width,height,longitude,latitude){
                     }
                 }
                 if (nomMuni!=""){
-                    urlCDDActas="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=ACLLI&filtro.codIne=" + replaceAll(codINE,"ES.IGN.SIGLIM.","");
-                    urlCDDPlani="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=MIPAC&filtro.codIne=" + replaceAll(codINE,"ES.IGN.SIGLIM.","");
-                    urlCDDPobla="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=PLPOB&filtro.codIne=" + replaceAll(codINE,"ES.IGN.SIGLIM.","");
+                    urlCDDActas="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=ACLLI&filtro.codIne=" + replaceAll(codINE,"ES.IGN.SIGLIM.","");
+                    urlCDDPlani="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=MIPAC&filtro.codIne=" + replaceAll(codINE,"ES.IGN.SIGLIM.","");
+                    urlCDDPobla="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=PLPOB&filtro.codIne=" + replaceAll(codINE,"ES.IGN.SIGLIM.","");
                     cadHTML= cadHTML +
                         "<div class='alert alert-warning alert-dismissible infoBDLJE' role='alert' >" +
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"$('#listaSelMaps').trigger('heightChange');\"><span aria-hidden='true'>&times;</span></button>" +
@@ -145,9 +145,9 @@ function getWMSAU(bbox,width,height,longitude,latitude){
 
                 }else{
                   if (codINEprov!=""){
-                    urlCDDActas="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=ACLLI&filtro.codProv=" + parseInt(codINEprov.substring(18,20));
-                    urlCDDPlani="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=MIPAC&filtro.codProv=" + parseInt(codINEprov.substring(18,20));
-                    urlCDDPobla="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=PLPOB&filtro.codProv=" + parseInt(codINEprov.substring(18,20));
+                    urlCDDActas="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=ACLLI&filtro.codProv=" + parseInt(codINEprov.substring(18,20));
+                    urlCDDPlani="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=MIPAC&filtro.codProv=" + parseInt(codINEprov.substring(18,20));
+                    urlCDDPobla="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=PLPOB&filtro.codProv=" + parseInt(codINEprov.substring(18,20));
                     cadHTML = cadHTML +
                         "<div class='alert alert-warning alert-dismissible infoBDLJE' role='alert' >" +
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"$('#listaSelMaps').trigger('heightChange');\"><span aria-hidden='true'>&times;</span></button>" +
@@ -158,9 +158,9 @@ function getWMSAU(bbox,width,height,longitude,latitude){
                         "<a href=\"" + urlCDDPobla + "\" class=\"btn btn-primary btn-block btn-xs\" target=\"_blank\"><i class=\"fa fa-map\" aria-hidden=\"true\"></i> Planos de población</a>" +
                         "</div>";
                   }else{
-                    urlCDDActas="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=ACLLI&filtro.codCA=" + parseInt(codINEauto.substring(16,18));
-                    urlCDDPlani="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=MIPAC&filtro.codCA=" + parseInt(codINEauto.substring(16,18));
-                    urlCDDPobla="http://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=PLPOB&filtro.codCA=" + parseInt(codINEauto.substring(16,18));
+                    urlCDDActas="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=ACLLI&filtro.codCA=" + parseInt(codINEauto.substring(16,18));
+                    urlCDDPlani="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=MIPAC&filtro.codCA=" + parseInt(codINEauto.substring(16,18));
+                    urlCDDPobla="https://centrodedescargas.cnig.es/CentroDescargas/buscar.do?filtro.codFamilia=PLPOB&filtro.codCA=" + parseInt(codINEauto.substring(16,18));
                     cadHTML = cadHTML +
                         "<div class='alert alert-warning alert-dismissible infoBDLJE' role='alert' >" +
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"$('#listaSelMaps').trigger('heightChange');\"><span aria-hidden='true'>&times;</span></button>" +
@@ -201,7 +201,7 @@ function getWMSAB(bbox,width,height,longitude,latitude){
             },
             success: function(data) {
 
-      						var $response=$(data);
+      			var $response=$(data);
                   var container = document.getElementById('listaSelMaps');
                   var cadCodINSPIRE = $(data).find("#idinspire .text-info:first").map(function() { return $(this).text(); }).get().join('|');
                   var cadNombreLinea = $(data).find("#nombre .text-info").map(function() { return $(this).text(); }).get().join('|');
@@ -265,6 +265,10 @@ function onPointerClick(event){
 	//Centro del lienzo
 	var centro = objMap.getView().getCenter();//Devuelve un ol.Coordinate en el sistema de proyección, en nuestro caso 3857
 	centro = ol.proj.toLonLat(centro, 'EPSG:3857');//Devuelve un ol.Coordinate transformado a 4326
+
+
+    
+
 
   //Trabajando con el punto pinchado
   var pixel = objMap.getEventPixel(event.originalEvent);
@@ -331,14 +335,14 @@ function onPointerClick(event){
 function getZOnWCS(coordinatePoint,textoInfo,codepsg){
     var urlZ;
     if (codepsg=="epsg:25830"){
-        //http://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&COVERAGE=Elevacion4083_25&CRS=EPSG:4083&BBOX=337978,3121534,338003,3121559&WIDTH=1&HEIGHT=1&FORMAT=ArcGrid
-        urlZ = "http://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&" + 
+        //https://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&COVERAGE=Elevacion4083_25&CRS=EPSG:4083&BBOX=337978,3121534,338003,3121559&WIDTH=1&HEIGHT=1&FORMAT=ArcGrid
+        urlZ = "https://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&" + 
                 "COVERAGE=Elevacion25830_25&" + 
                 "CRS=EPSG:25830&" + 
                 "BBOX=" + Math.round(coordinatePoint[0],2) + "," + Math.round(coordinatePoint[1],2) + "," +  Math.round(coordinatePoint[0]+25,2) + "," + Math.round(coordinatePoint[1]+25,2) + "&" + 
                 "WIDTH=1&HEIGHT=1&FORMAT=ArcGrid";
     }else if (codepsg=="epsg:4083"){
-        urlZ = "http://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&" + 
+        urlZ = "https://servicios.idee.es/wcs-inspire/mdt?SERVICE=WCS&REQUEST=GetCoverage&VERSION=1.0.0&" + 
                 "COVERAGE=Elevacion4083_25&" + 
                 "CRS=EPSG:4083&" + 
                 "BBOX=" + Math.round(coordinatePoint[0],2) + "," + Math.round(coordinatePoint[1],2) + "," +  Math.round(coordinatePoint[0]+25,2) + "," + Math.round(coordinatePoint[1]+25,2) + "&" + 
@@ -351,6 +355,7 @@ function getZOnWCS(coordinatePoint,textoInfo,codepsg){
         dataType: "html",
         type: "GET",
         beforeSend: function () {
+            $("#infoAlt").html("<i class=\"fa fa-spinner fa-pulse\"></i>");
             //console.log("Lanzo");
             //$("#resultNoSpin").hide();
             //$("#resultSpin").show();
@@ -362,7 +367,7 @@ function getZOnWCS(coordinatePoint,textoInfo,codepsg){
             //$(data).find("#idinspire .text-info:first").map(function() { return $(this).text(); }).get().join('|');
             //console.log(data);
             var lineas=data.split("\n");
-            $("#infoAlt").text(textoInfo + lineas[6] + "m");
+            $("#infoAlt").html("<i class=\"fa fa-area-chart\"></i> " + lineas[6] + "m");
         },
         error: function(e) {
             console.log("Error");
@@ -376,14 +381,143 @@ function getZOnWCS(coordinatePoint,textoInfo,codepsg){
     });   
 }
 
+function getZOnLidar(pointClickZ){
+
+
+    var LidarTilegrid = getLayerOLByKeyname("maplidar").getSource().getTileGrid();
+    var tileCoord = LidarTilegrid.getTileCoordForCoordAndResolution(pointClickZ,objMap.getView().getResolution());
+    var nZoom = tileCoord[0]
+    var tileCol = tileCoord[1];
+    var tileRow = tileCoord[2];
+    var tileRow4url = Math.abs(tileRow)-1;
+    var resolucionZoom = objMap.getView().getResolution();
+    var sizeTile=LidarTilegrid.getTileSize(nZoom);
+    var origenTileX= -20037508.34  + tileCol * sizeTile * resolucionZoom;
+    var origenTileY= 20037508.34 - sizeTile * resolucionZoom * (-1) * (tileRow+1);
+    var cooTileX = Math.round((pointClickZ[0]-origenTileX)/resolucionZoom);
+    var cooTileY = Math.round((origenTileY - pointClickZ[1])/resolucionZoom);
+
+/*
+    console.log("Coordenada: " + pointClickZ);
+    console.log("Resolución: " + objMap.getView().getResolution());
+    console.log("Zoom/TileCol/TileRow");
+    console.log(LidarTilegrid.getTileCoordForCoordAndResolution(pointClickZ,objMap.getView().getResolution()));
+    console.log("OriginTile: " + LidarTilegrid.getOrigin(16));
+    console.log("TileSize: " + LidarTilegrid.getTileSize(16));    
+    console.log("Resolución: " + resolucionZoom);
+    console.log("nZoom: " + nZoom);
+    console.log("sizeTile: " + sizeTile);
+    console.log("tileCol: " + tileCol);
+    console.log("tileRow: " + tileRow + "/" + tileRow4url);
+    console.log("origenTileX: " + origenTileX);
+    console.log("origenTileY: " + origenTileY);
+    console.log("cooTileX: " + cooTileX);
+    console.log("cooTileY: " + cooTileY);
+*/
+    var urlLidar = "https://wmts-mapa-lidar.idee.es/lidar?SERVICE=WMTS&REQUEST=GetFeatureInfo&VERSION=1.0.0&LAYER=EL.GridCoverageDSM&INFOFORMAT=text/plain" + 
+                    "&TileCol=" + tileCol + "&TileRow=" + tileRow4url + "&TileMatrix=" + nZoom + "&TileMatrixSet=GoogleMapsCompatible&I=" + cooTileX + "&J=" + cooTileY;
+
+    $("#infoLidar").text("");
+
+    $.ajax({
+        url: urlLidar,
+        dataType: "html",
+        type: "GET",
+        beforeSend: function () {
+            $("#infoLidar").html("<i class=\"fa fa-spinner fa-pulse\"></i>");
+        },
+        success: function(data) {
+            var alturaLidar = replaceAll(data.split('\n')[2],"GRAY_INDEX = ","");
+            if (alturaLidar!=="-999.0"){
+                $("#infoLidar").html(" <i class=\"fa fa-building-o\"></i> " + alturaLidar + " m");
+            }else{
+                $("#infoLidar").html("");
+            }
+        },
+        error: function(e) {
+            console.log("Error");
+            console.log(e.responseText);
+            $("#infoAlt").html(" <i class=\"fa fa-building-o\"></i> LiDAR no disponible");
+
+
+        },
+        complete: function () {
+            //$("#resultAlturaSpin").hide();
+        }
+
+    });
+
+
+}
+
+
+function getInfoOnSIOSE(pointClickZ){
+
+
+    var LidarTilegrid = getLayerOLByKeyname("maplidar").getSource().getTileGrid();
+    var tileCoord = LidarTilegrid.getTileCoordForCoordAndResolution(pointClickZ,objMap.getView().getResolution());
+    var nZoom = tileCoord[0]
+    var tileCol = tileCoord[1];
+    var tileRow = tileCoord[2];
+    var tileRow4url = Math.abs(tileRow)-1;
+    var resolucionZoom = objMap.getView().getResolution();
+    var sizeTile=LidarTilegrid.getTileSize(nZoom);
+    var origenTileX= -20037508.34  + tileCol * sizeTile * resolucionZoom;
+    var origenTileY= 20037508.34 - sizeTile * resolucionZoom * (-1) * (tileRow+1);
+    var cooTileX = Math.round((pointClickZ[0]-origenTileX)/resolucionZoom);
+    var cooTileY = Math.round((origenTileY - pointClickZ[1])/resolucionZoom);
+
+    var urlSIOSE = "https://servicios.idee.es/wmts/ocupacion-suelo?SERVICE=WMTS&REQUEST=GetFeatureInfo&VERSION=1.0.0&LAYER=LC.LandCoverSurfaces&INFOFORMAT=text/html" + 
+                    "&STYLE=LC.LandCoverSurfaces.Default&FORMAT=image/png" + 
+                    "&TileCol=" + tileCol + "&TileRow=" + tileRow4url + "&TileMatrix=" + nZoom + "&TileMatrixSet=GoogleMapsCompatible&I=" + cooTileX + "&J=" + cooTileY;
+
+    console.log(urlSIOSE)                    
+    $("#infoSIOSE").text("");
+
+    $.ajax({
+        url: urlSIOSE,
+        dataType: "html",
+        type: "GET",
+        beforeSend: function () {
+            $("#infoSIOSE").html("<i class=\"fa fa-spinner fa-pulse\"></i>");
+        },
+        success: function(data) {
+            console.log(data);
+            var dataInfo = jQuery(data).find('.text-info');
+            /*
+            dataInfo.each(function() { 
+                console.log($(this).text());
+            });
+            */
+           var tipoSIOSE = jQuery(dataInfo[2]).text();
+           $("#infoSIOSE").html(" <i class=\"fa fa-tree\"></i> " + tipoSIOSE);
+            console.log();
+
+        },
+        error: function(e) {
+            console.log("Error");
+            console.log(e.responseText);
+            $("#infoSIOSE").html("<i class=\"fa fa-tree\"></i> SIOSE no disponible");
+        },
+        complete: function () {
+            //$("#resultAlturaSpin").hide();
+        }
+
+    });
+
+
+}
+
 
 function getZOnPointer(event,textoInfo){
 
     var pixelZ = objMap.getEventPixel(event.originalEvent);
     var pointClickZ = objMap.getCoordinateFromPixel(pixelZ);
-    //pointClickZ = ol.proj.toLonLat(pointClickZ, 'EPSG:3857');//Devuelve un ol.Coordinate transformado a 4326
+    console.log("Pixel: " + pixelZ);
 
-    
+    getZOnLidar(pointClickZ);
+    getInfoOnSIOSE(pointClickZ);
+
     if (objMap.getView().getCenter()[1]<3444248){
         //Estamos en Canarias
         console.log("Estamos en Canarias");
@@ -396,7 +530,4 @@ function getZOnPointer(event,textoInfo){
         getZOnWCS(pointClickZ,textoInfo,"epsg:25830");
     }
     
-    
-
-
 }
