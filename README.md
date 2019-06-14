@@ -1,18 +1,38 @@
 # Mapahisto
-## Un comparador para el AT
+## Un comparador para el Archivo Topográfico :earth_africa: :earth_americas: :earth_asia:
+## :bookmark_tabs: Contenido
 
-### Primeros pasos
+* [Primeros pasos](#general-info)
+* [Comenzar proyecto con Grunt](#proyect-grunt)
+* [Documentación](#documentacion)
+
+
+## :baby_bottle: Primeros pasos
 
 ``` bash
 #Comandos para inicializar el repositorio
 git init
+
+#Añadir un fichero al stage
 git add README.md
+
+#Añadir todos los ficheros al stage. Hacer con cuidado para no subir cosas innecesarias. Mejor comprobar antes con un git status
+git add.
+
+#Hacer un commit al repositorio local con mensaje
 git commit -m "first commit"
+
+#Configurar el repositorio de GitHub en nuestro repositorio local (origin)
 git remote add origin https://github.com/e2molin/athisto.git
+
+#Subir nuestro repositorio local (origin) al GitHub, en este caso la rama (branch) master
 git push -u origin master
 ```
 
-#### Relación con GitLens de VSCode
+### Relación con **GitLens** de VSCode
+
+Cuando instalamos **VsCode**, encontraremos herramientas para hacernos más fácil el manejo con **GIT**. Como estoy más acostumbrado a trabajar en inglés que en español, y estas herramientas viene castellanizadas, aquí apunto las equivalencias de las que voy usando.
+
 ``` bash
 #Almacenar todos los cambios
 git add .
@@ -21,10 +41,15 @@ git add .
 git commit -m "first commit"
 ```
 
+## :coffee: Comenzar proyecto con Grunt
 
-# Creamos fichero package.json
+### Creamos fichero package.json
+Previamente tenemos instalado node. Con el gestor de paquetes npm iniciamos nuestro proyecto.
+
+``` bash
 npm init: creamos el fichero package.json
 ```
+
 ### Cómo usar **Grunt** como task manager
 Usaremos GRUNT como task runner. para eso tenemos que instalarlo, primero en la máquina, si no lo hemos usado nunca, y después en el _working directory_.
 
@@ -46,7 +71,16 @@ Después configuramos el fichero _gruntfile.js_ con la programación de las tare
 grunt default --force  # Ejecuta las tareas programadas
 ```
 
-#### Enlaces de interes para trabajar con _Grunt_.
+## :books: Documentación 
+
+### Enlaces de interés con GitHub
+
+* [Guía ultrarrápida de Git](https://medium.com/@sthefany/primeros-pasos-con-github-7d5e0769158c)
+* [Listado de comandos Git](https://www.hostinger.es/tutoriales/comandos-de-git)
+* [Emojis en GitHub](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+
+
+### Enlaces de interes para trabajar con _Grunt_.
 
 Otros plugins de interés
 

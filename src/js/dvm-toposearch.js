@@ -180,12 +180,12 @@ function getCoordinateByIDEid(idIDEE){
 
     console.log("Valor seleccionado para búsqueda:" + idIDEE);
     $.ajax({
-            url : 'http://www.idee.es/communicationsPoolServlet/Dispatcher',
+            url : 'https://www.idee.es/communicationsPoolServlet/Dispatcher',
             dataType : 'jsonp',
             data : {
                 request : 'OpenQuerySource',
                 query : '<ogc:Filter><ogc:FeatureId fid="' + idIDEE + '"/></ogc:Filter>',
-                sourcename : 'http://www.idee.es/communicationsPoolServlet/sourceAccessWFS-INSPIRE-NGBE.rdf',
+                sourcename : 'https://www.idee.es/communicationsPoolServlet/sourceAccessWFS-INSPIRE-NGBE.rdf',
                 outputformat : 'application/json'
             },
             success : function(data){
@@ -218,7 +218,7 @@ $(function() {
         source : function(request, response){
             $("#nameSearchIDE").removeClass("inputTopoWithoutSpinner").addClass("inputTopoWithSpinner");
             $.ajax({
-                url : 'http://www.idee.es/communicationsPoolServlet/SearchAssistant', //script del servidor
+                url : 'https://www.idee.es/communicationsPoolServlet/SearchAssistant', //script del servidor
                 dataType : 'jsonp',                             //Formato de los datos que vienen - El eso de JSONP evita los errores de CORS
                 data : {
                     name_equals : $("#nameSearchIDE").val(),    //Texto de muestra pasado para filtrar
