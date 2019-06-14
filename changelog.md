@@ -11,6 +11,7 @@ El formato de este documento está basado en [Keep a Changelog](https://keepacha
 ### :bulb: Nuevo
 * Nuevo grupo de capas con los datos LiDAR, el MDT y el SIOSE. 
 * Al evento pinchazo se responde indicando la altura sobre el MDT, el tipo de terreno según SIOSE y si estamos sobre un edificio, su altura en metros.
+* Enlace al Pinterest de IGN.
 
 ### :wrench: Cambios y correcciones.
 * :bug: Utiliza servicios **http** para el la consulta de servicios de mapa.

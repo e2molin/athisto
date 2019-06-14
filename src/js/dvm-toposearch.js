@@ -174,8 +174,6 @@ $( "#btnSearchCoo" ).click(function() {
 });
 
 
-
-
 function getCoordinateByIDEid(idIDEE){
 
     console.log("Valor seleccionado para búsqueda:" + idIDEE);
@@ -185,7 +183,7 @@ function getCoordinateByIDEid(idIDEE){
             data : {
                 request : 'OpenQuerySource',
                 query : '<ogc:Filter><ogc:FeatureId fid="' + idIDEE + '"/></ogc:Filter>',
-                sourcename : 'https://www.idee.es/communicationsPoolServlet/sourceAccessWFS-INSPIRE-NGBE.rdf',
+                sourcename : 'http://www.idee.es/communicationsPoolServlet/sourceAccessWFS-INSPIRE-NGBE.rdf',
                 outputformat : 'application/json'
             },
             success : function(data){
@@ -200,11 +198,12 @@ function getCoordinateByIDEid(idIDEE){
                         //Si hay un mapa sincronizado, mueve la posición hasta el mapa en el mapa espejo
                         objMapMirror.setView(objMap.getView());
                     }
-                    sidebar.hide();
+                    sidebar.close();
                     if (mobileMode==true){$("#topoinput").hide(); }
                 });
             },
             error: function(e){
+                console.log("FALLO IGNSearch");
                 console.log(e.responseText);
             }
     });
