@@ -39,6 +39,9 @@ git add .
 
 #Confirmar todo
 git commit -m "first commit"
+
+#Publicar rama
+git push -u origin master
 ```
 
 ## :coffee: Comenzar proyecto con Grunt
