@@ -206,7 +206,7 @@ function getWMSAB(bbox,width,height,longitude,latitude){
                   var cadCodINSPIRE = $(data).find("#idinspire .text-info:first").map(function() { return $(this).text(); }).get().join('|');
                   var cadNombreLinea = $(data).find("#nombre .text-info").map(function() { return $(this).text(); }).get().join('|');
                   var cadJerarqLevel = $(data).find("#nivel .text-info").map(function() { return $(this).text(); }).get().join('|');
-                  var cadhojaRegistral = $(data).find("#nombre .text-info a").map(function() { return $(this).attr('href'); }).get().join('|');
+                  var cadhojaRegistral = $(data).find("#hoja .text-info a").map(function() { return $(this).attr('href'); }).get().join('|');
                   var codigosINSPIRE=cadCodINSPIRE.split("|");
                   var nombresLinea=cadNombreLinea.split("|");
                   var jerarqLevel=cadJerarqLevel.split("|");
