@@ -61,7 +61,7 @@ function getURLGetFeatureInfoAB(bbox,width,height,longitude,latitude){
     console.log(longitude + ' / ' + latitude);
 	return 'https://www.ign.es/wms-inspire/unidades-administrativas?'
 				+ 'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&'
-				+ 'LAYERS=AU.AdministrativeBoundary&QUERY_LAYERS=AU.AdministrativeBoundary&STYLES=&'
+				+ 'LAYERS=AU.AdministrativeBoundary&QUERY_LAYERS=AU.AdministrativeBoundary&STYLES=AU.AdministrativeBoundary.Default&'
 				+ 'BBOX='+bbox+'&FEATURE_COUNT=5&'
 				+ 'HEIGHT='+height+'&WIDTH='+width+'&FORMAT=image/png&'
 				+ 'INFO_FORMAT=text/html&SRS=EPSG:4326&X='+longitude+'&Y='+latitude;
