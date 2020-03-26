@@ -2,12 +2,43 @@
 ## Un comparador para el Archivo Topográfico :earth_africa: :earth_americas: :earth_asia:
 ## :bookmark_tabs: Contenido
 
-* [Primeros pasos](#general-info)
+* [Preparando un stack de desarrollo para un proyecto](#initstack)
 * [Comenzar proyecto con Grunt](#proyect-grunt)
 * [Documentación](#documentacion)
 
 
-## :baby_bottle: Primeros pasos
+## 🚀 Empezando desde Github
+Vamos a bajarnos el código de GitHub y prepararlo para ejecutar en la máquina de desarrollo. Para ello
+
+* Lo primero es navegar a una carpeta donde queremos que se cree nuestro **working dir**.
+* Ejecutamos el comando
+
+```bash
+git clone https://github.com/e2molin/athisto
+```
+* Vemos que se descarga el código nos crea una carpeta llamada *athisto*. Si nos metemos dentro veremos que hay varios ficheros y carpetas. Uno de ellos es un *package.json*, por lo que inmediatamente tenemos que pensar en ejecutar el administrador de paquetes de **NodeJS** para descargar los paquetes de desarrollo necesarios.
+* 
+```bash
+npm install
+```
+
+* Veremos una carpeta llamada *node_modules*, donde se habrán descargado los paquetes para la máquina de desarrollo. Este directorio se encuentra dentro del *.gitignore*, porque su contenido no hay que incluirlo en el índice de nuestro sistema de versiones. Si estamos mal de espacio, podemos borrar su contenido, y solo tendremos que volver a hacer un **npm install**. También veremos un fichero *gruntfile.js*, lo que nos indica que el gestor de empaquetado que utiliza el proyecto es Grunt. Si no lo hemos utilizado antes, habrá que instalarlo globalmente en la máquina y así se puede usar para otros desarrollos. Lo instalamos así:
+
+```bash
+npm install grunt-cli -g  # Instala grunt en la máquina de manera global
+```
+
+* Podemos ver que todo funciona, realizando un empaquetado para distribución, con el comando
+
+```bash
+grunt default --force  # Ejecuta las tareas programadas
+```
+
+* Si todo va bien se creará una carpeta *dist* con el código para publicar. Podemos abrir un Servidor **Go Live** y ver el conteniso
+
+## <a name="initstack"></a> 👨🏻‍💻👩🏻‍💻 Preparando un stack de desarrollo para un proyecto
+
+### :baby_bottle: Primeros pasos
 
 ``` bash
 #Comandos para inicializar el repositorio
@@ -29,6 +60,11 @@ git remote add origin https://github.com/e2molin/athisto.git
 git push -u origin master
 ```
 
+### 📝 Editor de código
+
+Lo mejor es utilizar VSCode, con diferencia ahora uno de los mejores. Aunque en esto, los gustos son como los colores. Entre las extensiones de VSCode que sun útiles, hay varias: GitLens, MarkDown Emoji, :emojisense:, Live Server.....
+
+
 ### Relación con **GitLens** de VSCode
 
 Cuando instalamos **VsCode**, encontraremos herramientas para hacernos más fácil el manejo con **GIT**. Como estoy más acostumbrado a trabajar en inglés que en español, y estas herramientas viene castellanizadas, aquí apunto las equivalencias de las que voy usando.
@@ -44,16 +80,16 @@ git commit -m "first commit"
 git push -u origin master
 ```
 
-## :coffee: Comenzar proyecto con Grunt
+### <a name="proyect-grunt"></a>:coffee: Configurando una herramienta de empaquetamiento. Comenzar proyecto con Grunt
 
-### Creamos fichero package.json
+#### Creamos fichero package.json
 Previamente tenemos instalado node. Con el gestor de paquetes npm iniciamos nuestro proyecto.
 
 ``` bash
 npm init: creamos el fichero package.json
 ```
 
-### Cómo usar **Grunt** como task manager
+#### Cómo usar **Grunt** como task manager
 Usaremos GRUNT como task runner. para eso tenemos que instalarlo, primero en la máquina, si no lo hemos usado nunca, y después en el _working directory_.
 
 ``` bash
@@ -76,7 +112,7 @@ grunt default --force  # Ejecuta las tareas programadas
 
 
 
-## :books: Documentación 
+## <a name="documentacion"></a>:books: Documentación 
 
 ### Enlaces de interés con GitHub
 
