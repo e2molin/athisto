@@ -38,6 +38,10 @@ grunt default --force  # Ejecuta las tareas programadas
 
 ## <a name="initstack"></a> 👨🏻‍💻👩🏻‍💻 Preparando un stack de desarrollo para un proyecto
 
+Estos serían los pasos para crear de cero un desarrollo, utilizando [Grunt](https://gruntjs.com/) como *task runner* y [GIT](https://git-scm.com/) como control de versiones. Para hacer el proyecto en [GITHUB](https://github.com/e2molin) que almacene remotamente nuestro repositorio hay dos maneras. Una es crear desde GITHUB el repositorio, dejarlo vacío, clonarlo a nuestra máquina y empezar  a trabajar con él, creando ficheros en nuestro espacio de trabajo, aññadiéndolos progresivamente al *stage* y haciendo primero un git commit local y después un git push al  repositorio remoto que hemos clonado.
+
+
+
 ### :baby_bottle: Primeros pasos
 
 ``` bash
