@@ -4,6 +4,7 @@
   "description": "### Build Setup",
   "main": "index.js",
   "scripts": {
+    "build": "grunt default --force",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

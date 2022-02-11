@@ -432,7 +432,7 @@ $("#btnPrint").click(function() {
   xCenter = Math.round(center[0] * 100) / 100;
   yCenter = Math.round(center[1] * 100) / 100;
   zoom = 2;
-
+  console.log("php/printMosaic.php?cooCentroX=" + xCenter + "&cooCentroY=" + yCenter + "&zoom=" + zoom + "&listacapas=" + listaCapas);
   if (modeViz==1){
     //capasPrint = getLayerOLByTitle("MosaicNW").getProperties()['keyname'] + "," + getLayerOLByTitle("MosaicNE").getProperties()['keyname'] + "," + getLayerOLByTitle("MosaicSW").getProperties()['keyname'] + "," + getLayerOLByTitle("MosaicSE").getProperties()['keyname'];
     window.open("php/printMosaic.php?cooCentroX=" + xCenter + "&cooCentroY=" + yCenter + "&zoom=" + zoom + "&listacapas=" + listaCapas);
@@ -1225,6 +1225,7 @@ function basicMap(){
     
     //Detectar Z
     getZOnPointer(evt,"Altura en cursor: ");
+    $("#infoCoordinateClic").html("<i class=\"fa fa-map-marker\"></i>" + ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326")[0] + ", " + ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326")[1]);
     onPointerClick(evt);
 
   });
@@ -1249,6 +1250,7 @@ function basicMap(){
       $("#infoAlt").text("");
       $("#infoSIOSE").text("");
       $("#infoLidar").text("");
+      $("#infoCoordinateClic").text("");
     }
 
 
