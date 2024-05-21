@@ -173,6 +173,16 @@ $( "#btnSearchCoo" ).click(function() {
 
 });
 
+//https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?q=Ajuntament%20de%20El%20Mil%C3%A0%2C%20El%20Mil%C3%A0&type=toponimo&tip_via=Ayuntamiento&id=BTN_3281968&portal=null&extension=null
+//https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?q=mila&type=portal&id=430830914286&outputformat=geojson
+//https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?q=Milmarcos%2C%20Guadalajara&type=Municipio&tip_via=null&id=19183&portal=null&extension=null
+
+//https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?q=Ajuntament del Milà , El Milà&type=toponimo&tip_via=null&id=43083&portal=null&extension=null
+
+//https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?q=Milmarcos%2C%20Milmarcos&type=poblacion&tip_via=null&id=800002464&portal=null&extension=null
+
+https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?q=Milmarcos%2C%20Milmarcos&type=poblacion&tip_via=null&id=800002464&portal=null&extension=null
+
 
 function getCoordinateByIDEid(idIDEE){
 
@@ -210,6 +220,74 @@ function getCoordinateByIDEid(idIDEE){
 
 }
 
+function getCoordinateById(geoItem){
+
+    console.log("Valor seleccionado para búsqueda:");
+    console.log(geoItem);
+    //https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?type=toponimo&id=430830914286
+    var cooReq= "https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?type=" + geoItem.type + "&id=" + geoItem.id;
+    console.log(cooReq);
+    fetch(cooReq,{
+        method: 'GET',
+        mode: 'cors'
+    })
+    .then( function (response) {
+        return response.text()
+    })
+    .then(function (text)  {
+            var response = JSON.parse(text.slice(9,-1))
+            //console.log(response);
+            centerToponym(objMap,response.lng,response.lat,12,response.address);
+            if ($('#mapMirrorLienzo').length==1){
+                //Si hay un mapa sincronizado, mueve la posición hasta el mapa en el mapa espejo
+                objMapMirror.setView(objMap.getView());
+            }
+            sidebar.close();
+            if (mobileMode === true){$("#topoinput").hide();
+        }        
+    })
+    .catch(function (error){console.error(error)});ç
+
+ 
+    // $.ajax({
+    //         url : 'https://www.idee.es/communicationsPoolServlet/Dispatcher',
+    //         dataType : 'jsonp',
+    //         data : {
+    //             request : 'OpenQuerySource',
+    //             query : '<ogc:Filter><ogc:FeatureId fid="' + idIDEE + '"/></ogc:Filter>',
+    //             sourcename : 'http://www.idee.es/communicationsPoolServlet/sourceAccessWFS-INSPIRE-NGBE.rdf',
+    //             outputformat : 'application/json'
+    //         },
+    //         success : function(data){
+    //             console.log("Obtenemos los datos");
+    //             //console.log(data);
+    //             $.map(data.results, function(item){
+    //                 console.log(item.location);
+    //                 var coordinatesTopo = item.location.split(" ");
+    //                 centrarVistaToponimo(objMap,coordinatesTopo[1],coordinatesTopo[0],12,item.title);
+    //                 console.log("Existe el elemento:" + $('#mapSyncro').length);
+    //                 if ($('#mapMirrorLienzo').length==1){
+    //                     //Si hay un mapa sincronizado, mueve la posición hasta el mapa en el mapa espejo
+    //                     objMapMirror.setView(objMap.getView());
+    //                 }
+    //                 sidebar.close();
+    //                 if (mobileMode==true){$("#topoinput").hide(); }
+    //             });
+    //         },
+    //         error: function(e){
+    //             console.log("FALLO IGNSearch");
+    //             console.log(e.responseText);
+    //         }
+    // });
+
+}
+
+// https://www.cartociudad.es/geocoder/api/geocoder/candidatesJsonp?callback=jQuery22408684413746695392_1716205572699&q=s&limit=8&_=1716205572700
+// https://www.cartociudad.es/geocoder/api/geocoder/candidatesJsonp?limit=10&q=sab&countrycode=es&autocancel=true
+
+
+
+
 
 $(function() {
 
@@ -217,14 +295,17 @@ $(function() {
         source : function(request, response){
             $("#nameSearchIDE").removeClass("inputTopoWithoutSpinner").addClass("inputTopoWithSpinner");
             $.ajax({
-                url : 'https://www.idee.es/communicationsPoolServlet/SearchAssistant', //script del servidor
+                url : 'https://www.cartociudad.es/geocoder/api/geocoder/candidatesJsonp', //script del servidor
                 dataType : 'jsonp',                             //Formato de los datos que vienen - El eso de JSONP evita los errores de CORS
                 data : {
-                    name_equals : $("#nameSearchIDE").val(),    //Texto de muestra pasado para filtrar
-                    maxresults : 8                              //Número de resultados pedidos al servidor
+                    q : $("#nameSearchIDE").val(),    //Texto de muestra pasado para filtrar
+                    no_process: "callejero,carretera,portal",
+                    countrycodes: "es",
+                    limit : 8                              //Número de resultados pedidos al servidor
                 },
                 success : function(data){
-                        response($.map(data.results, function(object){
+                        //console.log(data);
+                        response($.map(data, function(object){
                         $("#nameSearchIDE").removeClass("inputTopoWithSpinner").addClass("inputTopoWithoutSpinner");
                         return object       //Este objeto que se devuelve pasa al método autocomplete para formatear los datos en el desplegable
                     }));
@@ -237,19 +318,21 @@ $(function() {
         },
         appendTo: "#topoSearchIDEResults",
         focus: function( event, ui ) {
-            $( "#nameSearchIDE" ).val( ui.item.title );
+            $( "#nameSearchIDE" ).val( ui.item.address );
             return false;
         },
         select: function( event, ui ) {
-            console.log("Seleccionado:" + ui.item.title);
-            console.log("Seleccionado:" + ui.item.type);
-            getCoordinateByIDEid(ui.item.id,false);
+            //console.log("Seleccionado:" + ui.item.address);
+            //console.log("Seleccionado:" + ui.item.type);
+            console.log(ui.item)
+            getCoordinateById(ui.item);
+            //getCoordinateByIDEid(ui.item.id,false);
             return false;
         }
     })
     .autocomplete( "instance" )._renderItem = function( ul, item ) {
           return $( "<li>" )
-            .append( '<img src="./img/pushpin16.png"> ' + item.title + ' <small style="color:#847777;">(' + item.type + ')</small>'  )
+            .append( '<img src="./img/pushpin16.png"> ' + item.address + ' <small style="color:#847777;">(' + item.type + ')</small>'  )
             .appendTo( ul );
     };
 

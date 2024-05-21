@@ -823,3 +823,18 @@ function centrarVistaToponimo(mapOL3,longitud,latitud,zoomLevel,mensaje){
         });
 	mapOL3.setView(panning);
 }
+
+function centerToponym(mapOL3,longitud,latitud,zoomLevel,mensaje){
+
+    console.log("centerToponym.Longitud:" + longitud);
+    console.log("centerToponym.Latitud:" + latitud);
+    removePointInfoLayer(mapOL3);
+    addPointInfo(mapOL3,longitud,latitud,mensaje);
+	var panning=new ol.View({
+          center: ol.proj.transform([parseFloat(longitud), parseFloat(latitud)], 'EPSG:4326', 'EPSG:3857'),
+          zoom: zoomLevel,
+          minZoom: 4,
+          maxZoom: 18
+        });
+	mapOL3.setView(panning);
+}
